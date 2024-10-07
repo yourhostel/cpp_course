@@ -1,3 +1,4 @@
+// console_utils.h
 #pragma once
 #include <windows.h> // Для функцій SetConsoleCP та SetConsoleOutputCP
 
