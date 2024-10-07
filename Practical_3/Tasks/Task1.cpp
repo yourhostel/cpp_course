@@ -30,11 +30,11 @@ void processSum() {
 
 }
 
-int main() {
-    // Викликаємо функцію обробки
-    processSum();
-
-    return 0;
-
-}
+//int main() {
+//    // Викликаємо функцію обробки
+//    processSum();
+//
+//    return 0;
+//
+//}
 
