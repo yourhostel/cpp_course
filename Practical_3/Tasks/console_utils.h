@@ -1,9 +1,9 @@
-// console_utils.h
+п»ї// console_utils.h
 #pragma once
-#include <windows.h> // Для функцій SetConsoleCP та SetConsoleOutputCP
+#include <windows.h> // Р”Р»СЏ С„СѓРЅРєС†С–Р№ SetConsoleCP С‚Р° SetConsoleOutputCP
 
-// Функція для встановлення кодування CP1251 (кирилиця)
+// Р¤СѓРЅРєС†С–СЏ РґР»СЏ РІСЃС‚Р°РЅРѕРІР»РµРЅРЅСЏ РєРѕРґСѓРІР°РЅРЅСЏ CP1251 (РєРёСЂРёР»РёС†СЏ)
 void setCyrillicEncoding();
 
-// Функція для встановлення кодування UTF-8
+// Р¤СѓРЅРєС†С–СЏ РґР»СЏ РІСЃС‚Р°РЅРѕРІР»РµРЅРЅСЏ РєРѕРґСѓРІР°РЅРЅСЏ UTF-8
 void setUtf8Encoding();

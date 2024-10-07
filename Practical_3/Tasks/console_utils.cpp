@@ -1,13 +1,13 @@
-// console_utils.cpp
+п»ї// console_utils.cpp
 #include "console_utils.h"
 
-// Встановлює кодування CP1251 (кирилиця)
+// Р’СЃС‚Р°РЅРѕРІР»СЋС” РєРѕРґСѓРІР°РЅРЅСЏ CP1251 (РєРёСЂРёР»РёС†СЏ)
 void setCyrillicEncoding() {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 }
 
-// Встановлює кодування UTF-8
+// Р’СЃС‚Р°РЅРѕРІР»СЋС” РєРѕРґСѓРІР°РЅРЅСЏ UTF-8
 void setUtf8Encoding() {
     SetConsoleCP(65001);
     SetConsoleOutputCP(65001);
