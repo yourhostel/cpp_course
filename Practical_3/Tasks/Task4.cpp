@@ -35,9 +35,9 @@ void processTask4() {
     setUtf8Encoding();
 }
 
-int main() {
-    // Викликаємо функцію обробки
-    processTask4();
-
-    return 0;
-}
+//int main() {
+//    // Викликаємо функцію обробки
+//    processTask4();
+//
+//    return 0;
+//}

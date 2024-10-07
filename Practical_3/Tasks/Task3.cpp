@@ -34,7 +34,7 @@ void processTask3() {
     total_cost = (2 * distance) * (fuel_consumption / 100) * fuel_price;
 
     // Виведення загальної вартості поїздки
-    cout << "Поїздка на дачу і назад обійдеться в " << total_cost << " грн." << endl;
+    cout << "Поїздка на дачу і назад обійдеться в " << round(total_cost) << " грн." << endl;
 
     // Повертаємо кодування до UTF-8
     setUtf8Encoding();
