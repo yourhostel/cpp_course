@@ -47,3 +47,6 @@ ConsoleA.35858a34/
 *.ilk
 *.idb
 *.log
+
+# CMake generated files
+cmake-build-debug/
