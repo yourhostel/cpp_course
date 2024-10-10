@@ -6,17 +6,19 @@
 */
 
 #include <iostream>
+#include <cmath>
 #include "console_utils.h" // Підключаємо наші функції кодування
 
 using namespace std;
 
 // Функція для обчислення вартості поїздки
 void processTask3() {
-    // Встановлюємо кодування для кирилиці
-    setCyrillicEncoding();
+
+    // кодування до UTF-8
+    setUtf8Encoding();
 
     // Оголошуємо змінні
-    double distance, fuel_consumption, fuel_price, total_cost;
+    double distance, fuel_consumption, fuel_price;
 
     // Введення відстані до дачі
     cout << "Введіть відстань до дачі (км): ";
@@ -31,18 +33,16 @@ void processTask3() {
     cin >> fuel_price;
 
     // Розрахунок вартості поїздки туди і назад
-    total_cost = (2 * distance) * (fuel_consumption / 100) * fuel_price;
+    const double total_cost = (2 * distance) * (fuel_consumption / 100) * fuel_price;
 
     // Виведення загальної вартості поїздки
     cout << "Поїздка на дачу і назад обійдеться в " << round(total_cost) << " грн." << endl;
 
-    // Повертаємо кодування до UTF-8
-    setUtf8Encoding();
 }
 
-//int main() {
-//    // Викликаємо функцію обробки
-//    processTask3();
-//
-//    return 0;
-//}
+int main() {
+    // Викликаємо функцію обробки
+    processTask3();
+
+    return 0;
+}

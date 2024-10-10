@@ -9,7 +9,6 @@ void processSum() {
     setCyrillicEncoding();
 
     int num1, num2, num3;
-    int sum;
 
     cout << "Введіть перше число: ";
     cin >> num1;
@@ -20,7 +19,7 @@ void processSum() {
     cout << "Введіть третє число: ";
     cin >> num3;
 
-    sum = num1 + num2 + num3;
+    int sum = num1 + num2 + num3;
 
     cout << "Сума чисел: " << sum << endl;
 
@@ -30,11 +29,11 @@ void processSum() {
 
 }
 
-//int main() {
-//    // Викликаємо функцію обробки
-//    processSum();
+// int main() {
+//     // Викликаємо функцію обробки
+//     processSum();
 //
-//    return 0;
+//     return 0;
 //
-//}
+// }
 

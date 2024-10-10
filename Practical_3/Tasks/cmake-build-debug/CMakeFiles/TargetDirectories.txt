@@ -1,0 +1,3 @@
+D:/cpp/Practical_3/Tasks/cmake-build-debug/CMakeFiles/Tasks.dir
+D:/cpp/Practical_3/Tasks/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/cpp/Practical_3/Tasks/cmake-build-debug/CMakeFiles/rebuild_cache.dir
