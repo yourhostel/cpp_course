@@ -5,6 +5,7 @@
 #include <numbers> // Для використання константи pi
 
 using namespace std;
+using namespace numbers;
 
 // Встановлює кодування UTF-8
 void setUtf8Encoding() {
@@ -29,7 +30,7 @@ void calculate_abc() {
     double b = exp(x) * ((pow(y, 2) + 12 * x * y - 3 * pow(x, 2)) / (18 * y - 1));
 
     // Обчислення c
-    double c = (std::numbers::pi + cos(x * y)) / (sin(y) - x * std::numbers::pi) + 6 / x;
+    double c = (pi + cos(x * y)) / (sin(y) - x * pi) + 6 / x;
 
     // Виведення результатів
     cout << format("a = {:.4f}\n", a);
@@ -52,10 +53,10 @@ void calculate_circle() {
     }
 
     // Обчислення довжини кола L = 2 * π * R
-    double L = 2 * numbers::pi * R;
+    double L = 2 * pi * R;
 
     // Обчислення площі круга S = π * R^2
-    double S = numbers::pi * R * R;
+    double S = pi * R * R;
 
     // Виведення результатів
     cout << format("Довжина кола L = {:.4f}\n", L);

@@ -3,7 +3,7 @@
 ## 1. Обчислити:
 
 $$
-a = \ln \left( \left( y - \sqrt{|x|} \right) \cdot \left( \frac{x - \frac{y}{x + \frac{x^2}{4}}}{x} \right) \right)
+a = \ln \left| \left( y - \sqrt{|x|} \right) \left( \frac{x - \frac{y}{x + \frac{x^2}{4}}}{x} \right) \right|
 $$
 
 $$
