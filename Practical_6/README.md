@@ -12,6 +12,14 @@ x \cos^2(x) + \sqrt{x}, & \text{при } L = 4 \\
 e^{0.8x} + \left| x \right|, & \text{при } L = 5
 \end{cases}
 $$
+$$
+y =
+\begin{cases}
+a \sin^2(x) + \cos(zx), & \text{при } x < \ln(a) \\
+\cos^3(a + zx), & \text{при } \ln(a) \leq x \leq b \\
+\sqrt{2.5a^3 + (b - zx^2)^6}, & \text{при } x > b
+\end{cases}
+$$
 Значення  ( x ) ввести з клавіатури.
 
 ### 2) Елементи кола пронумеровані в такий спосіб:
