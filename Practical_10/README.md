@@ -17,7 +17,7 @@
 Перестановка цифр реалізується так:
 
 $$
-x' = (x \% 10) \cdot 10000 + (x \% 10000) / 10 + (x / 10000)
+x' = (x \% 10) \cdot 10000 + (x \bmod 10000) / 10 + (x / 10000)
 $$
 
 ![2024-11-19_232410.jpg](screenshots%2F2024-11-19_232410.jpg)
@@ -41,7 +41,7 @@ $$
 Максимальна цифра знаходиться шляхом:
 
 $$
-\text{maxDigit} = \max(x \% 10, \text{maxDigit})
+\text{maxDigit} = \max(x \bmod 10, \text{maxDigit})
 $$
 
 ![2024-11-19_232653.jpg](screenshots%2F2024-11-19_232653.jpg)
@@ -65,7 +65,7 @@ $$
 Реверс числа виконується за допомогою наступної операції:
 
 $$
-\text{reversed} = \text{reversed} \cdot 10 + (x \% 10)
+\text{reversed} = \text{reversed} \cdot 10 + (x \bmod 10)
 $$
 
 ![2024-11-19_233336.jpg](screenshots%2F2024-11-19_233336.jpg)
