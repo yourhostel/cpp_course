@@ -154,7 +154,15 @@ int main()
 
     // executeSeriesCalculation();
     // executeSeriesCalculation2();
-    executeArctanComparison();
+    // executeArctanComparison();
+
+    int i=5;
+
+    do {cout<< (++i)++ <<" "; }
+
+    while( i>=5 && i<8 );
+
+
 
     return 0;
 }
