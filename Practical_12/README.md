@@ -58,7 +58,9 @@ $$ \varepsilon $$
 
 Якщо ні, цикл завершується.
 
-3. **Функція `executeSeriesCalculation2`** відповідає за виклик функції `calculateSeriesSum`, відображення результату та задане значення $$ \varepsilon $$
+3. **Функція `executeSeriesCalculation2`** відповідає за виклик функції `calculateSeriesSum`, відображення результату та задане значення 
+
+$$ \varepsilon $$
 
 ![2024-11-29_205652.jpg](screenshots%2F2024-11-29_205652.jpg)
 
@@ -74,7 +76,7 @@ $$ \varepsilon = 10^{-4} $$
 
 та порівняння його з точним значенням:
 
-$$ \\arctg(x), \text{при } x \in [-1; 1]. $$
+$$ arctg(x), \text{при } x \in [-1; 1]. $$
 
 ### Опис функцій
 
