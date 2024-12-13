@@ -35,6 +35,6 @@ int main()
     // setlocale(LC_ALL, "uk_UA"); // for my Linux system.
     setUtf8Encoding(); // for my Windows system.
 
-    sumNegativeElements();
+    // sumNegativeElements();
     return 0;
 }
