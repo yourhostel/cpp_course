@@ -191,8 +191,8 @@ int main()
     // setlocale(LC_ALL, "uk_UA"); // for my Linux system.
     setUtf8Encoding(); // for my Windows system.
 
-    processBetweenMinMax(sumBetweenMinMax);
+    // processBetweenMinMax(sumBetweenMinMax);
     // processArrayEvenOdd();
-    // processMaxPairSum();
+    processMaxPairSum();
     return 0;
 }
