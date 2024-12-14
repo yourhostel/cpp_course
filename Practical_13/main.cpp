@@ -156,7 +156,27 @@ int main()
     // sumNegativeElements();
     // calculateWeightedProduct();
     // symmetricSwap();
-    processLongestSequence();
+    // processLongestSequence();
+
+    cout<<"такий:\n";
+
+    for(int a[] {1,2,3}; int & num : a) cout << num;
+
+    cout<<"\nчи такий:\n";
+
+    for (char chAr : {'a', 'b', 'c'})cout << chAr;
+
+    cout<<"\nзвертаємось до поля items об'єкта : c\n";
+
+    struct Container {
+        vector<int> items;
+    };
+
+    Container c{{11, 22, 33}};
+
+    for (auto & x : c.items) cout << x << " ";
+
+    cout << "\n";
 
     return 0;
 }
