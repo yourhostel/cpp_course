@@ -26,7 +26,7 @@
 ### 1. Побудова діаграми станів
 
 Діаграму було створено за допомогою бібліотеки **Graphviz**.
-Опис скінченного автомата для створення діаграми у файлі `automaton.dot`
+Опис скінченного автомата для створення діаграми у файлі [automaton.dot](https://github.com/yourhostel/cpp_course/blob/main/math/task_8/automaton.dot)
 
 ```bash
 dot -Tpng automaton.dot -o diagram.png
