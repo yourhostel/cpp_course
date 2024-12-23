@@ -142,19 +142,27 @@ void processDecryption() {
 
 void processDecryptionWithCycle() {
     string encryptedMessage;
-    int maxK;
+    int rangeStart, rangeEnd;
 
     // Введення зашифрованого повідомлення
     cout << "Введіть зашифроване повідомлення:\n";
     getline(cin, encryptedMessage);
 
-    // Введення максимального значення зсуву
-    cout << "Введіть максимальне значення зсуву k:\n";
-    cin >> maxK;
+    // Введення початку і кінця діапазону
+    cout << "Введіть початок діапазону зсуву (rangeStart):\n";
+    cin >> rangeStart;
+    cout << "Введіть кінець діапазону зсуву (rangeEnd):\n";
+    cin >> rangeEnd;
 
-    // Виводимо результати для всіх значень k від 0 до maxK
+    // Перевірка правильності діапазону
+    if (rangeStart > rangeEnd) {
+        cout << "Помилка: початок діапазону більший за його кінець.\n";
+        return;
+    }
+
+    // Виводимо результати для всіх значень k у вказаному діапазоні
     cout << "Результати розшифрування:" << endl;
-    for (int k = 0; k <= maxK; ++k) {
+    for (int k = rangeStart; k <= rangeEnd; ++k) {
         string decryptedMessage = decryptMessage(encryptedMessage, k);
         cout << "k = " << k << ": " << decryptedMessage << endl;
     }
@@ -165,7 +173,8 @@ int main()
     // setlocale(LC_ALL, "uk_UA"); // for my Linux system.
     setUtf8Encoding(); // for my Windows system.
 
-    //solveTask();
-    processDecryptionWithCycle();
+    // solveTask();
+    // processDecryption();
+     processDecryptionWithCycle();
     return 0;
 }
