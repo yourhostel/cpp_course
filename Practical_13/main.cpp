@@ -1,14 +1,14 @@
 #include <iostream>
-#include <windows.h>
+// #include <windows.h>
 #include <random>
 #include <vector>
 
 using namespace std;
-void setUtf8Encoding()
-{
-    SetConsoleCP(65001);
-    SetConsoleOutputCP(65001);
-}
+// void setUtf8Encoding()
+// {
+//     SetConsoleCP(65001);
+//     SetConsoleOutputCP(65001);
+// }
 
 // Приклад 1.
 
@@ -150,8 +150,8 @@ void processLongestSequence() {
 
 int main()
 {
-    // setlocale(LC_ALL, "uk_UA"); // for my Linux system.
-    setUtf8Encoding(); // for my Windows system.
+     setlocale(LC_ALL, "uk_UA"); // for my Linux system.
+    // setUtf8Encoding(); // for my Windows system.
 
     // sumNegativeElements();
     // calculateWeightedProduct();
