@@ -27,7 +27,7 @@ int* resizeArray(int* a, int newSize) {
 
 // Приклад 1. Видалення нульових елементів з масиву
 void removeZerosFromArray() {
-    int i, j, n, k = 0;
+    int i, n, k = 0;
 
     cout << "n = ";
     cin >> n;
@@ -43,7 +43,7 @@ void removeZerosFromArray() {
 
     for (i = 0; i < n; i++) {
         if (a[i] == 0) { // Якщо зустріли нульовий елемент
-            for (j = i; j < n - 1; j++) {
+            for (int j = i; j < n - 1; j++) {
                 a[j] = a[j + 1]; // Зсуваємо елементи вліво
             }
             i--; // Робимо крок назад для обробки випадків із кількома 0 підряд
@@ -51,7 +51,7 @@ void removeZerosFromArray() {
     }
 
     // Перевиділяємо пам'ять із перевіркою через `resizeArray()`
-    a = resizeArray(a, n + k);
+    a = resizeArray(a, n - k);
     if (!a) return; // Якщо realloc() провалився, функція завершується
 
     cout << endl << "New array:";
@@ -104,20 +104,39 @@ void prependZerosToArray() {
 // Приклад 3. Вставка нового рядка у матрицю
 
 // Функція для перевиділення пам'яті під матрицю
-int** resizeMatrix(int** a, int newRows, int cols) {
-    int** temp = new int*[newRows]; // Створюємо новий масив вказівників
+int** resizeMatrixRows(int** a, const int newRows, const int cols) {
+    // Виконуємо перевиділення пам'яті для масиву покажчиків
+    const auto temp = static_cast<int**>(realloc(a, newRows * sizeof(int*)));
 
-    // Копіюємо старі рядки у новий масив
-    for (int i = 0; i < newRows - 1; i++) {
-        temp[i] = a[i];
+    // Якщо realloc() провалився, очищуємо старий масив і повертаємо nullptr
+    if (!temp) {
+        cout << "Помилка перевиділення пам'яті!" << endl;
+        free(a); // Звільняємо пам’ять від старого масиву покажчиків
+        return nullptr;
     }
 
-    // Виділяємо пам'ять для нового рядка
-    temp[newRows - 1] = new int[cols];
+    // Оновлюємо основний вказівник
+    a = temp;
 
-    delete[] a; // Видаляємо старий масив вказівників
-    return temp; // Повертаємо нову матрицю
+    // Виділяємо пам’ять для нового рядка
+    a[newRows - 1] = static_cast<int*>(malloc(cols * sizeof(int)));
+
+    // Якщо виділення нового рядка не вдалося, очищаємо масив і повертаємо nullptr
+    if (!a[newRows - 1]) {
+        cout << "Помилка виділення пам'яті для нового рядка!" << endl;
+
+        // Звільняємо всі рядки масиву перед виходом
+        for (int i = 0; i < newRows - 1; i++) {
+            free(a[i]);
+        }
+        free(a);
+
+        return nullptr;
+    }
+
+    return a;
 }
+
 // Вставка нового рядка у матрицю
 void insertRowToMatrix() {
     int i, j, n, m, k;
@@ -128,10 +147,10 @@ void insertRowToMatrix() {
     cout << "columns m = ";
     cin >> m;
 
-    // Оголошуємо матрицю динамічно
-    int** a = new int*[n];
+    // Оголошуємо матрицю через malloc()
+    auto a = static_cast<int**>(malloc(n * sizeof(int*)));
     for (i = 0; i < n; i++) {
-        a[i] = new int[m];
+        a[i] = static_cast<int*>(malloc(m * sizeof(int)));
     }
 
     // Заповнюємо і виводимо початкову матрицю
@@ -145,7 +164,7 @@ void insertRowToMatrix() {
     }
 
     // Додаємо один рядок у матрицю
-    a = resizeMatrix(a, n + 1, m);
+    a = resizeMatrixRows(a, n + 1, m);
 
     // Дізнаємося індекс нового рядка
     cout << endl << "Enter the row index you want to add = ";
@@ -179,28 +198,43 @@ void insertRowToMatrix() {
 
     // Видаляємо матрицю
     for (i = 0; i < n + 1; i++) {
-        delete[] a[i];
+        free(a[i]);
     }
-    delete[] a;
+    free(a);
 }
 
 // Приклад 4. Вставка нового стовпця у матрицю
 
 // Функція для перевиділення пам'яті під додавання стовпця у кожному рядку матриці
-void resizeMatrixColumns(int** a, const int rows, const int newCols) {
-    for (int i = 0; i < rows; i++) {
-        const auto temp = new int[newCols]; // Виділяємо новий рядок потрібного розміру
+bool resizeMatrixColumns(int*** a, const int rows, const int newCols) {
+    // Перевіряємо, чи `a` не є nullptr перед початком роботи
+    if (!(*a)) {
+        cout << "Помилка: передано nullptr замість матриці!" << endl;
+        return false;
+    }
 
-        // Копіюємо старі значення
-        for (int j = 0; j < newCols - 1; j++) {
-            temp[j] = a[i][j];
+    for (int i = 0; i < rows; i++) {
+        // Зберігаємо поточний вказівник
+        const auto temp = static_cast<int*>(realloc((*a)[i], newCols * sizeof(int)));
+
+        // Перевіряємо, чи вдалося перевиділити пам’ять
+        if (!temp) {
+            cout << "Помилка перевиділення пам'яті у рядку " << i << "!" << endl;
+
+            // Звільняємо усю пам'ять, якщо сталася помилка
+            for (int j = 0; j < rows; j++) {
+                if ((*a)[j]) free((*a)[j]);  // Перевіряємо, чи не nullptr
+            }
+            free(*a);
+            *a = nullptr; // Обнуляємо покажчик, щоб уникнути висячих вказівників
+            return false;
         }
 
-        delete[] a[i]; // Видаляємо старий рядок
-        a[i] = temp;   // Оновлюємо вказівник на новий рядок
+        (*a)[i] = temp; // Оновлюємо покажчик на новий рядок
     }
+    return true;  // Успішне перевиділення пам’яті
 }
-// Вставка нового стовпця у матрицю
+// Функція для вставки нового стовпця у матрицю
 void insertColumnToMatrix() {
     int i, j, n, m, k;
 
@@ -210,13 +244,13 @@ void insertColumnToMatrix() {
     cout << "columns m = ";
     cin >> m;
 
-    // Оголошуємо матрицю динамічно
-    const auto a = new int*[n];
+    // Оголошуємо матрицю через malloc()
+    auto a = static_cast<int**>(malloc(n * sizeof(int*)));
     for (i = 0; i < n; i++) {
-        a[i] = new int[m];
+        a[i] = static_cast<int*>(malloc(m * sizeof(int)));
     }
 
-    // Заповнюємо і виводимо початкову матрицю
+    // Заповнюємо та виводимо початкову матрицю
     cout << "Old matrix:" << endl;
     for (i = 0; i < n; i++) {
         for (j = 0; j < m; j++) {
@@ -226,7 +260,7 @@ void insertColumnToMatrix() {
         cout << endl;
     }
 
-    // Дізнаємося індекс нового стовпця
+    // Визначаємо індекс нового стовпця
     cout << endl << "Enter the column index you want to add = ";
     cin >> k;
 
@@ -236,7 +270,16 @@ void insertColumnToMatrix() {
     }
 
     // Перевиділяємо пам'ять для кожного рядка матриці, збільшуючи кількість стовпців
-    resizeMatrixColumns(a, n, m + 1);
+    if (!resizeMatrixColumns(&a, n, m + 1)) {
+        cout << "Помилка: не вдалося перевиділити пам'ять для стовпців!" << endl;
+        return;  // Вихід з функції, якщо пам'ять не вдалося виділити
+    }
+
+    // Якщо `a` стало nullptr після перевиділення, виходимо
+    if (!a) {
+        cout << "Помилка: покажчик `a` став nullptr після перевиділення пам'яті!" << endl;
+        return;
+    }
 
     // Зсуваємо елементи у кожному рядку вправо
     for (i = 0; i < n; i++) {
@@ -261,15 +304,15 @@ void insertColumnToMatrix() {
 
     // Видаляємо матрицю
     for (i = 0; i < n; i++) {
-        delete[] a[i];
+        free(a[i]);
     }
-    delete[] a;
+    free(a);
 }
 
 int main() {
     // removeZerosFromArray(); // Виклик основної функції
     // prependZerosToArray(); // Виклик функції для додавання нулів у початок масиву
     // insertRowToMatrix(); // Виклик функції вставки рядка у матрицю
-    insertColumnToMatrix(); // Виклик функції вставки стовпця у матрицю
+     insertColumnToMatrix(); // Виклик функції вставки стовпця у матрицю
     return 0;
 }
