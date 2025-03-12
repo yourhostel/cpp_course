@@ -52,3 +52,7 @@ ConsoleA.35858a34/
 cmake-build-debug/
 
 .idea
+
+# Ignore compiled executables
+main
+*/
