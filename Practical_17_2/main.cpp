@@ -72,7 +72,17 @@ void replaceDotsAndCount() {
 
 int main() {
     // printCharCodesFromInput();
-    replaceDotsAndCount();
+    // replaceDotsAndCount();
+
+    const auto ascii = "A";      // Латинська літера (1 байт)
+    const auto cyrillic = "Я";   // Кирилиця (2 байти)
+    const auto hieroglyph = "漢"; // Ієрогліф (3 байти)
+    const auto emoji = "😊";     // Емодзі (4 байти)
+
+    cout << "Латиниця: " << strlen(ascii) << " байт" << endl;
+    cout << "Кирилиця: " << strlen(cyrillic) << " байти" << endl;
+    cout << "Ієрогліф: " << strlen(hieroglyph) << " байти" << endl;
+    cout << "Емодзі: " << strlen(emoji) << " байти" << endl;
 
     return 0;
 }
