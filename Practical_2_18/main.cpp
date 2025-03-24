@@ -58,5 +58,9 @@ void exampleAssign() {
 int main() {
     // exampleAppend();
     exampleAssign();
+
+    std::string str = "This is my string";
+    int n = str.find('s');
+    std::cout << n << std::endl;
     return 0;
 }
