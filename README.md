@@ -10,7 +10,6 @@ $$
 a = \ln \left| \left( y - \sqrt{|x|} \right) \cdot \left( \frac{x - \dfrac{y}{x + \frac{x^2}{4}}}{x} \right) \right|
 $$
 
-
 $$
 b = e^x \cdot \frac{y^2 + 12xy - 3x^2}{18y - 1}
 $$
@@ -23,7 +22,7 @@ $$
 y = a \cdot \sin^2(b) + b \cdot \cos(a^2)
 $$
 
-### Практичне заняття 1.5 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_5)
+### Програмування алгоритмів з використанням оператора if 1.5 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_5)
 ### Задачі для самостійного опрацювання 1.6 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_6)
 
 $$ 
