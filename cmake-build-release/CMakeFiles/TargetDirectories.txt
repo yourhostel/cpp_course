@@ -1,3 +1,0 @@
-/home/serhii/CLionProjects/cpp_course/cmake-build-release/CMakeFiles/cpp.dir
-/home/serhii/CLionProjects/cpp_course/cmake-build-release/CMakeFiles/edit_cache.dir
-/home/serhii/CLionProjects/cpp_course/cmake-build-release/CMakeFiles/rebuild_cache.dir
