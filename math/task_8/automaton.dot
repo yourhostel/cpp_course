@@ -1,0 +1,28 @@
+digraph finite_state_machine {
+    rankdir=LR; // Напрямок графа зліва направо
+    size="8,5";
+
+    // Додавання тексту вгорі
+    label = "M = (S, I, f, s0, F)\nS = {s0, s1, s2}, I = {a, b}, F = {s0, s1}";
+    labelloc = "t"; // Розташування тексту (t = top)
+
+    // Позначення заключних станів
+    node [shape = doublecircle]; s0 s1;
+
+    // Звичайні стани
+    node [shape = circle]; s2;
+
+    // Початковий стан як окрема точка
+    node [shape = point]; start;
+    start -> s0;
+
+    // Визначення переходів
+    s0 -> s0 [label = "a"];
+    s0 -> s1 [label = "b"];
+    s1 -> s0 [label = "a"];
+    s1 -> s2 [label = "b"];
+    s2 -> s2 [label = "a, b"];
+}
+
+
+
