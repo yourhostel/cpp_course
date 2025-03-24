@@ -5,9 +5,11 @@ C++ coding projects and assignments.
 ### Задачі для самостійного опрацювання 1.3 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_3/Tasks)
 ### Задачі для самостійного опрацювання 1.4 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_4)
 - Обчислити за формулами
+
 $$
-a = \ln \left| \left( y - \sqrt{|x|} \right) \left( \frac{x - \frac{y}{x + \frac{x^2}{4}}}{x} \right) \right|
+a = \ln \left| \left( y - \sqrt{|x|} \right) \cdot \left( \frac{x - \dfrac{y}{x + \frac{x^2}{4}}}{x} \right) \right|
 $$
+
 
 $$
 b = e^x \cdot \frac{y^2 + 12xy - 3x^2}{18y - 1}
