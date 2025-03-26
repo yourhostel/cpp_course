@@ -4,6 +4,8 @@
 #include <codecvt>
 #include <locale>
 
+using namespace std;
+
 // Функція, яка демонструє використання append()
 void exampleAppend() {
     // Приклад 1: злиття двох std::string
@@ -59,8 +61,5 @@ int main() {
     // exampleAppend();
     exampleAssign();
 
-    std::string str = "This is my string";
-    int n = str.find('s');
-    std::cout << n << std::endl;
     return 0;
 }
