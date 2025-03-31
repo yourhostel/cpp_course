@@ -109,7 +109,7 @@ $$ \max \left(a_1 + a_{2n}, a_2 + a_{2n-1}, \dots, a_n + a_{n+1}\right) $$
 ### Практичне заняття 2.5 Програмування обробки динамічних масивів 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_2_16)
 ### Практичне заняття 2.6 Створення програм обробки масивів символів 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_2_17)
 ### Практичне заняття 2.7 Клас `std::string` 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_2_18)
-### Створення програм з використанням функцій. Теорія` 2.8 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_2_19)
+### Створення програм з використанням функцій. Теорія 2.8 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_2_19)
 
 # math
 
