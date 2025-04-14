@@ -1,4 +1,4 @@
-// main.cpp
+// bubble_sort.cpp
 
 #include <iostream>
 #include <random>
