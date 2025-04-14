@@ -1,6 +1,7 @@
 // bubble_sort.cpp
 
 #include <iostream>
+#include "print.h"
 using namespace std;
 
 // Функція сортування бульбашкою
@@ -9,19 +10,12 @@ void bubbleSort(int arr[], int n) {
         for (int j = n - 1; j > i; j--) {
             if (arr[j - 1] > arr[j]) {
                 // Обмін елементів
-                int temp = arr[j];
+                const int temp = arr[j];
                 arr[j] = arr[j - 1];
                 arr[j - 1] = temp;
             }
         }
     }
-}
-
-// Функція друку масиву
-void printArray(int arr[], int n) {
-    for (int i = 0; i < n; i++)
-        cout << arr[i] << " ";
-    cout << endl;
 }
 
 // Головна функція
