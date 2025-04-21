@@ -76,6 +76,21 @@ long fib(int n) {
 - Ризик переповнення стека
 - Повторні обчислення без кешування (як у Fibonacci)
 
+Приклади:
+1. [ recursion_demo.cpp ](https://github.com/yourhostel/cpp_course/blob/main/Practical_2_21/recursion_demo.cpp)
+   1. Рекурсивна функція для обчислення факторіала
+   2. Рекурсивна функція для обчислення n-го числа Фібоначчі
+2. [ recursion_lab.cpp ](https://github.com/yourhostel/cpp_course/blob/main/Practical_2_21/recursion_lab.cpp)
+   1. Вивід цифр числа
+   2. Піднесення до степеня
+   3. Мінімальний елемент масиву
+   4. Сума коренів від 1 до n
+   5. Обернення масиву\n";
+   6. Перевірка на паліндром
+   7. НСД (алгоритм Евкліда)
+   8. Швидке сортування
+
+![Screenshot from 2025-04-21 21-31-41.png](screenshots/Screenshot%20from%202025-04-21%2021-31-41.png)
 ---
 
 
