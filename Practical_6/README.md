@@ -5,15 +5,13 @@
 
 $$
 y =
-\left \{
-\begin{array}{ll}
+\begin{cases}
 \sqrt{x} + e^x, & \text{при } L = 1 \\
-\ln \left| x \right| + 0.8, & \text{при } L = 2 \\
-\frac{x^2}{\ln^2 \left| x \right|}, & \text{при } L = 3 \\
+\ln |x| + 0.8, & \text{при } L = 2 \\
+\dfrac{x^2}{\ln^2 |x|}, & \text{при } L = 3 \\
 x \cos^2(x) + \sqrt{x}, & \text{при } L = 4 \\
-e^{0.8x} + \left| x \right|, & \text{при } L = 5
-\end{array}
-\right.
+e^{0.8x} + |x|, & \text{при } L = 5
+\end{cases}
 $$
 
 Значення  ( x ) ввести з клавіатури.
