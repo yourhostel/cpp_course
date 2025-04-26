@@ -3,8 +3,9 @@
 ### 
 1) Обчислити ( y ) при одному із значень ( L ):
 
-$$y =
-\left\{
+$$
+y =
+\left \{
 \begin{array}{ll}
 \sqrt{x} + e^x, & \text{при } L = 1 \\
 \ln \left| x \right| + 0.8, & \text{при } L = 2 \\
@@ -12,7 +13,8 @@ $$y =
 x \cos^2(x) + \sqrt{x}, & \text{при } L = 4 \\
 e^{0.8x} + \left| x \right|, & \text{при } L = 5
 \end{array}
-\right.$$
+\right.
+$$
 
 Значення  ( x ) ввести з клавіатури.
 
