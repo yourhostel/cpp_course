@@ -18,21 +18,21 @@
 - Клас представляє комплексне число $z = a + ib$
 - Реалізовані методи:
    - Обчислення модуля:  
-     $$
-     |z| = r = \sqrt{a^2 + b^2}
-     $$
+$$
+|z| = r = \sqrt{a^2 + b^2}
+$$
    - Обчислення аргументу:
-     $$
-     \left\{ \begin{array}{l} \cos \varphi = \dfrac{a}{r} \\ \sin \varphi = \dfrac{b}{r} \end{array} \right.
-     $$
+$$
+\left\{ \begin{array}{l} \cos \varphi = \dfrac{a}{r} \\ \sin \varphi = \dfrac{b}{r} \end{array} \right.
+$$
    - Перетворення в тригонометричну форму:
-     $$
-     z = r(\cos \varphi + i \sin \varphi)
-     $$
+$$
+z = r(\cos \varphi + i \sin \varphi)
+$$
    - Добування кореня \(n\)-го степеня за формулою Муавра:
-     $$
-     \sqrt[n]{z} = \sqrt[n]{r} \left( \cos\left( \dfrac{\varphi + 2\pi k}{n} \right) + i \sin\left( \dfrac{\varphi + 2\pi k}{n} \right) \right), \quad k \in \mathbb{Z}
-     $$
+$$
+\sqrt[n]{z} = \sqrt[n]{r} \left( \cos\left( \dfrac{\varphi + 2\pi k}{n} \right) + i \sin\left( \dfrac{\varphi + 2\pi k}{n} \right) \right), \quad k \in \mathbb{Z}
+$$
 
 
 
