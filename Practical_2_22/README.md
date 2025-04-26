@@ -26,7 +26,7 @@ $$
    - Обчислення аргументу:
 
 $$
-\left\{ \begin{array}{l} \cos \varphi = \dfrac{a}{r} \\ \sin \varphi = \dfrac{b}{r} \end{array} \right.
+\begin{array}{l} \cos \varphi = \dfrac{a}{r} \\ \sin \varphi = \dfrac{b}{r} \end{array}
 $$
 
    - Перетворення в тригонометричну форму:
