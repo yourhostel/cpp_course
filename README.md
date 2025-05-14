@@ -1,8 +1,6 @@
 # cpp_course
 C++ coding projects and assignments.
 
-### Лекція 4. Синтаксис мови С++. Змінні та типи даних 1.2 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_2)
-### Задачі для самостійного опрацювання 1.3 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_3/Tasks)
 ### Задачі для самостійного опрацювання 1.4 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_4)
 - Обчислити за формулами
 
