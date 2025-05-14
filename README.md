@@ -114,6 +114,7 @@ $$ \max \left(a_1 + a_{2n}, a_2 + a_{2n-1}, \dots, a_n + a_{n+1}\right) $$
 ### Рекурсивні функції [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_2_21)
 ### Основи struct і class в C++ [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_2_22)
 ### Файли та файлові потоки [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_2_23)
+### Робота з бінарними файлами [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_2_24)
 
 # math
 
