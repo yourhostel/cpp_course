@@ -108,11 +108,11 @@ $$ \max \left(a_1 + a_{2n}, a_2 + a_{2n-1}, \dots, a_n + a_{n+1}\right) $$
 ### Практичне заняття 2.6 Створення програм обробки масивів символів 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_2_17)
 ### Практичне заняття 2.7 Клас `std::string` 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_2_18)
 ### Створення програм з використанням функцій. Теорія 2.8 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_2_19)
-### Методи сортування масивів [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_2_20)
-### Рекурсивні функції [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_2_21)
-### Основи struct і class в C++ [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_2_22)
-### Файли та файлові потоки [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_2_23)
-### Робота з бінарними файлами [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_2_24)
+### Методи сортування масивів 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_2_20)
+### Рекурсивні функції 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_2_21)
+### Основи struct і class  👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_2_22)
+### Файли та файлові потоки 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_2_23)
+### Робота з бінарними файлами 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/Practical_2_24)
 
 # math
 
