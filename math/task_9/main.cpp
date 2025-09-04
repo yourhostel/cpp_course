@@ -1,14 +1,14 @@
 #include <iostream>
-#include <windows.h>
+// #include <windows.h> // for windows
 #include <random>
 
 using namespace std;
 
-void setUtf8Encoding()
-{
-    SetConsoleCP(65001);
-    SetConsoleOutputCP(65001);
-}
+// void setUtf8Encoding()
+// {
+//     SetConsoleCP(65001);
+//     SetConsoleOutputCP(65001);
+// }
 
 ///Задача 1.
 
@@ -171,7 +171,7 @@ void processDecryptionWithCycle() {
 int main()
 {
     // setlocale(LC_ALL, "uk_UA"); // for my Linux system.
-    setUtf8Encoding(); // for my Windows system.
+    // setUtf8Encoding(); // for my Windows system.
 
     // solveTask();
     // processDecryption();
