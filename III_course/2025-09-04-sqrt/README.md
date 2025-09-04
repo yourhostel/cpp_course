@@ -84,7 +84,7 @@
    )
    ```
 
-9. [name.cpp]()
+9. [name.cpp](https://github.com/yourhostel/cpp_course/blob/main/III_course/2025-09-04-sqrt/name.cpp)
 - > ![Знімок екрана з 2025-09-04 19-10-48.png](screenshots/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%B7%202025-09-04%2019-10-48.png)
-10. [age.cpp]()
+10. [age.cpp](https://github.com/yourhostel/cpp_course/blob/main/III_course/2025-09-04-sqrt/age.cpp)
 - > ![Знімок екрана з 2025-09-04 19-11-43.png](screenshots/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%B7%202025-09-04%2019-11-43.png)
