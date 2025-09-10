@@ -18,3 +18,8 @@ add_executable(name_2025_09_04
 add_executable(age_2025_09_04
         age.cpp
 )
+
+# lecture3.cpp
+add_executable(lecture3_2025_09_04
+        lecture3.cpp
+)
