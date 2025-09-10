@@ -148,6 +148,7 @@ $$ \max \left(a_1 + a_{2n}, a_2 + a_{2n-1}, \dots, a_n + a_{n+1}\right) $$
 # III course
 
 ### Тема 1 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-09-04-sqrt)
+### Тема 3 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-09-11-topic-3)
 
 ---
 

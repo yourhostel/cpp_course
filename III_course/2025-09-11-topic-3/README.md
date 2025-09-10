@@ -12,6 +12,6 @@
 
 ---
 
-- [36]() - `sorting_array.cpp`
-- [46]() - `vector_map_search.cpp`
-- [54]() - `linkedlist_insert.cpp`
+- [36](https://github.com/yourhostel/cpp_course/blob/main/III_course/2025-09-11-topic-3/sorting_array.cpp) - `sorting_array.cpp`
+- [46](https://github.com/yourhostel/cpp_course/blob/main/III_course/2025-09-11-topic-3/vector_map_search.cpp) - `vector_map_search.cpp`
+- [54](https://github.com/yourhostel/cpp_course/blob/main/III_course/2025-09-11-topic-3/linkedlist_insert.cpp) - `linkedlist_insert.cpp`
