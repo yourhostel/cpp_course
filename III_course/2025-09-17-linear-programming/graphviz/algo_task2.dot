@@ -1,0 +1,20 @@
+digraph uml_booking {
+  rankdir=TB;
+  node [fontname="DejaVu Sans", shape=box, style="solid,bold"];
+
+  start [shape=oval, label="Початок"];
+  init  [shape=rectangle, label="x = 3; a = -1.7"];
+  ycalc [shape=rectangle, label="y = a * cbrt(sin^4(x^3))"];
+  mcalc [shape=rectangle, label="m = sqrt(|x+a|) + 1.3*lg(pi/3)"];
+  chk   [shape=diamond, label="|m - y| ≤ ε ?"];
+  err   [shape=rectangle, label="Помилка: ln|m−y| не визначено"];
+  tcalc [shape=rectangle, label="t = ln|m−y| + cos^3(m*y)"];
+  outt  [shape=parallelogram, label="Виведення t"];
+  stop  [shape=oval, label="Кінець"];
+
+  start -> init -> ycalc -> mcalc -> chk;
+  chk -> err   [label="так"];
+  chk -> tcalc [label="ні"];
+  tcalc -> outt -> stop;
+  err -> stop;
+}
