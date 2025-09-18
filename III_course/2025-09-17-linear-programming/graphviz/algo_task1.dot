@@ -1,0 +1,69 @@
+// https://graphviz.org/Gallery/directed
+// http://yifanhu.net/GALLERY/GRAPHS/indexAll.html
+// Реальна мережа, що містить 300 сайтів у 40 країнах.
+// https://graphviz.org/Gallery/twopi/twopi2.html
+// Діаграма ядра Linux
+// https://graphviz.org/Gallery/directed/Linux_kernel_diagram.html
+
+digraph uml_booking {
+rankdir=TB;
+
+// Основні базові форми shape:
+    // box — прямокутник.
+    // rect — те саме, що box.
+    // ellipse — овал (дефолт).
+    // circle — коло.
+    // diamond — ромб.
+    // triangle, invtriangle — трикутник (звичайний / перевернутий).
+    // parallelogram, trapezium — паралелограм, трапеція.
+    // house, invhouse — «будиночок» з дахом.
+    // hexagon, octagon — шестикутник, восьмикутник.
+    // doublecircle, doubleoctagon, doublebox — з подвійною рамкою.
+    // plaintext — без рамки, тільки текст.
+    // point — маленька точка.
+    // --------------------------------------------------------------
+    // Спеціальні (для ER-діаграм і UML-подібних):
+    // record — розділений прямокутник (корисний для структур/класів).
+    // Mrecord — те саме, але з округленими кутами.
+    // component — прямокутник із «засічками» (для компонентів).
+    // folder, tab — виглядають як папка чи вкладка.
+    // note — аркуш із загнутим кутом.
+    // cds — компакт-диск (кружок).
+    // cylinder — база даних.
+    // --------------------------------------------------------------
+    // Інші:
+    // egg, star, polygon, septagon, tripleoctagon і т.д.
+    //polygon — можна задавати параметри sides, skew, orientation.
+
+// ==============================================================
+    // style:
+    // solid — звичайна рамка (дефолт).
+    // rounded — скруглені кути (те, що в тебе зараз).
+    // dashed — пунктирна рамка.
+    // dotted — рамка крапками.
+    // bold — товста лінія.
+    // filled — залитий кольором (береться з fillcolor).
+    // invis — невидимий вузол.
+    // striped — смугастий фон (якщо кілька кольорів).
+    // wedged — "пиріжок" з кількох кольорів.
+
+  rankdir=TB;
+    node [fontname="DejaVu Sans", shape=box, style="solid,bold"];
+
+    start [shape=oval, label="Початок"];
+    inx   [shape=parallelogram, label="Введення x"];
+    chk   [shape=diamond, label="x = 0 ?"];
+    err   [shape=rectangle, label="Помилка: x = 0 заборонено"];
+    a     [shape=rectangle, label="A = lg(x^4)"];
+    b     [shape=rectangle, label="B = (x-0.5)^2 - cos x"];
+    c     [shape=rectangle, label="C = sqrt(|x+1| + |x|)"];
+    calc  [shape=rectangle, label="y = e^2 * A * B / C"];
+    outy  [shape=parallelogram, label="Виведення y"];
+    stop  [shape=oval, label="Кінець"];
+
+    start -> inx -> chk;
+    chk -> err  [label="так"];
+    chk -> a    [label="ні"];
+    a -> b -> c -> calc -> outy -> stop;
+    err -> stop;
+}
