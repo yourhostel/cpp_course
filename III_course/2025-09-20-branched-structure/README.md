@@ -45,7 +45,7 @@ $$
 $$
 w = \begin{cases}
 0.6v - 0.3^v, & -2 < v \leq 0.3 \\
-\ln\!\left(v + \sqrt{v + \cos v}\right), & 0.3 < v \leq 5,\; \Delta v = 0.5
+\ln\!\left(v + \sqrt{v + \cos v}\right), & 0.3 < v \leq 5, \Delta v = 0.5
 \end{cases}
 $$
 
