@@ -9,7 +9,13 @@
 1) **Постановка задачі:**
 
 $$
-y = \begin{cases} x^3 \sqrt{x^2 + 3}, & 1 < x < 10 \\ arctg(x - 9), & 0 < x \leq 1 \\ e^{x+1}, & x \leq 0 \end{cases}
+y = \left\{
+\begin{array}{ll}
+x^3\sqrt{x^2+3}, & 1 < x < 10 \\
+\arctan(x - 9), & 0 < x \leq 1 \\
+e^{x+1}, & x \leq 0
+\end{array}
+\right.
 $$
 
 2) **Область визначення:**
@@ -47,5 +53,6 @@ $$
 4) **Алгоритм**
 5) **UML**
 6) **Тестування ( `test_task1` ):**
+
 
 
