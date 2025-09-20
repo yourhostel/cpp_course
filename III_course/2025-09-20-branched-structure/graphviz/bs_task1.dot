@@ -1,0 +1,33 @@
+digraph LP2_Task1 {
+    rankdir=TB;
+    node [fontname="DejaVu Sans", shape=box, style="solid,bold"];
+
+    start [shape=oval, label="Початок"];
+    inx   [shape=parallelogram, label="Введення x"];
+    chkODZ[shape=diamond, label="x ≥ 10 ?"];
+    err   [shape=rectangle, label="Помилка: «x ≥ 10 поза ОДЗ»"];
+    chk0  [shape=diamond, label="x ≤ 0 ?"];
+    chk1  [shape=diamond, label="x ≤ 1 ?"];
+
+    f3    [shape=rectangle, label="y = exp(x+1)"];
+    f2    [shape=rectangle, label="y = atan(x-9)"];
+    f1    [shape=rectangle, label="y = x^3 * sqrt(x^2+3)"];
+
+    outy  [shape=parallelogram, label="Виведення y"];
+    stop  [shape=oval, label="Кінець"];
+
+    start -> inx -> chkODZ;
+    chkODZ -> err   [label="так"];
+    chkODZ -> chk0  [label="ні"];
+
+    chk0 -> f3   [label="так"];
+    chk0 -> chk1 [label="ні"];
+
+    chk1 -> f2 [label="так"];
+    chk1 -> f1 [label="ні"];
+
+    f3 -> outy -> stop;
+    f2 -> outy;
+    f1 -> outy;
+    err -> stop;
+}
