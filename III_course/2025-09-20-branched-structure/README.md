@@ -9,13 +9,11 @@
 1) **Постановка задачі:**
 
 $$
-y = \left\{
-\begin{array}{ll}
+y = \begin{cases}
 x^3\sqrt{x^2+3}, & 1 < x < 10 \\
 \arctan(x - 9), & 0 < x \leq 1 \\
 e^{x+1}, & x \leq 0
-\end{array}
-\right.
+\end{cases}
 $$
 
 2) **Область визначення:**
