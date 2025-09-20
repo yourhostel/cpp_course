@@ -1,3 +1,4 @@
+// III_course/2025-09-17-arrays/multidimensional_arrays.cpp
 #include <iostream>
 #include <random>
 #include <algorithm> // для sort і greater

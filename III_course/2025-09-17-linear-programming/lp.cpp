@@ -1,3 +1,4 @@
+// III_course/2025-09-17-linear-programming/lp.cpp
 # include <iostream>
 # include <random>
 # include <cmath>

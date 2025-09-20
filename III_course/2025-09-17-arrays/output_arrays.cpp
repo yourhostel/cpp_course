@@ -1,3 +1,4 @@
+// III_course/2025-09-17-arrays/output_arrays.cpp
 #include <iostream>
 
 using namespace std;
