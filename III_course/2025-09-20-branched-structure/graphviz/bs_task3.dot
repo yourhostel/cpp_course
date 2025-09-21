@@ -1,0 +1,23 @@
+digraph bs_task3 {
+    rankdir=TB;
+    node [fontname="DejaVu Sans", shape=box, style="solid,bold"];
+
+    start [shape=oval, label="Початок"];
+    inv   [shape=parallelogram, label="Введення v"];
+    odz   [shape=diamond, label="v ≤ -2 || v > 5 ?"];
+    err   [shape=rectangle, label="Вивід: ERROR (поза ОДЗ)"];
+    br1   [shape=diamond, label="v ≤ 0.3 ?"];
+    f1    [shape=rectangle, label="w = 0.6*v - pow(0.3, v)"];
+    f2    [shape=rectangle, label="w = log( v + sqrt(v + cos(v)) )"];
+    out   [shape=parallelogram, label="Вивід: w"];
+    stop  [shape=oval, label="Кінець"];
+
+    start -> inv -> odz;
+    odz -> err  [label="так"];
+    odz -> br1  [label="ні"];
+    br1 -> f1   [label="так"];
+    br1 -> f2   [label="ні"];
+    f1 -> out -> stop;
+    f2 -> out;
+    err -> stop;
+}

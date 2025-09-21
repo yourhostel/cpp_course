@@ -62,9 +62,9 @@ $$
 - Коли знаменник = 0: ${2\cos t + 1}=0 \Rightarrow \cos t = - \frac{1}{2}$
 - $cos \frac{\pi}{3}$
 - Якщо $\cos \theta = \tfrac{1}{2}$ , то $\cos(\pi - \theta) = -\tfrac{1}{2}$
-- Тому $\cos t = -\tfrac{1}{2} \;\Rightarrow\; t = \tfrac{2\pi}{3} + 2\pi k$ або $t = \frac{4\pi}{3} + 2\pi k, \quad k \in \mathbb{Z}$
-- Знаменник $2 \cos t + 1 \neq 0 \;\;\Rightarrow\;\; \cos t \neq -0.5$
-- У проміжку $0 \leq t \leq 6.5 \;\;\; \text{це } t \approx 2.0944 \; \left(\tfrac{2\pi}{3}\right), \; t \approx 4.1888 \; \left(\tfrac{4\pi}{3}\right).$
+- Тому $\cos t = -\tfrac{1}{2} \Rightarrow t = \tfrac{2\pi}{3} + 2\pi k$ або $t = \frac{4\pi}{3} + 2\pi k, \quad k \in \mathbb{Z}$
+- Знаменник $2 \cos t + 1 \neq 0 \Rightarrow\;\; \cos t \neq -0.5$
+- У проміжку $0 \leq t \leq 6.5  \text{це } t \approx 2.0944  \left(\tfrac{2\pi}{3}\right),  t \approx 4.1888 \left(\tfrac{4\pi}{3}\right).$
 - Якщо $t$ потрапить близько до цих точок, знаменник обнуляється, треба перевіряти
 3) **Вибір методу:**
 - Циклічна структура:
@@ -99,10 +99,25 @@ w = \begin{cases}
 $$
 
 2) **Область визначення:**
+- гілка 1: $-2 < v \leq 0.3$ - валідно ( основа $0.3>0\Rightarrow 0.3^v$ визначено для будь-якого $v$ ).
+- гілка 2: $0.3 < v \leq 5$ ; тут $v + \cos v \geq 0$ на $[0.3,5]$ , отже $\sqrt{\cdot}$ та $\ln(\cdot)$ коректні.
+  - Разом: $v \in (-2,5]$ , при $v = 0.3$ - перша гілка.
 3) **Вибір методу:**
+- Розгалуження: перевірити межі ОДЗ, потім гілка за $v$ .
 4) **Алгоритм**
+- ввести `v`.
+- якщо `v <= -2 || v > 5` => помилка (поза ОДЗ).
+- інакше якщо `v <= 0.3` => `w = 0.6*v - pow(0.3, v)`.
+- інакше => `w = log( v + sqrt(v + cos(v)) )`.
+- вивести `w`.
+  - Для таблички другої гілки: цикл for (v=0.3+0.5; v<=5; v+=0.5).
 5) **UML**
+
+![bs_task3.png](graphviz/bs_task3.png)
+
 6) **Тестування ( `test_task3` ):**
+
+![2025-09-21_04-05-47.png](screenshots/2025-09-21_04-05-47.png)
 
 ---
 ```bash
