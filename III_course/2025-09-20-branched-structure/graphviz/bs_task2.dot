@@ -1,0 +1,26 @@
+digraph ds_task2 {
+    rankdir=TB;
+    node [fontname="DejaVu Sans", shape=box, style="solid,bold"];
+
+    start [shape=oval, label="Початок"];
+    init  [shape=rectangle, label="t = 0; Δt = 1.1; EPS = 1e-12"];
+    loopQ [shape=diamond, label="t ≤ 6.5 ?"];
+    den   [shape=rectangle, label="den = 2*cos(t) + 1"];
+    chk   [shape=diamond, label="|den| ≤ EPS ?"];
+    err   [shape=rectangle, label="Вивід: ERROR"];
+    calc  [shape=rectangle, label="z = (2.3*t + 8) / den"];
+    outz  [shape=parallelogram, label="Вивід: t, z"];
+    step  [shape=rectangle, label="t = t + Δt"];
+    stop  [shape=oval, label="Кінець"];
+
+    start -> init -> loopQ;
+    loopQ -> den   [label="так"];
+    loopQ -> stop  [label="ні"];
+
+    den -> chk;
+    chk -> err  [label="так"];
+    chk -> calc [label="ні"];
+
+    err  -> step -> loopQ;
+    calc -> outz -> step;
+}
