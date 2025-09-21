@@ -23,7 +23,8 @@ optional<double> task2(string& err)
 
 void test_task2();
 
-int main() {
+int main()
+{
     // test_task1();
     test_task2();
 

@@ -1,0 +1,17 @@
+digraph oda_task1 {
+    rankdir=TB;
+    node [fontname="DejaVu Sans", shape=box, style="solid,bold"];
+
+    start [shape=oval, label="Початок"];
+    init  [shape=rectangle, label="Y = {-2.2,0.2,3.1,2.1,-3.1,6.1,0.5}\nP = 1; i = 0"];
+    loopQ [shape=diamond, label="i < 7 ?"];
+    step  [shape=rectangle, label="P = P * fabs(Y[i])\ni = i + 1"];
+    out   [shape=parallelogram, label="Вивід P"];
+    stop  [shape=oval, label="Кінець"];
+
+    start -> init -> loopQ;
+    loopQ -> step [label="так"];
+    loopQ -> out  [label="ні"];
+    step -> loopQ;
+    out -> stop;
+}

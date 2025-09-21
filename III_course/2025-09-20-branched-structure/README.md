@@ -63,7 +63,7 @@ $$
 - $cos \frac{\pi}{3}$
 - Якщо $\cos \theta = \tfrac{1}{2}$ , то $\cos(\pi - \theta) = -\tfrac{1}{2}$
 - Тому $\cos t = -\tfrac{1}{2} \Rightarrow t = \tfrac{2\pi}{3} + 2\pi k$ або $t = \frac{4\pi}{3} + 2\pi k, \quad k \in \mathbb{Z}$
-- Знаменник $2 \cos t + 1 \neq 0 \Rightarrow\;\; \cos t \neq -0.5$
+- Знаменник $2 \cos t + 1 \neq 0 \Rightarrow \cos t \neq -0.5$
 - У проміжку $0 \leq t \leq 6.5  \text{це } t \approx 2.0944  \left(\tfrac{2\pi}{3}\right),  t \approx 4.1888 \left(\tfrac{4\pi}{3}\right).$
 - Якщо $t$ потрапить близько до цих точок, знаменник обнуляється, треба перевіряти
 3) **Вибір методу:**
@@ -126,6 +126,6 @@ sudo apt-get update && sudo apt-get install -y graphviz
 # Генерація png
 dot -Tpng bs_task1.dot -o bs_task1.png
 # або svg
-dot -Tsvg algo.dot -o algo.svg
+dot -Tsvg bs_task1.dot -o bs_task1.svg
 ```
 
