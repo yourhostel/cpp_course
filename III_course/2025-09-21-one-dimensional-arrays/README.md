@@ -60,7 +60,15 @@ $$
 
 4) **UML**
 
+```cpp
+optional<bool> task2(const int m, const int n, const double* A, double* L, string& err)
+```
+
 ![oda_task2.png](graphviz/oda_task2.png)
+
+```cpp
+void test_task2()
+```
 
 ![test_task2.png](graphviz/test_task2.png)
 
