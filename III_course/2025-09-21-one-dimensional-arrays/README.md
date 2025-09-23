@@ -62,6 +62,8 @@ $$
 
 ![oda_task2.png](graphviz/oda_task2.png)
 
+![test_task2.png](graphviz/test_task2.png)
+
 5) **Тестування ( `test_task2` ):**
 
 ![2025-09-21_05-38-08.png](screenshots/2025-09-21_05-38-08.png)

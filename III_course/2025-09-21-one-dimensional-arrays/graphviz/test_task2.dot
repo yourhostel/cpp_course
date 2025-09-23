@@ -1,0 +1,77 @@
+digraph oda_test_task2_full {
+  rankdir=TB;
+  ordering=out;
+  node [fontname="DejaVu Sans", shape=box, style="solid,bold"];
+
+  start   [shape=oval,           label="Початок"];
+  header  [shape=parallelogram,  label="Вивід: task2"];
+  init    [shape=rectangle,      label="Оголошення err, m=3, n=4, A[3][4], L[n]"];
+
+  // Навмисний фейл #1: n=0
+  call1   [shape=rectangle,      label="ізолований scope n = 0 \n res = task2(m, 0, &A[0][0], L, err)"];
+  chk1    [shape=diamond,        label="!res ?"];
+  out1    [shape=parallelogram,  label="Вивід: `Очікувано ERROR: ` + err", width=5.5, height=1, fixedsize=true];
+
+  // Навмисний фейл #2: m=6
+  call2   [shape=rectangle,      label="ізолований scope m = 6 \n res = task2(6, n, &A[0][0], L, err)"];
+  chk2    [shape=diamond,        label="!res ?"];
+  out2    [shape=parallelogram,  label="Вивід: `Очікувано ERROR: ` + err", width=5.5, height=1, fixedsize=true];
+
+  // Нормальний виклик
+  call3   [shape=rectangle,      label="res = task2(m, n, &A[0][0], L, err)"];
+  chk3    [shape=diamond,        label="!res ?"];
+  err3    [shape=parallelogram,  label="Вивід: ` ERROR: ` + err", width=5.5, height=1, fixedsize=true];
+  stopE   [shape=oval,           label="Кінець"];
+
+  // Вивід L
+  j0      [shape=rectangle,      label="j = 0"];
+  loopL   [shape=diamond,        label="j < n ?"];
+  printL  [shape=parallelogram,  label="Вивід: `Вектор j -> довжина = ` L[j]", width=5.5, height=1, fixedsize=true];
+  jinc    [shape=rectangle,      label="j++"];
+
+  // Пошук максимуму
+  initM   [shape=rectangle,      label="maxL = L[0]; pos = 0; j = 1"];
+  loopM   [shape=diamond,        label="j < n ?"];
+  cmp     [shape=diamond,        label="L[j] > maxL ?"];
+  setM    [shape=rectangle,      label="maxL = L[j]; pos = j"];
+  jincM   [shape=rectangle,      label="j++"];
+  outM    [shape=parallelogram,  label="Вивід: Максимальна довжина = maxL\n(номер pos)", width=5.5, height=1, fixedsize=true];
+  stop    [shape=oval,           label="Кінець"];
+
+  // Зв'язки
+  start -> header -> init;
+
+  // #1 fail
+  init  -> call1 -> chk1;
+  chk1  -> out1  [label="так"];
+  chk1  -> call2 [label="ні"];
+  chk1 -> call2 [style=invis];
+
+  // #2 fail
+  call2 -> chk2;
+  chk2  -> out2  [label="так"];
+  chk2  -> call3 [label="ні"];
+  chk2 -> call3 [style=invis];
+  // success / hard error
+  call3 -> chk3;
+  chk3  -> err3  [label="так"];
+  err3  -> stopE;
+  chk3  -> j0    [label="ні"];
+
+  // print L
+  j0    -> loopL;
+  loopL -> printL [label="так"];
+  loopL -> initM  [label="ні"];
+  printL -> jinc -> loopL;
+
+  // find max
+  initM -> loopM;
+  loopM -> cmp   [label="так"];
+  loopM -> outM  [label="ні"];
+  cmp   -> setM  [label="так"];
+  cmp   -> jincM [label="ні"];
+  setM  -> jincM -> loopM;
+
+  outM -> stop;
+}
+

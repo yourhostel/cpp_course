@@ -1,42 +1,44 @@
-digraph oda_task2 {
-    rankdir=TB;
-    node [fontname="DejaVu Sans", shape=box, style="solid,bold"];
+digraph oda_task2_compute_lengths {
+rankdir=TB;
+node [fontname="DejaVu Sans", shape=box, style="solid,bold"];
 
-    start [shape=oval, label="Початок"];
-    input [shape=parallelogram, label="Введення m, n, матриці A(m,n)"];
-    chk   [shape=diamond, label="m<=5 і n<=6 ?"];
-    err   [shape=rectangle, label="Помилка: перевищено розмірності"];
-    init  [shape=rectangle, label="maxL=-∞; pos=-1; j=0"];
-    loopJ [shape=diamond, label="j < n ?"];
-    initS [shape=rectangle, label="s=0; i=0"];
-    loopI [shape=diamond, label="i < m ?"];
-    add   [shape=rectangle, label="s += A[i][j]^2; i++"];
-    len   [shape=rectangle, label="L[j] = sqrt(s)"];
-    upd   [shape=diamond, label="L[j] > maxL ?"];
-    set   [shape=rectangle, label="maxL=L[j]; pos=j"];
-    jinc  [shape=rectangle, label="j++"];
-    outL  [shape=parallelogram, label="Вивід масиву L"];
-    outM  [shape=parallelogram, label="Вивід maxL та pos"];
-    stop  [shape=oval, label="Кінець"];
+start [shape=oval, label="Початок"];
+input [shape=parallelogram, label="Введення m, n, A(m×n), L"];
+chkPos [shape=diamond, label="(m <= 0 || n <= 0) ?"];
+errPos [shape=rectangle, label="err \n \"m і n повинні бути >0\"; \n return nullopt"];
+chkDim [shape=diamond, label="(m > 5 || n > 6) ?"];
+errDim [shape=rectangle, label="err \n \"Перевищено розмірності \n (m<=5, n<=6)\"; \n return nullopt"];
 
-    start -> input -> chk;
-    chk -> err  [label="ні"];
-    chk -> init [label="так"];
+j0   [shape=rectangle, label="j = 0"];
+loopJ[shape=diamond,  label="j < n ?"];
+s0i0 [shape=rectangle, label="s = 0; i = 0"];
+loopI[shape=diamond,  label="i < m ?"];
+add  [shape=rectangle, label="s += (A[i*n + j])^2; i++"];
+len  [shape=rectangle, label="L[j] = sqrt(s)"];
+jinc [shape=rectangle, label="j++"];
+ret  [shape=rectangle, label="return true"];
+stop [shape=oval, label="Кінець"];
 
-    init -> loopJ;
-    loopJ -> initS [label="так"];
-    loopJ -> outL [label="ні"];
+start -> input -> chkPos;
+chkPos -> errPos [label="так"];
+errPos -> stop;
+chkPos -> chkDim [label="ні"];
 
-    initS -> loopI;
-    loopI -> add [label="так"];
-    loopI -> len [label="ні"];
-    add -> loopI;
+chkDim -> errDim [label="так"];
+errDim -> stop;
+chkDim -> j0    [label="ні"];
 
-    len -> upd;
-    upd -> set [label="так"];
-    upd -> jinc [label="ні"];
-    set -> jinc -> loopJ;
+j0 -> loopJ;
+loopJ -> s0i0 [label="так"];
+loopJ -> ret  [label="ні"];
 
-    outL -> outM -> stop;
-    err -> stop;
+s0i0 -> loopI;
+loopI -> add [label="так"];
+loopI -> len [label="ні"];
+add -> loopI;
+
+len -> jinc -> loopJ;
+
+ret -> stop;
 }
+

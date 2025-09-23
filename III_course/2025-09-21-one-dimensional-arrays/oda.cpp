@@ -89,7 +89,8 @@ void test_task2()
     // Навмисний фейл: n=0
     { // ізолюємо scope
         double L[1]; // фіктивний масив
-        if (const auto res = task2(m, 0, &A[0][0], L, err); !res) {
+        const auto res = task2(m, 0, &A[0][0], L, err);
+        if (!res) {
             cout << "Очікувано ERROR: " << err << "\n";
         }
     }
@@ -97,7 +98,8 @@ void test_task2()
     // Навмисний фейл: m=6
     { // ізолюємо scope
         double L[n];
-        if (const auto res = task2(6, n, &A[0][0], L, err); !res) {
+        const auto res = task2(6, n, &A[0][0], L, err);
+        if (!res) {
             cout << "Очікувано ERROR: " << err << "\n";
         }
     }
