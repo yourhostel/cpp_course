@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Qt Notepad
+Comment=Simple text editor written in Qt6
+Exec=qt_notepad
+Icon=qt_notepad
+Terminal=false
+Categories=Utility;TextEditor;

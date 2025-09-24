@@ -1,5 +1,4 @@
 # III_course/2025-09-04-sqrt/CMakeLists.txt
-cmake_minimum_required(VERSION 3.29)
 project(2025-09-04-sqrt)
 
 set(CMAKE_CXX_STANDARD 23)
