@@ -22,7 +22,20 @@
 
 ```bash
 sudo apt update
-sudo apt install -y build-essential ninja-build qt6-base-dev qt6-base-dev-tools
+
+# інструменти для компіляції
+sudo apt install build-essential cmake ninja-build gdb lldb
+
+# бібліотеки Qt6 (базові заголовки і тулзи: Designer, lupdate/lrelease тощо)
+sudo apt install qt6-base-dev qt6-tools-dev qt6-tools-dev-tools
+
+# Qt SDK (IDE):
+# - Qt Creator IDE
+# - інтеграція з CMake, QMake, Meson
+# - плагіни для відлагодження
+# - редактор форм (Qt Designer)
+# - редактор перекладів (Qt Linguist)
+sudo apt install qtcreator
 ```
 
 ## Встановлення
