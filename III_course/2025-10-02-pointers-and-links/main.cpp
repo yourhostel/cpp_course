@@ -5,40 +5,74 @@
 
 using namespace std;
 
-void print_hex(const char *str);
-unsigned __int128 fibonacci(int n);
-string to_string_i128(const __int128 x);
+void print_hex(const char *str);    // const є обов'язковий, бо передача за вказівником
+unsigned __int128 fibonacci(int n); // const не є обов'язковий, бо передача за значенням (by value)
+string to_string_i128(__int128 x);
+
+bool isLeap(int year);
+template <size_t N> //   типове використання шаблону
+                    //   template <typename T>
+                    //   void foo(T x);
+                    //   size_t - стандартний беззнаковий цілий тип для розмірів масивів та індексів.
+void isLeap(const int (&years)[N]);
 
 int main(int argc, char *argv[]) {
     // const auto str = "\nabcdefghij";
     // print_hex(str);
 
-    for (int i = 0; i < 186; i++)
-    {
-        cout << to_string_i128(fibonacci(i)) << "\n";
-    }
+    // for (int i = 0; i < 186; i++)
+    // {
+    //     cout << to_string_i128(fibonacci(i)) << "\n";
+    // }
+
+    // double z[]={0.1, 0.2, 0.3, 0.4, 0.5};
+    // cout << sizeof(z)/sizeof(z[0]) << endl; // загальний розмір масиву в байтах / розмір одного елемента (double => 8 байт)
+    //                                         // але не працює через new чи malloc
+    // cout << size(z);                        // починаючи з C++17
+
+    const int years[] = {2023, 2024, 1900, 2000, 1600, 3300, 4904, 900, 400};
+
+    isLeap(years); // при використанні шаблону не треба передавати розмір масиву
 
 }
 
-// Функція конвертує __int128 у std::string, бо напряму в cout << його не можна вивести
-string to_string_i128(const __int128 x) {
-    if (x == 0) return "0";  // якщо число = 0 — відразу повертаємо рядок "0"
+bool isLeap(const int year) {
+    return ( (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0) );
+}
 
-    const bool neg = x < 0;  // прапорець: чи число від'ємне
+template <size_t N>
+void isLeap(const int (&years)[N]) // N вираховується автоматично компілятором під час виклику.
+                                   // (&years)[N] означає посилання на масив з N елементів.
+{
+    for (int i = 0; i < N; i++) {
+        const int y = years[i];
+        cout << y << " -> "
+             << (isLeap(y) ? "високосний" : "звичайний")
+             << "\n";
+    }
+}
+
+// Функція конвертує __int128 у std::string, бо напряму в cout << його не можна вивести
+string to_string_i128(const __int128 x)
+{
+    if (x == 0) return "0"; // якщо число = 0 — відразу повертаємо рядок "0"
+
+    const bool neg = x < 0; // прапорець: чи число від'ємне
     // v — абсолютне значення числа (якщо x < 0, беремо -x)
     __int128 v = neg ? -static_cast<__int128>(x) : static_cast<__int128>(x);
 
-    string s;           // тут збираємо цифри (у зворотному порядку)
-    while (v > 0) {
+    string s; // тут збираємо цифри (у зворотному порядку)
+    while (v > 0)
+    {
         // додаємо останню цифру числа (v % 10) у кінець рядка
         s.push_back('0' + (v % 10));
-        v /= 10;             // зсуваємо число на один розряд (відкидаємо останню цифру)
+        v /= 10; // зсуваємо число на один розряд (відкидаємо останню цифру)
     }
 
-    if (neg) s.push_back('-');  // якщо було від'ємне число — додаємо мінус
+    if (neg) s.push_back('-'); // якщо було від'ємне число — додаємо мінус
 
-    ranges::reverse(s);         // перевертаємо рядок, бо цифри назбиралися справа наліво
-    return s;                   // повертаємо готовий рядок
+    ranges::reverse(s); // перевертаємо рядок, бо цифри назбиралися справа наліво
+    return s; // повертаємо готовий рядок
 }
 
 
