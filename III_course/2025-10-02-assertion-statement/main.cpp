@@ -1,6 +1,7 @@
 // # III_course/2025-10-02-assertion-statement/main.cpp
 #include <cassert>
 #include <iostream>
+#include <boost/pfr/core.hpp>
 using namespace std;
 
 void division_by_whole();
@@ -10,12 +11,53 @@ void division_by_whole();
 double divide(int a,int b);
 void ask_and_divide();
 
+void quasi_reflection();
+
 int main() {
     // division_by_whole();
-    try_catch_probe();
+    // try_catch_probe();
     // ask_and_divide();
+       quasi_reflection();
 
     return 0;
+}
+
+void quasi_reflection()
+{
+    struct Point // Працює тільки с простими агрегаторами без кастомних бойлерплейтів(сетери, гетери, конструктори тощо)
+    {
+        double x;
+        double y;
+        double z;
+    };
+
+    Point p = {5, 3, 7};
+
+    using namespace boost::pfr;
+    for_each_field(p,[](auto& f)
+    {
+        cout << f << ' ';
+    });
+
+    cout << "\n" //
+        << "x: " << p.x //
+        << "; y: " << p.y //
+        << "; z: " << p.z //
+        << "\n";
+
+    for_each_field(p, [](auto& f, const size_t i)
+    {
+        f = f + 1;
+        cout << "i = " << i //
+             << "; f = " << f //
+             << "\n";
+    });
+
+    cout << "\n" //
+        << "x: " << p.x //
+        << "; y: " << p.y //
+        << "; z: " << p.z //
+        << "\n";
 }
 
 // Функція для ділення
