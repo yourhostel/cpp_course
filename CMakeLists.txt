@@ -3,4 +3,4 @@ project(cpp_course)
 
 #add_subdirectory(II_course)
 add_subdirectory(III_course)
-add_subdirectory(math)
+add_subdirectory(math/II_course)
