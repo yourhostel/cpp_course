@@ -149,6 +149,17 @@ $$ \max \left(a_1 + a_{2n}, a_2 + a_{2n-1}, \dots, a_n + a_{n+1}\right) $$
 
 ### Тема 1 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-09-04-sqrt)
 ### Тема 3 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-09-11-topic-3)
+  - `linkedlist_insert`  
+  - `sortDescending`/`sortAscendin`("сортування бульбашкою")
+  - `vector_map_search`
+
+### Тема 4 (multidimensional_arrays) 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-09-17-arrays)
+### Лабораторна робота №1. Лінійне програмування 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-09-17-linear-programming)
+### Лабораторна робота №2. Розробка програм розгалуженої структури. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-09-20-branched-structure)
+### Лабораторна робота №3. Розробка програм з одновимірними масивами. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-09-21-one-dimensional-arrays)
+### Тема 6. Десктопні застосунки. Прототип блокнота. (Delphi vs Qt, Qt6+(c++23) 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-09-24-qt-notepad)
+### Налагодження програм, масиви, структури даних 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-10-02-assertion-statement)
+### Масиви об'єктів, вказівники та посилання. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-10-02-pointers-and-links)
 
 ---
 
