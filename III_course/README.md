@@ -14,3 +14,5 @@
 ### Налагодження програм, масиви, структури даних 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-10-02-assertion-statement)
 ### Масиви об'єктів, вказівники та посилання. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-10-02-pointers-and-links)
 ### Цикли, класифікація циклів 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-10-04-loops)
+### Лабораторна робота №4. Робота з файлами. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-10-04-files)
+### Лабораторна робота №5. Робота з рядковими змінними та функціями 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-10-04-string-variables-and-functions)
