@@ -13,3 +13,4 @@
 ### Тема 6. Десктопні застосунки. Прототип блокнота. (Delphi vs Qt, Qt6+(c++23) 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-09-24-qt-notepad)
 ### Налагодження програм, масиви, структури даних 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-10-02-assertion-statement)
 ### Масиви об'єктів, вказівники та посилання. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-10-02-pointers-and-links)
+### Цикли, класифікація циклів 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-10-04-loops)
