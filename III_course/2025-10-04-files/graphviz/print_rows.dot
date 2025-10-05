@@ -1,0 +1,18 @@
+digraph print_rows {
+    rankdir=TB;
+    ordering=out;
+    node [fontname="DejaVu Sans", shape=box, style="solid,bold"];
+
+    start  [shape=oval,           label="Початок"];
+    inpar  [shape=parallelogram,  label="Ввід параметра: Range a"];
+    left   [shape=rectangle,      label="cout << left"];
+    iter   [shape=diamond,        label="Є наступний елемент i ∈ a ?"];
+    calc   [shape=rectangle,      label="with_name = 15 - |i.name|/2;\nif<0 → 0"];
+    out    [shape=parallelogram,  label="Друк: name | brand | color\nз setw(...), вирівнюванням"];
+    endok  [shape=oval,           label="Кінець"];
+
+    start -> inpar -> left -> iter;
+    iter  -> calc  [label="так"];
+    calc  -> out   -> iter;
+    iter  -> endok [label="ні"];
+}

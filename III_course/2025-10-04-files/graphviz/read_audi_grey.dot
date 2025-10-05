@@ -1,0 +1,36 @@
+digraph read_audi_grey {
+    rankdir=TB;
+    ordering=out;
+    node [fontname="DejaVu Sans", shape=box, style="solid,bold"];
+
+    start   [shape=oval,           label="Початок"];
+    inparam [shape=parallelogram,  label="Ввід параметра: path (string_view)"];
+    open    [shape=rectangle,      label="ifstream in{ string(path) }"];
+    init    [shape=rectangle,      label="vector<Car> v; string l;"];
+    readln  [shape=diamond,        label="getline(in, l) ?"];
+    skip    [shape=diamond,        label="l.empty() або l[0] == '#' ?"];
+    parse   [shape=rectangle,      label="stringstream ss(l);\nCar c;\ngetline(... ';') ×3"];
+    chk     [shape=diamond,        label="(brand=='Audi'||'audi')\n&& (color=='сірий'||'Сірий') ?"];
+    push    [shape=rectangle,      label="v.push_back(move(c))"];
+    loop    [shape=rectangle,      label="перейти до наступного рядка"];
+    ret     [shape=parallelogram,  label="Вивід (return): vector<Car> v"];
+    stop    [shape=oval,           label="Кінець"];
+
+    start -> inparam -> open -> init -> readln;
+
+    // основний цикл читання
+  readln -> skip [label="так"];
+    readln -> ret  [label="ні"];
+    skip   -> readln [label="так"];
+    skip   -> parse  [label="ні"];
+    parse  -> chk;
+    chk    -> push  [label="так"];
+    chk    -> loop  [label="ні"];
+    push   -> loop;
+    loop   -> readln;
+
+    // завершення
+  ret -> stop;
+}
+
+

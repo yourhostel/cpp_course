@@ -1,0 +1,19 @@
+digraph process_file {
+rankdir=TB;
+ordering=out;
+node [fontname="DejaVu Sans", shape=box, style="solid,bold"];
+
+start  [shape=oval,           label="Початок"];
+path   [shape=rectangle,      label="path = current_path()/\"car.csv\""];
+callR  [shape=rectangle,      label="rows = read_audi_grey(path)"];
+empty  [shape=diamond,        label="rows.empty() ?"];
+msg    [shape=parallelogram,  label="Вивід: \"Немає власників \n із Audi сірого кольору.\""];
+callP  [shape=rectangle,      label="print_rows(rows)"];
+stop   [shape=oval,           label="Кінець"];
+
+start -> path -> callR -> empty;
+empty -> msg  [label="так"];
+empty -> callP[label="ні"];
+msg   -> stop;
+callP -> stop;
+}
