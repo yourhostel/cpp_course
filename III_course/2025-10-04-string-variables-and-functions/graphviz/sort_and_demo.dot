@@ -1,0 +1,13 @@
+digraph sort_and_demo {
+rankdir=TB;
+node [fontname="DejaVu Sans", shape=box, style="solid,bold"];
+
+start [shape=oval, label="Початок"];
+init  [shape=parallelogram, label="Ініціалізація масиву a[12]"];
+print1 [shape=rectangle, label="Вивід: \"Початковий масив\";\nprint_array(a)"];
+sort   [shape=rectangle, label="Виклик std::sort(a, a+L, comparator)\nкомпаратор: x.size() > y.size()"];
+print2 [shape=rectangle, label="Вивід: \"Відсортований масив\";\nprint_array(a)"];
+stop  [shape=oval, label="Кінець"];
+
+start -> init -> print1 -> sort -> print2 -> stop;
+}

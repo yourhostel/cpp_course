@@ -1,0 +1,19 @@
+digraph print_array {
+    rankdir=TB;
+    node [fontname="DejaVu Sans", shape=box, style="solid,bold"];
+
+    start     [shape=oval, label="Початок"];
+    entry     [shape=parallelogram, label="Параметр: const string (&a)[K]\n(K визначається компілятором)", width=4.5, height=0.8, fixedsize=true];
+    i_init    [label="i = 0"];
+    cond      [shape=diamond, label="i < K ?"];
+    body      [label="cout << a[i] << '\\n'"];
+    i_inc     [label="i++"];
+    ret       [shape=rectangle, label="return;  // кінець функції"];
+    stop      [shape=oval, label="Кінець"];
+
+    start -> entry -> i_init -> cond;
+    cond -> body [label="так"];
+    cond -> ret  [label="ні"];
+    body -> i_inc -> cond;
+    ret -> stop;
+}

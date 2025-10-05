@@ -1,0 +1,23 @@
+// all_good.dot
+digraph all_good_flow {
+    rankdir=TB;
+    node [fontname="DejaVu Sans", shape=box, style="solid,bold"];
+
+    ag_start  [shape=oval, label="Початок: all_good(s)"];
+    ag_init   [shape=rectangle, label="Ініціалізація ітератора по s->marks"];
+    ag_check  [shape=diamond, label="Є наступний mark ?"];
+    ag_comp   [shape=diamond, label="mark < 4 ?"];
+    ag_ret0   [shape=rectangle, label="return 0\n(є оцінка < 4)"];
+    ag_next   [shape=rectangle, label="перейти до наступного mark"];
+    ag_ret1   [shape=rectangle, label="return 1\n(всі оцінки >= 4)"];
+    ag_end    [shape=oval, label="Кінець: all_good(s)"];
+
+    ag_start -> ag_init -> ag_check;
+    ag_check -> ag_comp [label="так"];
+    ag_check -> ag_ret1 [label="ні (всі опрацьовані)"];
+    ag_comp  -> ag_ret0  [label="так (mark < 4)"];
+    ag_comp  -> ag_next [label="ні (mark >= 4)"];
+    ag_next  -> ag_check;
+    ag_ret0  -> ag_end;
+    ag_ret1  -> ag_end;
+}

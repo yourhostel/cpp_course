@@ -2,7 +2,7 @@
 #include <QApplication>
 #include "notepad.h"
 
-int main(int argc, char *argv[]) {
+int main() {
     QApplication app(argc, argv);
     Notepad window;
     window.show();

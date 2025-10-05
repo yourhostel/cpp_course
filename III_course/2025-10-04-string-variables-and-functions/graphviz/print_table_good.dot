@@ -1,0 +1,40 @@
+// print_table_good.dot
+digraph print_table_good_flow {
+    rankdir=TB;
+    node [fontname="DejaVu Sans", shape=box, style="solid,bold"];
+
+    pt_start      [shape=oval, label="Початок: print_table_good()"];
+    init_array    [shape=rectangle, label="Ініціалізація Student a[N] (статично)"];
+    print_header  [shape=parallelogram, label="Друк заголовка таблиці\n(printf)"];
+    loop_begin    [shape=diamond, label="Є наступний студент i у a ?"];
+    call_allgood  [shape=rectangle, label="Виклик all_good(&i)  \n(перевірка успішності)"];
+    cond_allgood  [shape=diamond, label="all_good == 1 ?"];
+    cont_next     [shape=rectangle, label="continue (пропустити студента)"];
+    calc_padding  [shape=rectangle, label="with_name = 15 - (int)name.size()/2"];
+    clamp_check   [shape=diamond, label="with_name < 0 ?"];
+    clamp_fix     [shape=rectangle, label="with_name = 0"];
+    print_line    [shape=rectangle, label="printf(рядок таблиці)\n(id, name, marks)"];
+    loop_inc      [shape=rectangle, label="перейти до наступного студента"];
+    pt_end        [shape=oval, label="Кінець: print_table_good()"];
+
+    // основні потоки
+  pt_start -> init_array -> print_header -> loop_begin;
+    loop_begin -> call_allgood [label="так"];
+    loop_begin -> pt_end [label="ні"];
+    call_allgood -> cond_allgood;
+    cond_allgood -> cont_next [label="ні (0)"];
+    cond_allgood -> calc_padding [label="так (1)"];
+    cont_next -> loop_inc;
+    calc_padding -> clamp_check;
+    clamp_check -> clamp_fix [label="так"];
+    clamp_check -> print_line [label="ні"];
+    clamp_fix -> print_line;
+    print_line -> loop_inc;
+    loop_inc -> loop_begin;
+
+    // позначка виклику зовнішньої функції (візуально)
+  call_allgood -> allgood_note [style=dashed, label="(зовнішня функція)"];
+    allgood_note [shape=note, label="all_good(const Student *s)\nповертає 0 або 1"];
+
+}
+
