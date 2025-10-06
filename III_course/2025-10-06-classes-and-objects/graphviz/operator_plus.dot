@@ -1,0 +1,26 @@
+digraph operator_plus {
+    rankdir=TB;
+    node [
+    shape=box,
+    style="solid,bold",
+    fontname="DejaVu Sans",
+    fontsize=11,
+    margin="0.15,0.1",
+    fixedsize=false
+    ];
+
+    start [shape=oval, label="Початок"];
+    inpar [shape=parallelogram, label="Параметри: Matrix4x4 a, b"];
+    init  [shape=rectangle, label="Matrix4x4 r"];
+    loop1 [shape=diamond, label="i < 4?"];
+    loop2 [shape=diamond, label="j < 4?"];
+    calc  [shape=rectangle, label="r[i][j] = a[i][j] + b[i][j]"];
+    endok [shape=oval, label="return r"];
+
+    start -> inpar -> init -> loop1;
+    loop1 -> loop2 [label="так"];
+    loop2 -> calc [label="так"];
+    calc -> loop2;
+    loop2 -> loop1 [label="ні"];
+    loop1 -> endok [label="ні"];
+}

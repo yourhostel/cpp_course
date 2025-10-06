@@ -1,0 +1,28 @@
+digraph print_matrix {
+    rankdir=TB;
+    node [
+    shape=box,
+    style="solid,bold",
+    fontname="DejaVu Sans",
+    fontsize=11,
+    margin="0.15,0.1",
+    fixedsize=false
+    ];
+
+    start [shape=oval, label="Початок"];
+    inpar [shape=parallelogram, label="Ввід параметра: ostream out"];
+    fmt   [shape=rectangle, label="out << fixed << setprecision(2)"];
+    loop1 [shape=diamond, label="Є наступний рядок?"];
+    loop2 [shape=diamond, label="Є елемент у рядку?"];
+    print [shape=parallelogram, label="out << setw(8) << el"];
+    newline [shape=rectangle, label="out << '\\n'"];
+    end   [shape=oval, label="Кінець"];
+
+    start -> inpar -> fmt -> loop1;
+    loop1 -> loop2 [label="так"];
+    loop2 -> print [label="так"];
+    print -> loop2;
+    loop2 -> newline [label="ні"];
+    newline -> loop1;
+    loop1 -> end [label="ні"];
+}

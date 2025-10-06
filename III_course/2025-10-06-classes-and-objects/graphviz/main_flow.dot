@@ -1,0 +1,23 @@
+digraph main_flow {
+    rankdir=TB;
+    rankdir=TB;
+    node [
+    shape=box,
+    style="solid,bold",
+    fontname="DejaVu Sans",
+    fontsize=11,
+    margin="0.15,0.1",
+    fixedsize=false
+    ];
+
+    start [shape=oval, label="Початок"];
+    readA [shape=parallelogram, label="Ввід матриці A"];
+    readB [shape=parallelogram, label="Ввід матриці B"];
+    printA [shape=parallelogram, label="Вивід A, maxElement(A)"];
+    printB [shape=parallelogram, label="Вивід B, maxElement(B)"];
+    add   [shape=rectangle, label="A + B"];
+    sub   [shape=rectangle, label="A - B"];
+    stop  [shape=oval, label="Кінець"];
+
+    start -> readA -> readB -> printA -> printB -> add -> sub -> stop;
+}

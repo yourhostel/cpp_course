@@ -1,0 +1,25 @@
+digraph read {
+    rankdir=TB;
+    node [
+    shape=box,
+    style="solid,bold",
+    fontname="DejaVu Sans",
+    fontsize=11,
+    margin="0.15,0.1",
+    fixedsize=false
+    ];
+
+    start [shape=oval, label="Початок"];
+    inpar [shape=parallelogram, label="Ввід елементів матриці"];
+    loop1 [shape=diamond, label="Є наступний рядок?"];
+    loop2 [shape=diamond, label="Є наступний елемент у рядку?"];
+    read  [shape=parallelogram, label="in >> el"];
+    end   [shape=oval, label="Кінець"];
+
+    start -> inpar -> loop1;
+    loop1 -> loop2 [label="так"];
+    loop2 -> read  [label="так"];
+    read  -> loop2;
+    loop2 -> loop1 [label="ні"];
+    loop1 -> end [label="ні"];
+}
