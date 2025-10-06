@@ -16,3 +16,5 @@
 ### Цикли, класифікація циклів 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-10-04-loops)
 ### Лабораторна робота №4. Робота з рядковими змінними та функціями 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-10-04-string-variables-and-functions)
 ### Лабораторна робота №5. Робота з файлами. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-10-04-files)
+### Лабораторна робота №6. Робота з класами та об‘єктами. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-10-06-classes-and-objects)
+### Лабораторна робота №7. Робота з класами та об‘єктами. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-10-06-classes-and-objects-7)
