@@ -1,0 +1,10 @@
+digraph rp_volume {
+    rankdir=LR;
+    node [shape=box, style="solid,bold", fontname="DejaVu Sans", fontsize=11, margin="0.15,0.1"];
+
+    start [shape=oval, label="Початок"];
+    area  [label="S = sideA_ * sideB_"];
+    calc  [label="V = (S * height_) / 3"];
+    ret   [shape=oval, label="Повернути V"];
+    start -> area -> calc -> ret;
+}

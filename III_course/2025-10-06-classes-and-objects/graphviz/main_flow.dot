@@ -1,6 +1,5 @@
 digraph main_flow {
     rankdir=TB;
-    rankdir=TB;
     node [
     shape=box,
     style="solid,bold",

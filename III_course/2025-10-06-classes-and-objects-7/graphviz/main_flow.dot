@@ -1,0 +1,36 @@
+digraph main_flow {
+    rankdir=TB;
+
+    node [
+    shape=box,
+    style="solid,bold",
+    fontname="DejaVu Sans",
+    fontsize=11,
+    margin="0.15,0.1",
+    fixedsize=false
+    ];
+
+
+    start   [shape=oval, label="Початок"];
+    readTP  [label="Зчитати TP: x,y,z,h,Sосн"];
+    makeTP  [label="Створити TriangularPyramid"];
+    readRP  [label="Зчитати RP: x,y,z,h,a,b"];
+    makeRP  [label="Створити RectangularPyramid"];
+    readS   [label="Зчитати S: x,y,z,r"];
+    makeS   [label="Створити Sphere"];
+    printTP [label="tp.printInfo(); tp.volume()"];
+    printRP [label="rp.printInfo(); rp.volume()"];
+    printS  [label="s.printInfo(); s.volume()"];
+    endok   [shape=oval, label="Кінець"];
+    err     [shape=oval, label="Помилка (catch)"];
+
+    start -> readTP -> makeTP -> readRP -> makeRP -> readS -> makeS -> printTP -> printRP -> printS -> endok;
+
+    // Гілка помилок (винятки)
+    readTP -> err [label="bad input/arg", style=dashed];
+    readRP -> err [label="bad input/arg", style=dashed];
+    readS  -> err [label="bad input/arg", style=dashed];
+    makeTP -> err [label="invalid_argument", style=dashed];
+    makeRP -> err [label="invalid_argument", style=dashed];
+    makeS  -> err [label="invalid_argument", style=dashed];
+}

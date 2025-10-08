@@ -1,0 +1,9 @@
+digraph tp_volume {
+    rankdir=LR;
+    node [shape=box, style="solid,bold", fontname="DejaVu Sans", fontsize=11, margin="0.15,0.1"];
+
+    start  [shape=oval, label="Початок"];
+    calc   [label="V = (baseArea_ * height_) / 3"];
+    ret    [shape=oval, label="Повернути V"];
+    start -> calc -> ret;
+}

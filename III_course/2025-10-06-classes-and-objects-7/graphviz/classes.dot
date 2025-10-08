@@ -1,0 +1,25 @@
+digraph classes {
+    rankdir=LR;
+
+    node [
+    shape=box,
+    style="solid,bold",
+    fontname="DejaVu Sans",
+    fontsize=11,
+    margin="0.15,0.1",
+    fixedsize=false
+    ];
+
+    GeometricBody [label="GeometricBody\l x_ : double\l y_ : double\l z_ : double\l printInfo() : void\l ~GeometricBody()\l"];
+
+    Pyramid [label="Pyramid\l height_: double\l printInfo() : void\l"];
+    TriangularPyramid [label="TriangularPyramid\l baseArea_ : double\l volume() : double\l printInfo() : void\l"];
+    RectangularPyramid [label="RectangularPyramid\l sideA_ : double\l sideB_ : double\l baseArea() : double\l volume() : double\l printInfo() : void\l"];
+    Sphere [label="Sphere\l radius_ : double\l volume() : double\l printInfo() : void\l"];
+
+    GeometricBody -> Pyramid [arrowhead=empty];
+    Pyramid -> TriangularPyramid [arrowhead=empty];
+    Pyramid -> RectangularPyramid [arrowhead=empty];
+    GeometricBody -> Sphere [arrowhead=empty];
+
+}
