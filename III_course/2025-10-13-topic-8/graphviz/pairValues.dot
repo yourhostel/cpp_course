@@ -1,0 +1,19 @@
+// pairValues.dot
+digraph pairValues {
+    rankdir=TB;
+    node [shape=box, style="solid,bold", fontname="DejaVu Sans", fontsize=11, margin="0.15,0.1"];
+
+    // pairValues()
+    pv_start [shape=oval, label="Початок"];
+    pv_ctor  [label="PairValues p1(3,7)"];
+    pv_print1 [label="p1.print()"];
+    pv_sum1   [label="p1.sum() -> cout"];
+    pv_max1   [label="p1.maxValue() -> cout"];
+    pv_set    [label="p1.setValues(10,5)"];
+    pv_print2 [label="p1.print()"];
+    pv_sum2   [label="p1.sum() -> cout"];
+    pv_max2   [label="p1.maxValue() -> cout"];
+    pv_end    [shape=oval, label="Кінець"];
+
+    pv_start -> pv_ctor -> pv_print1 -> pv_sum1 -> pv_max1 -> pv_set -> pv_print2 -> pv_sum2 -> pv_max2 -> pv_end;
+}

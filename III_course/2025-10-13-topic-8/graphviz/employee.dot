@@ -1,0 +1,40 @@
+// employee.dot
+digraph employee {
+rankdir=TB;
+node [shape=box, style="solid,bold", fontname="DejaVu Sans", fontsize=11, margin="0.15,0.1"];
+
+// employee()
+    start [shape=oval, label="Початок"];
+readN [label="cout<<\"N\"; cin>>n"];
+checkN [shape=diamond, label="n > 0 ?"];
+errN  [label="cerr<<\"Некоректне N\"; return"];
+init  [label="vector<Employee> staff; reserve(n)"];
+loop  [shape=diamond, label="i < n ?"];
+
+prompt [label="cout<<\"id salary\""];
+read   [label="cin>>id>>salary"];
+validIO [shape=diamond, label="ввід валідний ?"];
+badIO  [label="cin.clear();\ncin.ignore(...);\ncerr<<\"Спробуйте ще\""];
+tryBlk    [label="try { staff.emplace_back(id,salary); ++i; }"];
+catchBlk  [label="catch(invalid_argument& e)\n cerr<<\"Помилка\";\n // повторити без ++i"];
+
+done   [label="for(auto& e:staff) e.print()"];
+end    [shape=oval, label="Кінець"];
+
+start -> readN -> checkN;
+checkN -> init  [label="так"];
+checkN -> errN  [label="ні"];
+init -> loop;
+loop -> prompt [label="так"];
+prompt -> read -> validIO;
+validIO -> tryBlk   [label="так"];
+validIO -> badIO [label="ні"];
+badIO -> loop;
+
+tryBlk -> loop  [label="ok"];
+tryBlk -> catchBlk [style=dashed, label="throw invalid_argument"];
+catchBlk -> loop;
+
+loop -> done [label="ні"];
+done -> end;
+}

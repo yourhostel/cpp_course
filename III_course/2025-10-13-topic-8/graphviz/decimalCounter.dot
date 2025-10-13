@@ -1,0 +1,21 @@
+// decimalCounter.dot
+digraph decimalCounter {
+    rankdir=TB;
+    node [shape=box, style="solid,bold", fontname="DejaVu Sans", fontsize=11, margin="0.15,0.1"];
+
+    // decimalCounter()
+    dc_start [shape=oval, label="Початок"];
+    dc_try   [label="try"];
+    dc_ctor  [label="DecimalCounter c(0,5,2)"];
+    dc_print0 [label="c.print()"];
+    dc_inc1  [label="c.increment(); c.print()"];
+    dc_inc2  [label="c.increment(); c.print()"];
+    dc_inc3  [label="c.increment(); c.print() // межа"];
+    dc_dec1  [label="c.decrement(); c.print()"];
+    dc_catch [label="catch(std::exception& e)\n cerr<<..."];
+    dc_end   [shape=oval, label="Кінець"];
+
+    dc_start -> dc_try -> dc_ctor -> dc_print0 -> dc_inc1 -> dc_inc2 -> dc_inc3 -> dc_dec1 -> dc_end;
+    dc_try -> dc_catch [style=dashed, label="throw invalid_argument"];
+    dc_catch -> dc_end;
+}

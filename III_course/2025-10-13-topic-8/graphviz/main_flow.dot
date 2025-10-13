@@ -1,0 +1,13 @@
+digraph main_flow {
+    rankdir=TB;
+    node [shape=box, style="solid,bold", fontname="DejaVu Sans", fontsize=11, margin="0.15,0.1"];
+
+    // main()
+    m_start [shape=oval, label="Початок"];
+    m_pv    [label="pairValues()"];
+    m_dc    [label="decimalCounter()"];
+    m_emp   [label="employee()"];
+    m_end   [shape=oval, label="Кінець"];
+
+    m_start -> m_pv -> m_dc -> m_emp -> m_end;
+}

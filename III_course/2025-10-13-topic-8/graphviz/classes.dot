@@ -1,0 +1,18 @@
+digraph classes {
+    rankdir=TB;
+
+    node [
+    shape=box,
+    style="solid,bold",
+    fontname="DejaVu Sans",
+    fontsize=11,
+    margin="0.15,0.1",
+    fixedsize=false
+    ];
+
+    PairValues [label="PairValues\l x_ : int\l y_ : int\l ----\l PairValues(x:int=0, y:int=0)\l print() : void\l setValues(x:int, y:int) : void\l sum() : int\l maxValue() : int\l"];
+
+    DecimalCounter [label="DecimalCounter\l min_ : int\l max_ : int\l value_ : int\l ----\l DecimalCounter(min:int=0, max:int=9, value:int=0)\l increment() : void\l decrement() : void\l getValue() : int\l print() : void\l"];
+
+    Employee [label="Employee\l id_ : int\l salary_ : double\l ----\l Employee(id:int=0, salary:double=0.0)\l print() : void\l"];
+}
