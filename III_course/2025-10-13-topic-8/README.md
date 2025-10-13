@@ -26,7 +26,7 @@
 
 3) UML `void pairValues()`
 
-![pairValues_v2.png](graphviz/pairValues_v2.png)
+![pairValues.png](graphviz/pairValues.png)
 
 ---
 
