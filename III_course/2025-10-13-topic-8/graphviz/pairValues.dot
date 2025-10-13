@@ -1,6 +1,6 @@
 // pairValues.dot
 digraph pairValues {
-    rankdir=TB;
+    rankdir=LR;
     node [shape=box, style="solid,bold", fontname="DejaVu Sans", fontsize=11, margin="0.15,0.1"];
 
     // pairValues()
