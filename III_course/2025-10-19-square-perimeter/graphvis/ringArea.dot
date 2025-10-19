@@ -1,15 +1,12 @@
-digraph G {
-    rankdir=LR; // Example attribute
-    node [shape=box]; // Default node shape
-
-    // Define nodes
-    start [label="Start"];
-    process [label="Process Data"];
-    end [label="End"];
-
-    // Define edges (connections)
-    start -> process;
-    process -> end;
-
-    // You can add more nodes, edges, and attributes
+digraph RingArea {
+    node [shape=record, style=filled, fillcolor=lightblue];
+    Ring [label="{Ring\l |
+    outerRadius_ : double\l
+    innerRadius_ : double\l
+    static validateRadii(outer, inner) : void\l|
+    setRadii(outer, inner) : void\l
+    getArea() : double\l
+    print() : void\l
+    }"];
 }
+

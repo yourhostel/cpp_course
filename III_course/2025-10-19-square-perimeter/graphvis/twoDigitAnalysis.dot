@@ -1,15 +1,11 @@
-digraph G {
-    rankdir=LR; // Example attribute
-    node [shape=box]; // Default node shape
-
-    // Define nodes
-    start [label="Start"];
-    process [label="Process Data"];
-    end [label="End"];
-
-    // Define edges (connections)
-    start -> process;
-    process -> end;
-
-    // You can add more nodes, edges, and attributes
+digraph TwoDigitAnalysis {
+    node [shape=record, style=filled, fillcolor=lightpink];
+    TwoDigitNumber [label="{TwoDigitNumber\l |
+    number_ : int\l|
+    setNumber(n) : void\l
+    getTens() : int\l
+    getUnits() : int\l
+    getSum() : int\l
+    getProduct() : int\l
+    print() : void\l}"];
 }

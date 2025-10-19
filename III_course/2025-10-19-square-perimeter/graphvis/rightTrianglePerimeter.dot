@@ -1,15 +1,11 @@
-digraph G {
-    rankdir=LR; // Example attribute
-    node [shape=box]; // Default node shape
-
-    // Define nodes
-    start [label="Start"];
-    process [label="Process Data"];
-    end [label="End"];
-
-    // Define edges (connections)
-    start -> process;
-    process -> end;
-
-    // You can add more nodes, edges, and attributes
+digraph RightTrianglePerimeter {
+    node [shape=record, style=filled, fillcolor=lightgreen];
+    RightTriangle [label="{RightTriangle\l |
+    leg1_ : double\l leg2_ : double\l
+    static validateLegs(leg1, leg2) : void\l |
+    setLegs(leg1, leg2) : void\l
+    getHypotenuse() : double\l
+    getPerimeter() : double\l
+    print() : void\l
+    }"];
 }

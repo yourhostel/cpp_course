@@ -1,15 +1,9 @@
-digraph G {
-    rankdir=LR; // Example attribute
-    node [shape=box]; // Default node shape
-
-    // Define nodes
-    start [label="Start"];
-    process [label="Process Data"];
-    end [label="End"];
-
-    // Define edges (connections)
-    start -> process;
-    process -> end;
-
-    // You can add more nodes, edges, and attributes
+digraph SquarePerimeter {
+    node [shape=record, style=filled, fillcolor=lightyellow];
+    Square [label="{Square\l |
+    area_ : double\l |
+    setArea(area) : void\l
+    getPerimeter() : double\l
+    print() : void\l
+    }"];
 }
