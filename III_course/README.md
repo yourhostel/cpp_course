@@ -20,3 +20,4 @@
 ### Лабораторна робота №7. Робота з класами та об‘єктами. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-10-06-classes-and-objects-7)
 ### Тема 8. Самостійна робота. Класи та об'єкти. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-10-13-topic-8)
 ### Тема 9. `squarePerimeter`, `ringArea`, `rightTrianglePerimeter`, `twoDigitAnalysis`. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-10-19-square-perimeter)
+### Лабораторна робота №10. Табулювання функцій та обчислення інтегралів методом Сімпсона. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-10-29-simpson-integration)

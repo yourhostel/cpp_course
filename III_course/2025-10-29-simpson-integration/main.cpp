@@ -3,6 +3,7 @@
 
 int main()
 {
+  // TODO: implement Simpson integration and function tabulation
   throw std::logic_error("Not implemented yet");
 
   return 0;
