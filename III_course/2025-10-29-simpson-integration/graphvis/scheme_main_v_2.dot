@@ -1,0 +1,64 @@
+digraph simpson_project {
+    rankdir=TB;
+    bgcolor="#f8f9fa";
+
+    node [
+    shape=box,
+    style="rounded,filled,bold",
+    fontname="DejaVu Sans",
+    fontsize=11,
+    margin="0.18,0.1",
+    fillcolor="white",
+    color="#444444"
+    ];
+
+    edge [
+    color="#444444",
+    arrowsize=0.8,
+    fontsize=10
+    ];
+
+    start [shape=oval, fillcolor="#d1e7dd", label="Початок"];
+
+    # Main Menu
+    mainMenu [shape=diamond, fillcolor="#fff3cd", label="Головне меню\n1 — Табуляція\n2 — Сімпсон\n3 — Вихід"];
+
+    # Tabulation branch
+    tabMenu [shape=diamond, fillcolor="#fff3cd", label="Меню табулювання\nsin, x², eˣ, назад"];
+    readA_tab [shape=parallelogram, fillcolor="#e2e3e5", label="Введення a"];
+    readB_tab [shape=parallelogram, fillcolor="#e2e3e5", label="Введення b"];
+    readH [shape=parallelogram, fillcolor="#e2e3e5", label="Введення h"];
+    tabCalc [shape=rectangle, fillcolor="#cfe2ff", label="Табулювання f(x) на [a, b]"];
+    tabOut [shape=parallelogram, fillcolor="#e2e3e5", label="Вивід значень"];
+
+    # Simpson branch
+    simMenu [shape=diamond, fillcolor="#fff3cd", label="Меню Сімпсона\nsin, x², eˣ, назад"];
+    readA_sim [shape=parallelogram, fillcolor="#e2e3e5", label="Введення a"];
+    readB_sim [shape=parallelogram, fillcolor="#e2e3e5", label="Введення b"];
+    readN [shape=parallelogram, fillcolor="#e2e3e5", label="Введення n (парне)"];
+    warnN [shape=diamond, fillcolor="#fde9c4", label="n < 10?\nПродовжити / змінити"];
+    simCalc [shape=rectangle, fillcolor="#cfe2ff", label="Інтегрування методом Сімпсона"];
+    simOut [shape=parallelogram, fillcolor="#e2e3e5", label="Результат"];
+
+    stop [shape=oval, fillcolor="#f8d7da", label="Кінець"];
+
+    # Main links
+    start -> mainMenu;
+    mainMenu -> tabMenu [label="1"];
+    mainMenu -> simMenu [label="2"];
+    mainMenu -> stop [label="3"];
+
+    # Tabulation flow
+    tabMenu -> readA_tab [label="обрано функцію"];
+    readA_tab -> readB_tab -> readH -> tabCalc -> tabOut -> mainMenu;
+    tabMenu -> mainMenu [label="назад"];
+
+    # Simpson flow
+    simMenu -> readA_sim [label="обрано функцію"];
+    readA_sim -> readB_sim -> readN -> warnN;
+    warnN -> readA_sim [label="уточнити ввід"];
+    warnN -> simCalc [label="продовжити"];
+    simCalc -> simOut -> mainMenu;
+    simMenu -> mainMenu [label="назад"];
+}
+
