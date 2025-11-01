@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>889</width>
+    <height>583</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="1">
+     <widget class="QWidget" name="panelRight" native="true">
+      <layout class="QVBoxLayout" name="verticalLayout_7" stretch="1,6">
+       <item>
+        <widget class="QWidget" name="formulaPanel" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_8">
+          <item>
+           <widget class="QLabel" name="formulaLabel">
+            <property name="font">
+             <font>
+              <pointsize>19</pointsize>
+              <italic>false</italic>
+              <fontweight>DemiBold</fontweight>
+             </font>
+            </property>
+            <property name="lineWidth">
+             <number>0</number>
+            </property>
+            <property name="midLineWidth">
+             <number>0</number>
+            </property>
+            <property name="text">
+             <string>y = sin(x) + 1</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::TextFormat::AutoText</enum>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="chartPanel" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_10">
+          <item>
+           <layout class="QVBoxLayout" name="chartLayout">
+            <item>
+             <widget class="QGraphicsView" name="graphicsView"/>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QWidget" name="panelLeft" native="true">
+      <layout class="QVBoxLayout" name="verticalLayout" stretch="1,8">
+       <item>
+        <widget class="QWidget" name="panelLeftTop" native="true">
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QLabel" name="labelFunction">
+            <property name="text">
+             <string>Вибрати функцію:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboFunc"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="panelLeftBody" native="true">
+         <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0">
+          <item>
+           <widget class="QWidget" name="panelLeftTable" native="true">
+            <layout class="QVBoxLayout" name="verticalLayout_11">
+             <item>
+              <layout class="QVBoxLayout" name="tableLayout">
+               <item>
+                <widget class="QTableWidget" name="tableXY"/>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="panelLeftParams" native="true">
+            <layout class="QVBoxLayout" name="verticalLayout_3">
+             <item>
+              <widget class="QGroupBox" name="groupOutput">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="title">
+                <string>Виведення:</string>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_2">
+                <item>
+                 <widget class="QCheckBox" name="cbScreen">
+                  <property name="text">
+                   <string>На екран</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="cbFile">
+                  <property name="text">
+                   <string>У файл</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="cbArray">
+                  <property name="text">
+                   <string>У масив</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSplitter" name="splitter">
+               <property name="orientation">
+                <enum>Qt::Orientation::Vertical</enum>
+               </property>
+               <widget class="QGroupBox" name="groupBox">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="title">
+                 <string>Опції</string>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,0,0,0,0,0">
+                 <property name="spacing">
+                  <number>6</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>9</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="labelA">
+                   <property name="text">
+                    <string>Ліва межа</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="lineA"/>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="labelB">
+                   <property name="text">
+                    <string>Права межа</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="lineB"/>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="labelH">
+                   <property name="text">
+                    <string>Крок</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="lineH"/>
+                 </item>
+                </layout>
+               </widget>
+              </widget>
+             </item>
+             <item>
+              <widget class="QWidget" name="layoutButton" native="true">
+               <layout class="QVBoxLayout" name="verticalLayout_6">
+                <property name="topMargin">
+                 <number>15</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>5</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="btnTabulate">
+                  <property name="text">
+                   <string>Протабулювати</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>889</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuCalc">
+    <property name="title">
+     <string>Обчислення</string>
+    </property>
+    <addaction name="actionTabulate"/>
+    <addaction name="actionClearOutput"/>
+   </widget>
+   <widget class="QMenu" name="menuExit">
+    <property name="title">
+     <string>Кінець</string>
+    </property>
+    <addaction name="actionAbout"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <addaction name="menuCalc"/>
+   <addaction name="menuExit"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionTabulate">
+   <property name="text">
+    <string>Протабулювати</string>
+   </property>
+  </action>
+  <action name="actionClearOutput">
+   <property name="text">
+    <string>Очистити поле виведення</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>Про програму</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Вийти</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
