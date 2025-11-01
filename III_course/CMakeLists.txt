@@ -1,4 +1,5 @@
-# III_course/CMakeLists.txt
+# cpp_course/III_course/CMakeLists.txt
+
 add_subdirectory(2025-09-04-sqrt)
 add_subdirectory(2025-09-11-topic-3)
 add_subdirectory(2025-09-17-arrays)

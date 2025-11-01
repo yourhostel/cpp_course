@@ -54,11 +54,7 @@
         <widget class="QWidget" name="chartPanel" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_10">
           <item>
-           <layout class="QVBoxLayout" name="chartLayout">
-            <item>
-             <widget class="QGraphicsView" name="graphicsView"/>
-            </item>
-           </layout>
+           <layout class="QVBoxLayout" name="chartLayout"/>
           </item>
          </layout>
         </widget>

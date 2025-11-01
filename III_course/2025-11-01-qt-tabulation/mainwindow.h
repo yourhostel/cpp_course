@@ -9,15 +9,16 @@
 
 #include <QMainWindow>
 #include <QtCharts/QChartView>
-#include <QtCharts/QLineSeries>
-#include <QtCharts/QValueAxis>
 
 QT_BEGIN_NAMESPACE
+
 namespace Ui { class MainWindow; }
+
 QT_END_NAMESPACE
 
 class MainWindow final : public QMainWindow {
     Q_OBJECT
+    QChartView* m_chartView {};
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
@@ -28,8 +29,9 @@ private:
 
 private slots:
     void onFunctionChanged(int index) const;
+    void onTabulateClicked() const;
+    void onClearOutput() const;
 };
-
 
 #endif // MAINWINDOW_H
 
