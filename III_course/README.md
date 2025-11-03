@@ -20,4 +20,10 @@
 ### Лабораторна робота №7. Робота з класами та об‘єктами. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-10-06-classes-and-objects-7)
 ### Тема 8. Самостійна робота. Класи та об'єкти. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-10-13-topic-8)
 ### Тема 9. `squarePerimeter`, `ringArea`, `rightTrianglePerimeter`, `twoDigitAnalysis`. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-10-19-square-perimeter)
+### Лабораторна робота №8. Стандартні елементи інтерфейсу. Робота з формами та сигналами-слотами Qt6. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-11-03-qt-gui-basics)
+- Додатки:
+  - **«Анкета студента»** 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-11-03-qt-gui-basics/student_form)
+  - **«Обмін валюти»** 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-11-03-qt-gui-basics/exchange_form)
+### Лабораторна робота №9. Програмування циклів. Об'єкти: Memo, MainMenu, PopupMenu, CheckBox, GroupBox Qt6. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-11-01-qt-tabulation)
 ### Лабораторна робота №10. Табулювання функцій та обчислення інтегралів методом Сімпсона. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-10-29-simpson-integration)
+

@@ -1,3 +1,5 @@
+# cpp_course/CMakeLists.txt
+
 cmake_minimum_required(VERSION 4.1.1)
 project(cpp_course)
 

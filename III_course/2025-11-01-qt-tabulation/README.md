@@ -28,6 +28,8 @@
 sudo apt update
 
 # Встановити Qt6Charts
+
+# https://doc.qt.io/qt-6 
 # Скачати інсталер
 # https://www.qt.io/download-qt-installer (qt-online-installer-linux-x64-4.10.0.run)
 
