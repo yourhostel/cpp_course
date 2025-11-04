@@ -26,4 +26,4 @@
   - **«Обмін валюти»** 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-11-03-qt-gui-basics/exchange_form)
 ### Лабораторна робота №9. Програмування циклів. Об'єкти: Memo, MainMenu, PopupMenu, CheckBox, GroupBox Qt6. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-11-01-qt-tabulation)
 ### Лабораторна робота №10. Табулювання функцій та обчислення інтегралів методом Сімпсона. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-10-29-simpson-integration)
-
+### Тема 11. Перевантаження аргументів 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-11-04-overloading-of-arguments)
