@@ -6,33 +6,25 @@
 #ifndef DRAWING_H
 #define DRAWING_H
 
-// Підключаємо базовий клас Qt-вікна.
+// Підключаємо базовий клас основного вікна Qt
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
+// Ui::Drawing – це клас, який Qt Designer автоматично генерує з файла drawing.ui
 namespace Ui { class Drawing; }
 QT_END_NAMESPACE
 
-class Drawing final : public QMainWindow{
-    // Макрос Qt, який вмикає механізм сигналів і слотів (MOC)
-    // connect() та slots:
+// Drawing – головне вікно програми.
+// Наслідуємо QMainWindow, щоб мати меню, статус-бар, центральний віджет і т.д.
+class Drawing final : public QMainWindow {
     Q_OBJECT
 
 public:
-    // Конструктор - створює вікно, підключає UI, сигнали
-    explicit Drawing(QWidget *parent = nullptr);
-
-    // Деструктор — прибирає UI
-    ~Drawing() override;
-
-private slots:
-    //TODO slots
+    explicit Drawing(QWidget *parent = nullptr); // створюємо вікно і піднімаємо UI
+    ~Drawing() override;                         // прибираємо UI
 
 private:
-    /**
-     * Вказівник на автоматично згенерований UI-клас
-     */
-    Ui::Drawing *ui;
+    Ui::Drawing *ui; // вказівник на згенерований клас інтерфейсу
 };
 
 #endif //DRAWING_H

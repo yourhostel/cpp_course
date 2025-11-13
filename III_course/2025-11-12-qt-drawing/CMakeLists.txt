@@ -12,9 +12,29 @@ set(CMAKE_AUTORCC ON)
 
 add_executable(qt_drawing
         main.cpp
+
         drawing.cpp
         drawing.h
         drawing.ui
+
+        canvas/canvas.cpp
+        canvas/canvas.h
+
+        modules/astroid_math.h
+
+        tabs/pixel_pen_tab.cpp
+        tabs/pixel_pen_tab.h
+        tabs/shapes_tab.cpp
+        tabs/shapes_tab.h
+
+        widgets/analog_clock.h
+)
+
+target_include_directories(qt_drawing PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/canvas
+        ${CMAKE_CURRENT_SOURCE_DIR}/tabs
+        ${CMAKE_CURRENT_SOURCE_DIR}/modules
+        ${CMAKE_CURRENT_SOURCE_DIR}/widgets
 )
 
 target_link_libraries(qt_drawing PRIVATE Qt6::Widgets Qt6::Gui)
