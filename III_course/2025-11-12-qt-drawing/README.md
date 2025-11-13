@@ -113,3 +113,49 @@ tabShapes
 #### Реалізація:
 
 ![2025-11-13_12-03-34.png](screenshots/2025-11-13_12-03-34.png)
+
+### Сторінка `Стилі ліній`
+
+```text
+tabLineStyles
+ └── linesMainLayout
+        ├── linesDrawAreaLayout
+        │      ├── btnShowLines
+        │      └── linesSignaturesAndCanvasLayout
+        │             ├── linesCanvasLayout
+        │             │       └── drawAreaLines
+        │             └── linesSignaturesLayout
+        │                    ├── psClear
+        │                    ├── psDash
+        │                    ├── psDashDot
+        │                    ├── psDashDotDot
+        │                    ├── psDot
+        │                    ├── psInsideFrame
+        │                    └── psSolid
+        └── linesTimerLayout
+               └── lineTimerWidget
+```
+
+| objectName                         | type        | description                               |
+|------------------------------------|-------------|-------------------------------------------|
+| **tabLineStyles**                  | QWidget     | вкладка “Стилі ліній”                     |
+| **linesMainLayout**                | QHBoxLayout | головний горизонтальний лейаут вкладки    |
+| **linesDrawAreaLayout**            | QVBoxLayout | ліва колонка: кнопка та область перегляду |
+| **btnShowLines**                   | QPushButton | кнопка “Показати”                         |
+| **linesSignaturesAndCanvasLayout** | QHBoxLayout | блок: канвас + підписи стилів ліній       |
+| **linesCanvasLayout**              | QVBoxLayout | контейнер під канвас                      |
+| **drawAreaLines**                  | Canvas      | полотно для демонстрації стилів ліній     |
+| **linesSignaturesLayout**          | QVBoxLayout | колонка праворуч з підписами              |
+| **psClear**                        | QLabel      | підпис “Clear”                            |
+| **psDash**                         | QLabel      | підпис “Dash”                             |
+| **psDashDot**                      | QLabel      | підпис “DashDot”                          |
+| **psDashDotDot**                   | QLabel      | підпис “DashDotDot”                       |
+| **psDot**                          | QLabel      | підпис “Dot”                              |
+| **psInsideFrame**                  | QLabel      | підпис “InsideFrame”                      |
+| **psSolid**                        | QLabel      | підпис “Solid”                            |
+| **linesTimerLayout**               | QVBoxLayout | права колонка під годинник                |
+| **lineTimerWidget**                | QWidget     | контейнер для AnalogClock                 |
+
+#### Реалізація:
+
+![2025-11-14_01-07-38.png](screenshots/2025-11-14_01-07-38.png)

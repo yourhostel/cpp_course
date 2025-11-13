@@ -8,6 +8,7 @@
 
 #include "tabs/pixel_pen_tab.h"
 #include "tabs/shapes_tab.h"
+#include "tabs/lines_tab.h"
 #include <QScreen>
 
 Drawing::Drawing(QWidget *parent)
@@ -44,6 +45,8 @@ Drawing::Drawing(QWidget *parent)
     // Ініціалізуємо логіку вкладки Shapes.
     // Передаємо QWidget вкладки і її окремий канвас drawAreaShapes
     new ShapesTab(ui->tabShapes, ui->drawAreaShapes);
+
+    new LinesTab(ui->tabLineStyles, ui->drawAreaLines);
 }
 
 Drawing::~Drawing()

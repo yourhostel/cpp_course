@@ -26,6 +26,8 @@ add_executable(qt_drawing
         tabs/pixel_pen_tab.h
         tabs/shapes_tab.cpp
         tabs/shapes_tab.h
+        tabs/lines_tab.cpp
+        tabs/lines_tab.h
 
         widgets/analog_clock.h
 )
