@@ -4,12 +4,15 @@
 
 // III_course/2025-11-12-qt-drawing/drawing.cpp
 #include "drawing.h"
-#include "ui_drawing.h"
 
+#include <QScreen>
+
+#include "ui_drawing.h"
+#include "tabs/animation_tab.h"
+#include "tabs/lines_tab.h"
 #include "tabs/pixel_pen_tab.h"
 #include "tabs/shapes_tab.h"
-#include "tabs/lines_tab.h"
-#include <QScreen>
+#include "tabs/sinusoids_tab.h"
 
 Drawing::Drawing(QWidget *parent)
     : QMainWindow(parent)
@@ -47,6 +50,10 @@ Drawing::Drawing(QWidget *parent)
     new ShapesTab(ui->tabShapes, ui->drawAreaShapes);
 
     new LinesTab(ui->tabLineStyles, ui->drawAreaLines);
+
+    new SinusoidsTab(ui->tabSinusoids, ui->drawAreaPen, ui->drawAreaPixel);
+
+    new AnimationTab(ui->tabAnimation, ui->drawAreaAnimation);
 }
 
 Drawing::~Drawing()

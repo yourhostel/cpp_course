@@ -32,6 +32,7 @@ mainLayout
 | **tabSinusoids**  | QWidget     | вкладка «Синусоїди»          |
 | **btnExit**       | QPushButton | текст: `Вихід`               |
 
+---
 
 ### Сторінка `Малювання пікселем та пером`
 
@@ -74,6 +75,8 @@ tabPixelPen
 
 ![2025-11-13_12-03-27.png](screenshots/2025-11-13_12-03-27.png)
 
+---
+
 ### Сторінка `Фігури`
 
 - При натисканні кнопки Показати канвас відрисовує графічні примітиви, розташовані у сітці 2x4.
@@ -114,7 +117,19 @@ tabShapes
 
 ![2025-11-13_12-03-34.png](screenshots/2025-11-13_12-03-34.png)
 
+---
+
 ### Сторінка `Стилі ліній`
+
+- При натисканні на кнопку Показати канвас відображає набір ліній з різними стилями пера.
+  Лінії малюються зверху вниз у такому порядку:
+  - `SolidLine` - суцільна лінія
+  - `DashLine` - штрихова
+  - `DotLine` - пунктир
+  - `DashDotLine` - штрих-пунктир
+  - `DashDotDotLine` - штрих-пунктир-пунктир
+  - `NoPen` - порожній рядок (лінія не малюється)
+  - `SolidLine` - дубль суцільної, що відповідає стилю psInsideFrame у Builder
 
 ```text
 tabLineStyles
@@ -159,3 +174,85 @@ tabLineStyles
 #### Реалізація:
 
 ![2025-11-14_01-07-38.png](screenshots/2025-11-14_01-07-38.png)
+
+---
+
+### Сторінка `Синусоїди`
+
+- На сторінці `Синусоїди` малюються синусоїди: у лівому вікні `пікселями`, в правому - `пером`.
+
+```text
+tabSinusoids
+ ├── sinusoidsMainLayout
+ │      ├── drawAndButtonAreaLayout
+ │      │      ├── btnShowSinusoids
+ │      │      └── drawAreaPixelAndPenLayout
+ │      │             ├── drawAreaPenLayout
+ │      │             │      ├── canvasAreaPenLayout
+ │      │             │      │      └── drawAreaPen
+ │      │             │      └── sinusoidsPenLabel
+ │      │             └── drawAreaPixelLayout
+ │      │                    ├── canvasAreaPixelLayout
+ │      │                    │      └── drawAreaPixel
+ │      │                    └── sinusoidsPixelLabel
+ │      └── sinusoidsTimerLayout
+ │             └── sinusoidsTimerWidget
+```
+
+| objectName                    | type        | description                                |
+|-------------------------------|-------------|--------------------------------------------|
+| **tabSinusoids**              | QWidget     | вкладка Синусоїди                          |
+| **sinusoidsMainLayout**       | QHBoxLayout | головний горизонтальний лейаут вкладки     |
+| **drawAndButtonAreaLayout**   | QVBoxLayout | знизу кнопка, зверху дві області малювання |
+| **btnShowSinusoids**          | QPushButton | кнопка Показати                            |
+| **drawAreaPixelAndPenLayout** | QHBoxLayout | дві області поруч: Pen і Pixel             |
+| **drawAreaPenLayout**         | QVBoxLayout | колонка для Pen                            |
+| **canvasAreaPenLayout**       | QVBoxLayout | лейаут над Canvas                          |
+| **drawAreaPen**               | Canvas      | канвас для синусоїди Pen                   |
+| **sinusoidsPenLabel**         | QLabel      | підпис Pen                                 |
+| **drawAreaPixelLayout**       | QVBoxLayout | колонка Pixel                              |
+| **canvasAreaPixelLayout**     | QVBoxLayout | лейаут над Canvas                          |
+| **drawAreaPixel**             | Canvas      | канвас для синусоїди Pixel                 |
+| **sinusoidsPixelLabel**       | QLabel      | підпис Pixel                               |
+| **sinusoidsTimerLayout**      | QVBoxLayout | права колонка під годинник                 |
+| **sinusoidsTimerWidget**      | QWidget     | контейнер для AnalogClock                  |
+| **verticalSpacer_7**          | Spacer      | відступ                                    |
+
+#### Реалізація:
+
+![2025-11-14_03-59-48.png](screenshots/2025-11-14_03-59-48.png)
+---
+
+## Сторінка `Мультиплікація`
+
+- На сторінці `Мультиплікація` відображається постать людини, що рухається.
+- Після натиснення кнопки `Старт` чоловічок виходить з правого краю канвасу і рухається ліворуч.
+- Коли він повністю зникає за лівим краєм, цикл повторюється, і фігура знову з'являється справа.
+- Під час руху кнопка змінює свій текст на `Стоп`.
+- Натискання `Стоп` зупиняє анімацію.
+
+```text
+tabAnimation
+ ├── animationMainLayout
+ │      ├── animationTimerLayout
+ │      │       └── animationTimerWidget
+ │      └── canvasAndButtonAreaLayout
+ │              ├── btnStartStop
+ │              └── canvasAreaAnimationLayout
+ │                      └── drawAreaAnimation
+```
+
+| objectName                    | type        | description                            |
+|-------------------------------|-------------|----------------------------------------|
+| **tabAnimation**              | QWidget     | вкладка Animation                      |
+| **animationMainLayout**       | QHBoxLayout | головний горизонтальний лейаут вкладки |
+| **animationTimerLayout**      | QVBoxLayout | колонка праворуч під годинник          |
+| **animationTimerWidget**      | QWidget     | контейнер для `AnalogClock`            |
+| **canvasAndButtonAreaLayout** | QVBoxLayout | ліва частина: кнопка і канвас          |
+| **btnStartStop**              | QPushButton | кнопка Start/Stop для анімації         |
+| **canvasAreaAnimationLayout** | QVBoxLayout | колонка під канвас                     |
+| **drawAreaAnimation**         | Canvas      | полотно для відображення анімації      |
+
+#### Реалізація:
+
+![2025-11-14_03-58-02.png](screenshots/2025-11-14_03-58-02.png)

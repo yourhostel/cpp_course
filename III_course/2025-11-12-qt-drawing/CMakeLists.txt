@@ -28,6 +28,10 @@ add_executable(qt_drawing
         tabs/shapes_tab.h
         tabs/lines_tab.cpp
         tabs/lines_tab.h
+        tabs/sinusoids_tab.cpp
+        tabs/sinusoids_tab.h
+        tabs/animation_tab.cpp
+        tabs/animation_tab.h
 
         widgets/analog_clock.h
 )
