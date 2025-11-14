@@ -20,7 +20,7 @@ LinesTab::LinesTab(QWidget *uiRoot, Canvas *canvas)
 {
     canvas_->setCanvasSize(400, 400);
 
-    // кнопка Показати
+    // Кнопка Показати
     const auto btn = uiRoot_->findChild<QPushButton*>("btnShowLines");
 
     connect(btn, &QPushButton::clicked, [this]
@@ -28,7 +28,7 @@ LinesTab::LinesTab(QWidget *uiRoot, Canvas *canvas)
         drawLines();
     });
 
-    // додаємо годинник у lineTimerWidget
+    // Додаємо годинник у lineTimerWidget
     timerWidget_ = uiRoot_->findChild<QWidget*>("lineTimerWidget");
     clock_ = AnalogClock::attachTo(timerWidget_);
 }

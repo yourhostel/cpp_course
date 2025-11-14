@@ -13,6 +13,7 @@
 #include "tabs/pixel_pen_tab.h"
 #include "tabs/shapes_tab.h"
 #include "tabs/sinusoids_tab.h"
+#include "tabs/pen_brush_tab.h"
 
 Drawing::Drawing(QWidget *parent)
     : QMainWindow(parent)
@@ -54,6 +55,8 @@ Drawing::Drawing(QWidget *parent)
     new SinusoidsTab(ui->tabSinusoids, ui->drawAreaPen, ui->drawAreaPixel);
 
     new AnimationTab(ui->tabAnimation, ui->drawAreaAnimation);
+
+    new PenBrushTab(ui->tabPenBrush, ui->penBrushDrawArea);
 }
 
 Drawing::~Drawing()

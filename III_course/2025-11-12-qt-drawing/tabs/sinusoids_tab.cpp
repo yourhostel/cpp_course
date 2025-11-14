@@ -32,7 +32,7 @@ SinusoidsTab::SinusoidsTab(QWidget *uiRoot,
         drawSinusoids();
     });
 
-    // годинник у sinusoidsTimerWidget
+    // Годинник у sinusoidsTimerWidget
     timerWidget_ = uiRoot_->findChild<QWidget*>("sinusoidsTimerWidget");
     clock_ = AnalogClock::attachTo(timerWidget_);
 }
@@ -63,10 +63,10 @@ void SinusoidsTab::drawSinusoids() const
 
         const int PY = h - (Y + 1.0) * h / 2.0;
 
-        // піксельний графік
+        // Піксельний графік
         px.drawPoint(PX, PY);
 
-        // ламана (аналог MoveTo/LineTo у Borland VCL-методи)
+        // Ламана (аналог MoveTo/LineTo у Borland VCL-методи)
         if (PX > 0) {
             pn.drawLine(prevX, prevY, PX, PY);
         }

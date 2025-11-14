@@ -256,3 +256,65 @@ tabAnimation
 #### Реалізація:
 
 ![2025-11-14_03-58-02.png](screenshots/2025-11-14_03-58-02.png)
+
+---
+
+## Сторінка `Перо та пензель`
+
+- На цій сторінці при клацанні мишею з'являються випадковим чином розміщені на малюнку фігури або напис з різними стилями заливки відповідно до вибраних значень в групах: `Дія`, `Стилі пензлів`, `Режими пера`.
+
+```text
+tabPenBrush
+ ├── penBrushMainLayout
+ │      ├── canvasAndBtnClearLayout
+ │      │       ├── canvasAreaPenBrushLayout
+ │      │       │       └── penBrushDrawArea
+ │      │       └── penBrushBtnClear
+ │      └── controlLayout
+ │             ├── brushActionGroup
+ │             │        ├── actRectangle
+ │             │        ├── actEllipse
+ │             │        ├── actText
+ │             │        └── actFill
+ │             ├── brushStylesGroup
+ │             │        ├── bsSolid
+ │             │        ├── bsCross
+ │             │        ├── bsDiagCross
+ │             │        └── bsVertical
+ │             └── penModesGroup
+ │                      ├── pmCopy
+ │                      ├── pmXor
+ │                      └── pmNotXor
+ └── penBrushTimerLayout
+         └── penBrushTimerWidget
+```
+
+| objectName                   | type         | description                                     |
+|------------------------------|--------------|-------------------------------------------------|
+| **tabPenBrush**              | QWidget      | вкладка Pen/Brush                               |
+| **penBrushMainLayout**       | QHBoxLayout  | головний горизонтальний лейаут вкладки          |
+| **canvasAndBtnClearLayout**  | QVBoxLayout  | ліва колонка: канвас + кнопка Очищення          |
+| **canvasAreapenBrushLayout** | QVBoxLayout  | контейнер для Canvas (в середині лівої колонки) |
+| **penBrushDrawArea**         | Canvas       | область малювання                               |
+| **penBrushbtnClear**         | QPushButton  | кнопка Очищення                                 |
+| **controlLayout**            | QVBoxLayout  | права колонка з усім керуванням                 |
+| **brushActionGroup**         | QGroupBox    | група дій                                       |
+| **actRectangle**             | QRadioButton | режим Прямокутник                               |
+| **actEllipse**               | QRadioButton | режим Еліпс                                     |
+| **actText**                  | QRadioButton | режим Текст                                     |
+| **actFill**                  | QRadioButton | режим Заливка                                   |
+| **brushStylesGroup**         | QGroupBox    | група стилів пензля                             |
+| **bsSolid**                  | QRadioButton | Solid                                           |
+| **bsCross**                  | QRadioButton | Cross                                           |
+| **bsDiagCross**              | QRadioButton | DiagCross                                       |
+| **bsVertical**               | QRadioButton | Vertical                                        |
+| **penModesGroup**            | QGroupBox    | режими пера                                     |
+| **pmCopy**                   | QRadioButton | режим Copy                                      |
+| **pmXor**                    | QRadioButton | режим Xor                                       |
+| **pmNotXor**                 | QRadioButton | режим NotXor                                    |
+| **penBrushTimerLayout**      | QVBoxLayout  | колонка справа під годинник                     |
+| **penBrushTimerWidget**      | QWidget      | контейнер для AnalogClock                       |
+
+#### Реалізація:
+
+![2025-11-14_06-42-34.png](screenshots/2025-11-14_06-42-34.png)

@@ -20,7 +20,7 @@
       <item>
        <widget class="QTabWidget" name="tabWidget">
         <property name="currentIndex">
-         <number>4</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tabPixelPen">
          <property name="whatsThis">
@@ -208,7 +208,7 @@
             </item>
             <item>
              <layout class="QVBoxLayout" name="shapesTimerLayout">
-              <item>
+              <item alignment="Qt::AlignmentFlag::AlignHCenter">
                <widget class="QWidget" name="shapesTimerWidget" native="true"/>
               </item>
               <item>
@@ -505,7 +505,7 @@
             </item>
             <item>
              <layout class="QVBoxLayout" name="linesTimerLayout">
-              <item>
+              <item alignment="Qt::AlignmentFlag::AlignHCenter">
                <widget class="QWidget" name="lineTimerWidget" native="true"/>
               </item>
               <item>
@@ -599,7 +599,7 @@
             </item>
             <item>
              <layout class="QVBoxLayout" name="sinusoidsTimerLayout">
-              <item>
+              <item alignment="Qt::AlignmentFlag::AlignHCenter">
                <widget class="QWidget" name="sinusoidsTimerWidget" native="true"/>
               </item>
               <item>
@@ -660,7 +660,7 @@
             </item>
             <item>
              <layout class="QVBoxLayout" name="animationTimerLayout">
-              <item>
+              <item alignment="Qt::AlignmentFlag::AlignHCenter">
                <widget class="QWidget" name="animationTimerWidget" native="true"/>
               </item>
               <item>
@@ -686,6 +686,179 @@
          <attribute name="title">
           <string>Перо та пензель</string>
          </attribute>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <layout class="QHBoxLayout" name="penBrushMainLayout" stretch="4,2,2">
+            <item>
+             <layout class="QVBoxLayout" name="canvasAndBtnClearLayout">
+              <item>
+               <layout class="QVBoxLayout" name="canvasAreaPenBrushLayout">
+                <item>
+                 <widget class="Canvas" name="penBrushDrawArea" native="true"/>
+                </item>
+               </layout>
+              </item>
+              <item alignment="Qt::AlignmentFlag::AlignHCenter">
+               <widget class="QPushButton" name="penBrushBtnClear">
+                <property name="minimumSize">
+                 <size>
+                  <width>125</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>125</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Очишення</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="controlLayaut">
+              <item>
+               <widget class="QGroupBox" name="penBrushActionGroup">
+                <property name="title">
+                 <string>Дія</string>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_5">
+                 <item>
+                  <widget class="QRadioButton" name="actRectangle">
+                   <property name="text">
+                    <string>Прямокутник</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="actEllipse">
+                   <property name="text">
+                    <string>Еліпс</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="actText">
+                   <property name="text">
+                    <string>Текст</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="actFill">
+                   <property name="text">
+                    <string>Заливка</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QGroupBox" name="brushStylesGroup">
+                <property name="title">
+                 <string>Стилі пензлів</string>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_6">
+                 <item>
+                  <widget class="QRadioButton" name="bsSolid">
+                   <property name="text">
+                    <string>Solid</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="bsCross">
+                   <property name="text">
+                    <string>Cross</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="bsDiagCross">
+                   <property name="text">
+                    <string>DiagCross</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="bsVertical">
+                   <property name="text">
+                    <string>Vertical</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QGroupBox" name="penModesGroup">
+                <property name="title">
+                 <string>Режими пера</string>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_7">
+                 <item>
+                  <widget class="QRadioButton" name="pmCopy">
+                   <property name="text">
+                    <string>Copy</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="pmXor">
+                   <property name="text">
+                    <string>Xor</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="radioButton_11">
+                   <property name="text">
+                    <string>NotXor</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="penBrushTimerLayout">
+              <item alignment="Qt::AlignmentFlag::AlignHCenter">
+               <widget class="QWidget" name="penBrushTimerWidget" native="true"/>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_9">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
         </widget>
        </widget>
       </item>
