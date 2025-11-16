@@ -1,5 +1,5 @@
 # cpp_course/III_course/2025-11-15-qt-practical-11-tree-parser-2/CMakeLists.txt
-project(qt_practical_11_tree_parser)
+project(qt_practical_11_tree_parser_2)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)

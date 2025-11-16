@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>289</width>
+    <width>399</width>
     <height>410</height>
    </rect>
   </property>
@@ -35,7 +35,7 @@
    <bool>true</bool>
   </property>
   <property name="windowTitle">
-   <string>Обчислення виразу</string>
+   <string>Політ ракети</string>
   </property>
   <property name="toolTip">
    <string/>
@@ -54,137 +54,185 @@
        <number>25</number>
       </property>
       <item>
-       <layout class="QHBoxLayout" name="titleLayout">
+       <layout class="QVBoxLayout" name="mathModelLayout">
         <item>
-         <widget class="QLabel" name="lableTitle">
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>20</height>
-           </size>
+         <widget class="QGroupBox" name="mathModelGroupBox">
+          <property name="title">
+           <string>Математична модель</string>
           </property>
-          <property name="text">
-           <string>Обчислення виразу</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignCenter</set>
-          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
+           <item>
+            <layout class="QHBoxLayout" name="mathModelTimeLayout">
+             <item alignment="Qt::AlignmentFlag::AlignRight">
+              <widget class="QLabel" name="mathModelTimeLabel">
+               <property name="text">
+                <string>час</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="mathModelTimeLineEdit">
+               <property name="maximumSize">
+                <size>
+                 <width>180</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="mathModelPathLayout">
+             <item alignment="Qt::AlignmentFlag::AlignRight">
+              <widget class="QLabel" name="mathModelPathLabel">
+               <property name="text">
+                <string>шлях</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="mathModelPathLineEdit">
+               <property name="maximumSize">
+                <size>
+                 <width>180</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
          </widget>
         </item>
        </layout>
       </item>
       <item>
-       <widget class="Line" name="lineTop">
-        <property name="orientation">
-         <enum>Qt::Orientation::Horizontal</enum>
-        </property>
-       </widget>
+       <layout class="QVBoxLayout" name="resultLayout">
+        <item>
+         <widget class="QGroupBox" name="resultGroupBox">
+          <property name="title">
+           <string>Результати обчислень</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <layout class="QHBoxLayout" name="resultTimeLayout">
+             <item alignment="Qt::AlignmentFlag::AlignRight">
+              <widget class="QLabel" name="resultTimeLabel">
+               <property name="text">
+                <string>час</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="resultTimeLine">
+               <property name="maximumSize">
+                <size>
+                 <width>180</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="resultPathLayout">
+             <item alignment="Qt::AlignmentFlag::AlignRight">
+              <widget class="QLabel" name="resultPathLabel">
+               <property name="text">
+                <string>шлях</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="resultPathLine">
+               <property name="maximumSize">
+                <size>
+                 <width>180</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="resultSpeedLayout">
+             <item alignment="Qt::AlignmentFlag::AlignRight">
+              <widget class="QLabel" name="resultSpeedLabel">
+               <property name="text">
+                <string>швидкість</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="resultSpeedLine">
+               <property name="maximumSize">
+                <size>
+                 <width>180</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="resultAccelerationLayout">
+             <item alignment="Qt::AlignmentFlag::AlignRight">
+              <widget class="QLabel" name="resultAccelerationLabel">
+               <property name="text">
+                <string>прискорення</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="resultAccelerationLine">
+               <property name="maximumSize">
+                <size>
+                 <width>180</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
-       <widget class="QGroupBox" name="expressionsGroup">
-        <property name="title">
-         <string>Вирази</string>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
-         <item>
-          <layout class="QHBoxLayout" name="xLayout" stretch="15,30">
+       <layout class="QHBoxLayout" name="accuracyLayout" stretch="0">
+        <item>
+         <widget class="QGroupBox" name="accuracyGroupBox">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>70</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>Точність</string>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout">
            <item>
-            <widget class="QLabel" name="labelX">
-             <property name="text">
-              <string>x</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="lineX"/>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="funcLayout" stretch="15,30">
-           <item>
-            <widget class="QLabel" name="labelFx">
-             <property name="text">
-              <string>f(x)</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="lineFx"/>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QGroupBox" name="resultGroup&#10;">
-        <property name="title">
-         <string>Результат обчислення</string>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_3">
-         <item>
-          <layout class="QHBoxLayout" name="resultXLayout" stretch="15,30">
-           <item>
-            <widget class="QLabel" name="labelResultX">
-             <property name="text">
-              <string>x =</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="lineResultX"/>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="resultFxLayout" stretch="15,30">
-           <item>
-            <widget class="QLabel" name="labelResultFx">
-             <property name="text">
-              <string>f(x) =</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="lineResultFx"/>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QGroupBox" name="precisionGroup">
-        <property name="title">
-         <string>Точність</string>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_4">
-         <item>
-          <layout class="QHBoxLayout" name="precisionLayout" stretch="15,30">
-           <item>
-            <widget class="QComboBox" name="comboPrecision">
-             <property name="editable">
-              <bool>false</bool>
-             </property>
-             <property name="currentText">
-              <string>0</string>
-             </property>
-             <property name="currentIndex">
-              <number>0</number>
-             </property>
+            <widget class="QComboBox" name="accuracyComboBox">
              <item>
               <property name="text">
                <string>0</string>
@@ -213,29 +261,31 @@
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="labelPrecision">
-             <property name="text">
-              <string>десяткових знаків</string>
+            <widget class="QLabel" name="accuracyLabel">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
              </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignCenter</set>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Знаки після десяткової крапки</string>
              </property>
             </widget>
            </item>
           </layout>
-         </item>
-        </layout>
-       </widget>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
-       <widget class="Line" name="lineBottom">
-        <property name="orientation">
-         <enum>Qt::Orientation::Horizontal</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="buttonsLayout">
+       <layout class="QHBoxLayout" name="buttonLayout">
         <item>
          <widget class="QPushButton" name="btnCalculate">
           <property name="text">
@@ -251,19 +301,6 @@
          </widget>
         </item>
        </layout>
-      </item>
-      <item>
-       <spacer name="verticalSpacer">
-        <property name="orientation">
-         <enum>Qt::Orientation::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
       </item>
      </layout>
     </item>

@@ -1,5 +1,5 @@
 //
-// Created by tysser on 10.11.25.
+// Created by tysser on 15.11.25.
 //
 
 // III_course/2025-11-15-qt-practical-11-tree-parser-2/parser.h
@@ -7,103 +7,354 @@
 #define PARSER_H
 
 #include <QString>
+#include <stdexcept>
+#include <utility>
 #include "expressiontree.h"
 
-// Будуємо дерево рекурсивно
-inline Telement* parseExpression(const QString &expr) {
-    QString s = expr;
-    s.remove(' ');
+/**
+ * Рекурсивний парсер арифметичних виразів.
+ *
+ * Підтримувана граматика:
+ *     Expr   = Term { ('+' | '-') Term }
+ *     Term   = Power { ('*' | '/') Power }
+ *     Power  = Factor ['^' Factor]
+ *     Factor = { '+' | '-' } Primary
+ *     Primary = NUMBER | 'x' | '(' Expr ')'
+ *
+ * Реалізація базується на рекурсивному спуску.
+ * Пробіли ігноруються.
+ */
+class StringParser {
 
-    int paren = 0;
+    QString text_; // вихідний вираз
+    int pos_;      // внутрішній курсор парсера
 
-    // qsizetype - це тип індексації для всіх контейнерів Qt (QString, QVector, QList, QByteArray тощо)
-    // Усі методи Qt типу:
-    // QString::length(), QVector::size(), QByteArray::indexOf() - повертає qsizetype
-    qsizetype opPos = -1;
-    QChar op;
+public:
+    /**
+     * Конструктор приймає вираз як QString.
+     * Встановлює курсор на початок.
+     */
+    explicit StringParser(QString text) : text_(std::move(text)), pos_(0){}
 
-    // 1. пошук операцій низького пріоритету (+/-)
-
-    // якщо компілятор лається на порівняння i >= 0, бо qsizetype беззнаковий:
-    // for (qsizetype i = s.length(); i-- > 0; )
-    for  (qsizetype i = s.length() - 1; i >= 0; --i)
+    /**
+     * Основний метод парсингу.
+     *
+     * Алгоритм:
+     *   1) Пропустити пробіли.
+     *   2) Перевірити, що рядок непорожній.
+     *   3) Розпарсити вираз відповідно до граматики.
+     *   4) Перевірити, що після парсингу не лишилось зайвих символів.
+     *
+     * @return дерево Telement у вигляді std::unique_ptr
+     * @throw std::runtime_error При будь-якій синтаксичній помилці
+     */
+    std::unique_ptr<Telement> parse()
     {
-        if (s[i] == ')') paren++;
-        else if (s[i] == '(') paren--;
-        else if (!paren && (s[i] == '+' || s[i] == '-'))
+        // skipSpaces();
+
+        // if (text_.trimmed().isEmpty())
+        //     throw std::runtime_error("Порожній вираз");
+        // pos_ = 0;
+
+        auto node = parseExpression();
+        skipSpaces();
+
+        if (!atEnd())
+            throw std::runtime_error("Зайві символи в кінці виразу");
+
+        return node;
+    }
+
+private:
+    /**
+     * Перевіряє, чи вичерпано рядок.
+     *
+     * @return true якщо pos_ >= text_.size()
+     */
+    [[nodiscard]] bool atEnd() const
+    {
+        return pos_ >= text_.size();
+    }
+
+    /**
+     * Повертає символ під курсором, але без зсуву.
+     * Якщо кінець рядка - повертає порожній QChar().
+     */
+    [[nodiscard]] QChar peek() const
+    {
+        if (atEnd()) return QChar();
+        return text_[pos_];
+    }
+
+    /**
+     * Повертає символ під курсором і зсуває курсор на 1 вперед.
+     * Якщо кінець рядка - повертає QChar().
+     */
+    QChar get()
+    {
+        if (atEnd()) return QChar();
+        return text_[pos_++];
+    }
+
+    /**
+     * Пропускає всі пробільні символи: ' ', '\t', '\n', '\r', тощо.
+     *
+     * Пробіли не видаляє з тексту - лише пересуває курсор.
+     */
+    void skipSpaces()
+    {
+        while (!atEnd() && peek().isSpace())
         {
-            opPos = i;
-            op = s[i];
-            break;
+            ++pos_;
         }
     }
 
-    // 2. якщо не знайдено — шукаємо * або /
-    if (opPos == -1)
+    /**
+     * Перевіряє, чи наступний непорожній символ є ch.
+     *
+     * Якщо так - зсуває курсор і повертає true.
+     * Якщо ні - нічого не змінює і повертає false.
+     *
+     * @param ch очікуваний символ
+     */
+    bool consume(const QChar ch)
     {
-        paren = 0;
-        for (qsizetype i = s.length() - 1; i >= 0; --i)
+        skipSpaces();
+        if (!atEnd() && peek() == ch)
         {
-            if (s[i] == ')') paren++;
-            else if (s[i] == '(') paren--;
-            else if (!paren && (s[i] == '*' || s[i] == '/'))
+            ++pos_;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Expr = Term { ('+' | '-') Term }
+     *
+     * Це найнижчий пріоритет (сума і різниця).
+     * По суті обробляє ліву асоціативність: a-b+c -> ((a-b)+c)
+     */
+    std::unique_ptr<Telement> parseExpression()
+    {
+        auto node = parseTerm();
+        while (true)
+        {
+            if (consume('+'))
             {
-                opPos = i;
-                op = s[i];
+                auto rhs = parseTerm();
+                node = std::make_unique<Plus>(std::move(node), std::move(rhs));
+            }
+            else if (consume('-'))
+            {
+                std::unique_ptr<Telement> rhs = parseTerm();
+                node = std::make_unique<Minus>(std::move(node), std::move(rhs));
+            }
+            else
+            {
                 break;
             }
         }
+        return node;
     }
 
-    // 3. якщо не знайдено - шукаємо ^
-    if (opPos == -1)
+    /**
+     * Term = Power { ('*' | '/') Power }
+     *
+     * Обробляє множення та ділення.
+     * Ліва асоціативність: a*b/c → ((a*b)/c)
+     */
+    std::unique_ptr<Telement> parseTerm()
     {
-        paren = 0;
-        for (qsizetype i = s.length() - 1; i >= 0; --i)
+        auto node = parsePower();
+        while (true)
         {
-            if (s[i] == ')') paren++;
-            else if (s[i] == '(') paren--;
-            else if (!paren && s[i] == '^')
+            if (consume('*'))
             {
-                opPos = i;
-                op = '^';
+                auto rhs = parsePower();
+                node = std::make_unique<Mult>(std::move(node), std::move(rhs));
+            }
+            else if (consume('/'))
+            {
+                auto rhs = parsePower();
+                node = std::make_unique<Div>(std::move(node), std::move(rhs));
+            }
+            else
+            {
                 break;
             }
         }
+        return node;
     }
 
-    // 4. Якщо знайдена операція
-    if (opPos != -1)
+    /**
+     * Power = Factor ['^' Factor]
+     *
+     * Реалізує операцію піднесення до степеня.
+     * Ступінь у цій реалізації не є правою асоціативною:
+     *     a^b^c інтерпретується як (a^b)^c.
+     */
+    std::unique_ptr<Telement> parsePower()
     {
-        Telement* left = parseExpression(s.left(opPos));
-        Telement* right = parseExpression(s.mid(opPos + 1));
+        auto base = parseFactor();
 
-        switch (op.unicode())
+        // Один рівень ступеня
+        if (consume('^'))
         {
-        case '+': return new Plus(left, right);
-        case '-': return new Minus(left, right);
-        case '*': return new Mult(left, right);
-        case '^': return new Power(left, right);
-        case '/': return new Div(left, right);
-        default:
-            throw std::runtime_error("Невідомий оператор у виразі");
+            auto exp = parseFactor();
+            return std::make_unique<Power>(std::move(base), std::move(exp));
         }
+
+        return base;
     }
 
-    // 5. Якщо в дужках - видаляємо їх
-    if (s.startsWith('(') && s.endsWith(')'))
-        return parseExpression(s.mid(1, s.length() - 2));
+    /**
+     * Factor = { '+' | '-' } Primary
+     *
+     * Обробляє унарні знаки:
+     *     -x
+     *     +x
+     *     ---x
+     *
+     * Кілька знаків змінюють полярність: ---x => -( -( -(x))) => -x.
+     */
+    std::unique_ptr<Telement> parseFactor()
+    {
+        skipSpaces();
 
-    // 6. Якщо x
-    if (s == "x" || s == "X")
-        return new Number();
+        bool negative = false;
+        // Можемо мати кілька знаків підряд: ---x
+        while (!atEnd() && (peek() == '+' || peek() == '-'))
+        {
+            if (peek() == '-')
+            {
+                negative = !negative;
+            }
+            ++pos_;
+            skipSpaces();
+        }
 
-    // 7. Якщо число
-    bool ok = false;
-    const double val = s.toDouble(&ok);
-    if (ok) return new Number(val);
+        auto node = parsePrimary();
 
-    throw std::runtime_error(("Невірний вираз: " + s).toStdString());
+        if (negative)
+        {
+            return std::make_unique<Mult>(
+                std::make_unique<Real>(-1.0),
+                std::move(node)
+            );
+        }
+
+        return node;
+    }
+
+    /**
+     * Primary = NUMBER | 'x' | '(' Expr ')'
+     *
+     * Найнижчий рівень:
+     *   - число
+     *   - змінна x / X
+     *   - вираз у дужках
+     */
+    std::unique_ptr<Telement> parsePrimary()
+    {
+        skipSpaces();
+        if (atEnd())
+            throw std::runtime_error("Неочікуваний кінець виразу");
+
+        const QChar c = peek();
+
+        // Дужки
+        if (c == '(') {
+            get();            // прочитали '('
+            skipSpaces();
+
+            // Перевірка на порожній вираз: ()
+            if (peek() == ')') {
+                get();        // прочитали ')'
+                throw std::runtime_error("Порожній вираз");
+            }
+
+            // Тут гарантовано є хоч щось
+            auto node = parseExpression();
+
+            if (!consume(')'))
+                throw std::runtime_error("Немає закриваючої дужки");
+
+            return node;
+        }
+
+        // Змінна x
+        if (c == 'x' || c == 'X')
+        {
+            get();
+            return std::make_unique<Var>();
+        }
+
+        // Число
+        if (c.isDigit() || c == '.')
+        {
+            const double val = parseNumber();
+            return std::make_unique<Real>(val);
+        }
+
+        throw std::runtime_error("Невірний символ у виразі");
+    }
+
+    /**
+     * Парсить число у форматі:
+     *     123
+     *     3.14
+     *     .5
+     *
+     * Перевіряє, що в числі лише одна крапка.
+     *
+     * @return значення числа
+     * @throw std::runtime_error якщо число некоректне
+     */
+    double parseNumber()
+    {
+        skipSpaces();
+        const int start = pos_;
+        bool dotSeen = false;
+
+        while (!atEnd())
+        {
+            if (QChar c = peek(); c.isDigit())
+            {
+                ++pos_;
+            }
+            else if (c == '.')
+            {
+                if (dotSeen)
+                {
+                    throw std::runtime_error("Некоректне число з двома крапками");
+                }
+                dotSeen = true;
+                ++pos_;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        const QString token = text_.mid(start, pos_ - start);
+        bool ok = false;
+        const double val = token.toDouble(&ok);
+        if (!ok)
+            throw std::runtime_error("Не вдалося перетворити число");
+
+        return val;
+    }
+};
+
+/**
+ * Обгортка, щоб можна було викликати:
+ *     auto tree = parseExpression("3*x+2");
+ */
+inline std::unique_ptr<Telement> parseExpression(const QString &expr)
+{
+    StringParser parser(expr);
+    return parser.parse();
 }
 
 #endif //PARSER_H

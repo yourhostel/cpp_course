@@ -31,7 +31,7 @@ private slots:
 
 private:
     // Вказівник на автоматично згенерований UI-клас
-    Ui::Calculation *ui;
+    Ui::Calculation *ui{};
 };
 
 #endif //MAINWINDOW_H
