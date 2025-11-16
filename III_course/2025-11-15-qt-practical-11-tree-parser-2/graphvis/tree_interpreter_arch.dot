@@ -1,0 +1,70 @@
+digraph tree_interpreter_arch {
+    rankdir=TB;
+    bgcolor="#f8f9fa";
+
+    node [
+    shape=box,
+    style="rounded,filled,bold",
+    fontname="DejaVu Sans",
+    fontsize=11,
+    margin="0.18,0.1",
+    fillcolor="white",
+    color="#444444"
+    ];
+
+    edge [
+    color="#444444",
+    arrowsize=0.8,
+    fontsize=10
+    ];
+
+    # GUI Layer
+    gui [label="UI (Qt6)\nCalculation Window", fillcolor="#e2e3e5", shape=rectangle];
+
+    inputX  [label="Вираз часу t(x)\nmathModelTimeLineEdit", fillcolor="#ffffff"];
+    inputF  [label="Формула шляху f(x)\nmathModelPathLineEdit", fillcolor="#ffffff"];
+    accuracyBox [label="Точність (accuracyComboBox)", fillcolor="#ffffff"];
+
+    gui -> inputX;
+    gui -> inputF;
+    gui -> accuracyBox;
+
+    # Parser Layer
+    parser [label="StringParser\nрекурсивний спуск:\nExpr → Term → Power → Factor → Primary", fillcolor="#cfe2ff"];
+    tokenizer [label="Обробка символів\nskipSpaces, peek, get,\nунарний ±,\nперевірка дужок", fillcolor="#dbeafe"];
+
+    inputF -> parser;
+    inputX -> parser;
+    parser -> tokenizer;
+
+    # AST Layer
+    astRoot [label="Дерево виразу (Telement*)\nReal, Var, Plus, Minus,\nMult, Div, Power", fillcolor="#fff3cd"];
+
+    parser -> astRoot;
+
+    # Derivative Layer
+    d1 [label="Похідна f'(x)\nчерез differ()", fillcolor="#fde9c4"];
+    d2 [label="Похідна f''(x)\nчерез differ()", fillcolor="#fde9c4"];
+
+    astRoot -> d1;
+    d1 -> d2;
+
+    # Evaluation Layer
+    setvar [label="setVar(x)\nпрокидає x по дереву", fillcolor="#e8f5e9"];
+    evalF  [label="result()\nобчислення f(x)", fillcolor="#c8e6c9"];
+    evalF1 [label="result()\nобчислення f'(x)", fillcolor="#c8e6c9"];
+    evalF2 [label="result()\nобчислення f''(x)", fillcolor="#c8e6c9"];
+
+    gui -> setvar;
+
+    setvar -> evalF;
+    setvar -> evalF1;
+    setvar -> evalF2;
+
+    # Output Layer
+    output [label="Вивід у UI:\nresultTimeLine,\nresultPathLine,\nresultSpeedLine,\nresultAccelerationLine", fillcolor="#e2e3e5", shape=rectangle];
+
+    evalF  -> output;
+    evalF1 -> output;
+    evalF2 -> output;
+}
