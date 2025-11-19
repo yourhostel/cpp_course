@@ -15,7 +15,6 @@ using std::cout;
 using std::endl;
 
 class Employee;
-class Accountant;
 
 class Position {
 

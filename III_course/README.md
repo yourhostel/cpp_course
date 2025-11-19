@@ -29,3 +29,4 @@
 ### Тема 11. Перевантаження аргументів 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-11-04-overloading-of-arguments)
 ### Наслідування і віртуальні функції. Інтерпретатор математичних виразів 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-11-10-qt-practical-10-tree-parser)
 ### Лабораторна робота №12. Тема: Основні функції базової графіки 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-11-12-qt-drawing)
+### Тема 14. Порушення прав доступу. Дружні функції 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-11-18-topic-14)

@@ -22,4 +22,5 @@ add_executable(topic_14
         Person.h
         Position.cpp
         Position.h
+        Calc.h
 )
