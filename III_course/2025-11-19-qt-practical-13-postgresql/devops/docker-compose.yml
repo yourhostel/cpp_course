@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:15.15-bookworm
+    container_name: app-pg
+    restart: always
+
+    environment:
+      POSTGRES_USER: serg
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: app-db
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d
+
+volumes:
+  pgdata:

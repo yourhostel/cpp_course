@@ -11,6 +11,31 @@
 
 ---
 
+## Структура каталогів:
+
+```text
+2025-11-19-qt-practical-13-postgresql/
+  devops/
+    init/
+      rental.sql
+      students.sql
+    docker-compose.yml
+  rental/
+    main.cpp
+    rental.cpp
+    rental.h
+    rental.ui
+  screenshots/
+  students/
+    photos/
+    main.cpp
+    students.cpp
+    students.h
+    students.ui
+```
+
+---
+
 ## Завдання `Об'єктно орієнтоване програмування`: 
 1. Створити просту базу даних "Студенти групи" та налаштувати її відображення у `UI` створений за допомогою `Qt6 Designer`.
    - Реалізувати `inline editing`
@@ -18,18 +43,43 @@
    - Окремий блок с фото, та кнопкой `Завантажити фото`
      - Завантажує фото
      - При натисканні `Зберегти`, посилання на фото зберігається у БД
-   - Таблиця:
-   - ```sql
-     id SERIAL PRIMARY KEY,
-     last_name TEXT,
-     first_name TEXT,
-     middle_name TEXT,
-     birth_date DATE,
-     photo_path TEXT
-     ```
   
 2. Проста СУБД "Пункт прокату" (Додаткове завдання)
    - Реалізувати `inline editing` для трьох зв'язаних таблиць.
+
+---
+
+## Таблиці та зв'язки для обох завдань:
+
+- База підіймається через `docker-compose.yml`
+- Ініціалізація виконується файлами `students.sql`(схема для таблиці `students`) та `rental.sql`(схема для таблиць `tapes`, `customers` та `rentals`)
+- Оскільки ініціалізація виконується лише перший раз, а інші рази ігнорується, для оновлення необхідно видаляти контейнер разом з `volume` для повторной ініціалізації.
+
+```bash
+# Підіймання бази
+docker compose up -d
+# Дивимось логи при запитах
+docker logs -f app_pg
+
+# -v видаляє разом з volume
+docker compose down -v
+# Окремо 
+docker volume rm devops_pgdata
+# Подивитися всі volume
+docker volume ls
+
+# Зміна через SQL скрипт:
+# З попереднім видаленням DROP TABLE IF EXISTS students CASCADE; у скрипту.
+# Точкові зміни schema migration через ALTER TABLE, 
+# наприклад: ALTER TABLE students ADD COLUMN rating NUMERIC(3,1);
+docker exec -i app_pg psql -U app_user -d app_db < ./init/students.sql
+
+# Перевірка чи бачить докер ініт-файли
+docker exec -it app_pg ls /docker-entrypoint-initdb.d
+```
+
+- ![2025-11-19_22-07-21.png](screenshots/2025-11-19_22-07-21.png)
+- ![2025-11-19_21-17-19.png](screenshots/2025-11-19_21-17-19.png)
 
 ---
 
@@ -50,4 +100,4 @@ docker run --rm -it bash bash -c "md5sum /etc/hosts"
         ```
 - Ціль: отримати `MD5`-хеш файлу `/etc/hosts` контейнера.
 - Результат:
-  - ![Знімок екрана з 2025-11-19 17-34-41.png](screenshots/%D0%97%D0%BD%D1%96%D0%BC%D0%BE%D0%BA%20%D0%B5%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%20%D0%B7%202025-11-19%2017-34-41.png)
+  - ![2025-11-19_17-34-41.png](screenshots/2025-11-19_17-34-41.png)
