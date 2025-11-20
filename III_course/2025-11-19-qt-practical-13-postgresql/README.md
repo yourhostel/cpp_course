@@ -43,7 +43,32 @@
    - Окремий блок с фото, та кнопкой `Завантажити фото`
      - Завантажує фото
      - При натисканні `Зберегти`, посилання на фото зберігається у БД
-  
+  - UI неймінг:
+    - | Об'єкт             | Клас        | Опис                             |
+      |--------------------|-------------|----------------------------------|
+      | studentsWindow     | QMainWindow | Головне вікно                    |
+      | centralWidget      | QWidget     | Кореневий віджет                 |
+      | contentLayout      | QHBoxLayout | Основний лейаут (таблиця + фото) |
+      | tablePanelLayout   | QVBoxLayout | Ліва панель з таблицею           |
+      | tableButtonsLayout | QHBoxLayout | Верхні кнопки над таблицею       |
+      | addRowButton       | QPushButton | Додати новий рядок у таблицю     |
+      | saveButton         | QPushButton | Зберегти дані в БД               |
+      | deleteButton       | QPushButton | Видалити вибраний рядок/студента |
+      | studentsTable      | QTableView  | Таблиця                          |
+      | photoPanelLayout   | QVBoxLayout | Права панель для фото            |
+      | photoPreviewLabel  | QLabel      | Прев’ю фото студента             |
+      | loadPhotoButton    | QPushButton | Завантажити фото                 |
+
+    - Налаштування поля для фотки:
+      - ```text
+        photoPreviewLabel (QLabel)
+        |
+        ├─ QFrame
+        |     └─ frameShape  => StyledPanel
+        └─ QLabel
+              └─ scaledContents => true
+        ```
+        
 2. Проста СУБД "Пункт прокату" (Додаткове завдання)
    - Реалізувати `inline editing` для трьох зв'язаних таблиць.
 
@@ -58,8 +83,8 @@
 ```bash
 # Підіймання бази
 docker compose up -d
-# Дивимось логи при запитах
-docker logs -f app_pg
+# Дивимось логи
+docker logs -f app-pg
 
 # -v видаляє разом з volume
 docker compose down -v
