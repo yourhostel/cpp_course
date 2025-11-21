@@ -11,31 +11,6 @@
 
 ---
 
-## Структура каталогів:
-
-```text
-2025-11-19-qt-practical-13-postgresql/
-  devops/
-    init/
-      rental.sql
-      students.sql
-    docker-compose.yml
-  rental/
-    main.cpp
-    rental.cpp
-    rental.h
-    rental.ui
-  screenshots/
-  students/
-    photos/
-    main.cpp
-    students.cpp
-    students.h
-    students.ui
-```
-
----
-
 ## Завдання `Об'єктно орієнтоване програмування`: 
 1. Створити просту базу даних "Студенти групи" та налаштувати її відображення у `UI` створений за допомогою `Qt6 Designer`.
    - Реалізувати `inline editing`
@@ -68,9 +43,51 @@
         └─ QLabel
               └─ scaledContents => true
         ```
-        
+    - ![2025-11-21_18-11-22.png](screenshots/2025-11-21_18-11-22.png)
+    
+    - [демонстрація роботи](https://youtu.be/bv95EImlWO0)
+
 2. Проста СУБД "Пункт прокату" (Додаткове завдання)
    - Реалізувати `inline editing` для трьох зв'язаних таблиць.
+   - Каскадне видалення та оновлення форми відповідно до стану БД
+   - UI неймінг:
+     - | Об'єкт                 | Клас        | Опис                               |
+       |------------------------|-------------|------------------------------------|
+       | Rental                 | QMainWindow | Головне вікно форми "Прокат касет" |
+       | centralWidget          | QWidget     | Кореневий віджет                   |
+       | mainLayout             | QVBoxLayout | Головний вертикальний контейнер    |
+       | topLayout              | QHBoxLayout | Верхній блок (касети, клієнти)     |
+       | tapesLayout            | QVBoxLayout | Блок таблиці "Касети"              |
+       | tapesLabel             | QLabel      | Назва таблиці "Касети"             |
+       | tapesTable             | QTableView  | Таблиця касет                      |
+       | tapesButtonsLayout     | QHBoxLayout | Кнопки керування касетами          |
+       | tapesAddButton         | QPushButton | Додати касету                      |
+       | tapesDeleteButton      | QPushButton | Видалити касету                    |
+       | tapesSaveButton        | QPushButton | Зберегти зміни касет               |
+       | customersLayout        | QVBoxLayout | Блок таблиці "Клієнти"             |
+       | customersLabel         | QLabel      | Назва таблиці "Клієнти"            |
+       | customersTable         | QTableView  | Таблиця клієнтів                   |
+       | customersButtonsLayout | QHBoxLayout | Кнопки клієнтів                    |
+       | customersAddButton     | QPushButton | Додати клієнта                     |
+       | customersDeleteButton  | QPushButton | Видалити клієнта                   |
+       | customersSaveButton    | QPushButton | Зберегти клієнтів                  |
+       | bottomLayout           | QHBoxLayout | Нижній блок (прокат, memo)         |
+       | rentalsLayout          | QVBoxLayout | Блок таблиці "Прокат"              |
+       | rentalsLabel           | QLabel      | Назва таблиці "Прокат"             |
+       | rentalsTable           | QTableView  | Таблиця прокату                    |
+       | rentalsButtonsLayout   | QHBoxLayout | Кнопки керування прокатом          |
+       | rentalsAddButton       | QPushButton | Додати операцію прокату            |
+       | rentalsDeleteButton    | QPushButton | Видалити операцію                  |
+       | rentalsSaveButton      | QPushButton | Зберегти прокат                    |
+       | infoLayout             | QVBoxLayout | Панель описів                      |
+       | infoTapesLabel         | QLabel      | Заголовок "Інформація про касету"  |
+       | infoTapesText          | QTextEdit   | Memo про касету                    |
+       | infoCustomersLabel     | QLabel      | Заголовок "Інформація про клієнта" |
+       | infoCustomersText      | QTextEdit   | Memo про клієнта                   |
+
+     - ![2025-11-21_18-06-47.png](screenshots/2025-11-21_18-06-47.png)
+     
+     - [демонстрація роботи](https://youtu.be/Ss_JPBWw-2s)
 
 ---
 
@@ -101,6 +118,9 @@ docker exec -i app_pg psql -U app_user -d app_db < ./init/students.sql
 
 # Перевірка чи бачить докер ініт-файли
 docker exec -it app_pg ls /docker-entrypoint-initdb.d
+
+# подивитись структуру таблиці rentals прямо всередині PostgreSQL
+docker exec -it app-pg psql -U serg -d app-db -c "\d rentals"
 ```
 
 - ![2025-11-19_22-07-21.png](screenshots/2025-11-19_22-07-21.png)

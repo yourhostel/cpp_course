@@ -5,7 +5,7 @@ project(rental)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets Gui)
+find_package(Qt6 REQUIRED COMPONENTS Widgets Gui Sql)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
@@ -14,8 +14,18 @@ set(CMAKE_AUTORCC ON)
 add_executable(rental
         main.cpp
         rental.cpp
-        rental.h
-        rental.ui
+        db/sql_helper.cpp
+        delegates/combo_delegate.cpp
+        delegates/no_edit_delegate.cpp
 )
 
-target_link_libraries(student_form PRIVATE Qt6::Widgets Qt6::Gui)
+target_include_directories(rental PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}
+        ${CMAKE_CURRENT_SOURCE_DIR}/db
+        ${CMAKE_CURRENT_SOURCE_DIR}/delegates
+)
+
+target_link_libraries(rental PRIVATE
+        Qt6::Widgets
+        Qt6::Gui
+        Qt6::Sql)

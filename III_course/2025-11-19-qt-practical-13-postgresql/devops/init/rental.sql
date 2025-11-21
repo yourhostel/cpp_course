@@ -38,6 +38,12 @@ CREATE TABLE rentals (
 
     -- Зовнішні ключі (звʼязки 1-to-many)
     -- Клієнти (один до багатьох) Пункт прокату (багато до одного) Касети
-                         FOREIGN KEY (tape_id) REFERENCES tapes(tape_id),
-                         FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+    -- з CASCADE видаленням
+                         FOREIGN KEY (tape_id)
+                             REFERENCES tapes(tape_id)
+                             ON DELETE CASCADE,
+
+                         FOREIGN KEY (customer_id)
+                             REFERENCES customers(customer_id)
+                             ON DELETE CASCADE
 );
