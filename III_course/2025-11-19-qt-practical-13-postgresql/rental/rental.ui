@@ -6,167 +6,1032 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>994</width>
-    <height>552</height>
+    <width>1023</width>
+    <height>545</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Прокат касет</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="rootLayout" stretch="1,1">
+   <layout class="QVBoxLayout" name="rootLayout" stretch="0">
     <item>
-     <layout class="QHBoxLayout" name="topLayout">
+     <layout class="QVBoxLayout" name="mainLayout">
       <item>
-       <layout class="QVBoxLayout" name="tapesLayout">
-        <item>
-         <widget class="QLabel" name="tapesLabel">
-          <property name="text">
-           <string>Таблиця &quot;Касети&quot;</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QTableView" name="tapesTable"/>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="tapesButtons">
+       <widget class="QTabWidget" name="rentalTabs">
+        <property name="currentIndex">
+         <number>1</number>
+        </property>
+        <widget class="QWidget" name="tabViewTables">
+         <attribute name="title">
+          <string>Перегляд таблиць</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,1">
           <item>
-           <widget class="QPushButton" name="tapesAddButton">
-            <property name="text">
-             <string>Додати</string>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="topLayout">
+            <item>
+             <layout class="QVBoxLayout" name="tapesLayout">
+              <item>
+               <widget class="QLabel" name="tapesLabel">
+                <property name="text">
+                 <string>Таблиця &quot;Касети&quot;</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTableView" name="tapesTable"/>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="tapesButtons">
+                <item>
+                 <widget class="QPushButton" name="tapesAddButton">
+                  <property name="text">
+                   <string>Додати</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="tapesSaveButton">
+                  <property name="text">
+                   <string>Зберегти</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="tapesDeleteButton">
+                  <property name="text">
+                   <string>Видалити</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="customersLayout">
+              <item>
+               <widget class="QLabel" name="customersLabel">
+                <property name="text">
+                 <string>Таблиця &quot;Клієнти&quot;</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTableView" name="customersTable"/>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="customersButtons">
+                <item>
+                 <widget class="QPushButton" name="customersAddButton">
+                  <property name="text">
+                   <string>Додати</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="customersSaveButton">
+                  <property name="text">
+                   <string>Зберегти</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="customersDeleteButton">
+                  <property name="text">
+                   <string>Видалити</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
           </item>
           <item>
-           <widget class="QPushButton" name="tapesSaveButton">
-            <property name="text">
-             <string>Зберегти</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="tapesDeleteButton">
-            <property name="text">
-             <string>Видалити</string>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="bottomLayout" stretch="7,3">
+            <item>
+             <layout class="QVBoxLayout" name="rentalsLayout">
+              <item>
+               <widget class="QLabel" name="rentalsLabel">
+                <property name="text">
+                 <string>Таблиця &quot;Прокат&quot;</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTableView" name="rentalsTable"/>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="rentalsButtons">
+                <item>
+                 <widget class="QPushButton" name="rentalsAddButton">
+                  <property name="text">
+                   <string>Додати</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="rentalsSaveButton">
+                  <property name="text">
+                   <string>Зберегти</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="rentalsDeleteButton">
+                  <property name="text">
+                   <string>Видалити</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="infoLayout">
+              <item>
+               <widget class="QLabel" name="tapeInfoLabel">
+                <property name="text">
+                 <string>Інформація про касету</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTextEdit" name="tapeInfoText"/>
+              </item>
+              <item>
+               <widget class="QLabel" name="customerInfoLabel">
+                <property name="text">
+                 <string>Інформація про клієнта</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTextEdit" name="customerInfoText"/>
+              </item>
+             </layout>
+            </item>
+           </layout>
           </item>
          </layout>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="customersLayout">
-        <item>
-         <widget class="QLabel" name="customersLabel">
-          <property name="text">
-           <string>Таблиця &quot;Клієнти&quot;</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QTableView" name="customersTable"/>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="customersButtons">
+        </widget>
+        <widget class="QWidget" name="tabVisualComponents">
+         <attribute name="title">
+          <string>Робота з візуальними компонентами</string>
+         </attribute>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
-           <widget class="QPushButton" name="customersAddButton">
-            <property name="text">
-             <string>Додати</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="customersSaveButton">
-            <property name="text">
-             <string>Зберегти</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="customersDeleteButton">
-            <property name="text">
-             <string>Видалити</string>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="vcMainLayout" stretch="20,1,20">
+            <item>
+             <layout class="QVBoxLayout" name="vcTapePanel" stretch="14,4,1">
+              <item>
+               <layout class="QVBoxLayout" name="vcTapeFieldsLayout">
+                <item>
+                 <layout class="QHBoxLayout" name="vcTapeRowId">
+                  <item alignment="Qt::AlignmentFlag::AlignRight">
+                   <widget class="QLabel" name="vcTapeIdLabel">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>170</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Код касети</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="vcTapeIdEdit">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="vcTapeRowTitle">
+                  <item>
+                   <widget class="QLabel" name="vcTapeTitleLabel">
+                    <property name="minimumSize">
+                     <size>
+                      <width>170</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Найменування</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="vcTapeTitleEdit">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="vcTapeRowType">
+                  <item>
+                   <widget class="QLabel" name="vcTapeTypeLabel">
+                    <property name="minimumSize">
+                     <size>
+                      <width>170</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Тип касети</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="vcTapeTypeEdit">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="vcTapeRowPrice">
+                  <item>
+                   <widget class="QLabel" name="vcTapePriceLabel">
+                    <property name="minimumSize">
+                     <size>
+                      <width>170</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Ціна</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="vcTapePriceEdit">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout">
+                  <item alignment="Qt::AlignmentFlag::AlignTop">
+                   <widget class="QLabel" name="vcTapeDescriptionLabel">
+                    <property name="minimumSize">
+                     <size>
+                      <width>170</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Інформація про касету</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QTextEdit" name="vcTapeDescriptionEdit">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" name="vcTapeButtonsLayout">
+                <item>
+                 <layout class="QHBoxLayout" name="vcTapeButtonsRow1">
+                  <item>
+                   <widget class="QPushButton" name="vcTapeAddButton">
+                    <property name="maximumSize">
+                     <size>
+                      <width>125</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Додати</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="vcTapeEditButton">
+                    <property name="maximumSize">
+                     <size>
+                      <width>125</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Редагувати</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="vcTapeButtonsRow2">
+                  <item>
+                   <widget class="QPushButton" name="vcTapeDeleteButton">
+                    <property name="maximumSize">
+                     <size>
+                      <width>125</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Видалити</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="vcTapeCancelButton">
+                    <property name="maximumSize">
+                     <size>
+                      <width>125</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Скасувати</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="vcTapeButtonsRow3">
+                  <item>
+                   <widget class="QPushButton" name="vcTapeSaveButton">
+                    <property name="maximumSize">
+                     <size>
+                      <width>125</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Зберегти</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="vcTapeNavLayout">
+                <item>
+                 <widget class="QToolButton" name="vcTapeFirstButton">
+                  <property name="toolTip">
+                   <string>Перший запис</string>
+                  </property>
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="QIcon::ThemeIcon::MediaSkipBackward"/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="vcTapePrevButton">
+                  <property name="toolTip">
+                   <string>Попередній запис</string>
+                  </property>
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="QIcon::ThemeIcon::MediaSeekBackward"/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="vcTapeNextButton">
+                  <property name="toolTip">
+                   <string>Наступний запис</string>
+                  </property>
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="QIcon::ThemeIcon::MediaSeekForward"/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="vcTapeLastButton">
+                  <property name="toolTip">
+                   <string>Останній запис</string>
+                  </property>
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="QIcon::ThemeIcon::MediaSkipForward"/>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout"/>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="vcRentalPanel" stretch="14,4,1">
+              <item>
+               <layout class="QVBoxLayout" name="vcRentalFieldsLayout">
+                <item>
+                 <layout class="QHBoxLayout" name="vcRentalRowId">
+                  <item>
+                   <widget class="QLabel" name="vcRentalIdLabel">
+                    <property name="minimumSize">
+                     <size>
+                      <width>150</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="layoutDirection">
+                     <enum>Qt::LayoutDirection::LeftToRight</enum>
+                    </property>
+                    <property name="text">
+                     <string>Код операції</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="vcRentalIdEdit">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="vcRentalRowTapeId">
+                  <item>
+                   <widget class="QLabel" name="vcRentalTapeIdLabel">
+                    <property name="minimumSize">
+                     <size>
+                      <width>150</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Код касети</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="vcRentalTapeIdEdit">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="vcRentalRowTapeCombo">
+                  <item>
+                   <widget class="QLabel" name="vcRentalTapeLabel">
+                    <property name="minimumSize">
+                     <size>
+                      <width>150</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Найменування</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QComboBox" name="vcRentalTapeCombo">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="vcRentalRowIssueDate">
+                  <item>
+                   <widget class="QLabel" name="vcRentalIssueDateLabel">
+                    <property name="minimumSize">
+                     <size>
+                      <width>150</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Дата видачі</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="vcRentalIssueDateEdit">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="vcRentalRowReturnDate">
+                  <item>
+                   <widget class="QLabel" name="vcRentalReturnDateLabel">
+                    <property name="minimumSize">
+                     <size>
+                      <width>150</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Дата прийому</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="vcRentalReturnDateEdit">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="vcRentalRowCustomerId">
+                  <item>
+                   <widget class="QLabel" name="vcRentalCustomerIdLabel">
+                    <property name="minimumSize">
+                     <size>
+                      <width>150</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Код клієнта</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="vcRentalCustomerIdEdit">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="vcRentalRowCustomerCombo">
+                  <item>
+                   <widget class="QLabel" name="vcRentalCustomerLabel">
+                    <property name="minimumSize">
+                     <size>
+                      <width>150</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>ПІБ клієнта</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QComboBox" name="vcRentalCustomerCombo">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="vcRentalRowCopies">
+                  <item alignment="Qt::AlignmentFlag::AlignRight">
+                   <widget class="QLabel" name="vcRentalCopiesLabel">
+                    <property name="minimumSize">
+                     <size>
+                      <width>150</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Кількість копій</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="vcRentalCopiesEdit">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="vcRentalRowDeadline">
+                  <item>
+                   <widget class="QLabel" name="vcRentalDeadlineLabel">
+                    <property name="minimumSize">
+                     <size>
+                      <width>150</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Термін повернення</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="vcRentalDeadlineEdit">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="vcRentalRowReturned">
+                  <item>
+                   <widget class="QLabel" name="vcRentalReturnedLabel">
+                    <property name="minimumSize">
+                     <size>
+                      <width>150</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Повернено</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="vcRentalReturnedCheck">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="layoutDirection">
+                     <enum>Qt::LayoutDirection::LeftToRight</enum>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true"/>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="tristate">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer">
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" name="vcRentalButtonsLayout">
+                <item>
+                 <layout class="QHBoxLayout" name="vcRentalButtonsRow1">
+                  <item>
+                   <widget class="QPushButton" name="vcRentalAddButton">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>125</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Додати</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="vcRentalEditButton">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>125</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Редагувати</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="vcRentalButtonsRow2">
+                  <item>
+                   <widget class="QPushButton" name="vcRentalDeleteButton">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>125</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Видалити</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="vcRentalCancelButton">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>125</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Скасувати</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="vcRentalButtonsRow3">
+                  <item>
+                   <widget class="QPushButton" name="vcRentalSaveButton">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>125</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Зберегти</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="vcRentalNavLayout">
+                <item>
+                 <widget class="QToolButton" name="vcRentalFirstButton">
+                  <property name="toolTip">
+                   <string>Перший запис</string>
+                  </property>
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="QIcon::ThemeIcon::MediaSkipBackward"/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="vcRentalPrevButton">
+                  <property name="toolTip">
+                   <string>Попередній запис</string>
+                  </property>
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="QIcon::ThemeIcon::MediaSeekBackward"/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="vcRentalNextButton">
+                  <property name="toolTip">
+                   <string>Наступний запис</string>
+                  </property>
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="QIcon::ThemeIcon::MediaSeekForward"/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="vcRentalLastButton">
+                  <property name="toolTip">
+                   <string>Останній запис</string>
+                  </property>
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="QIcon::ThemeIcon::MediaSkipForward"/>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+           </layout>
           </item>
          </layout>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="bottomLayout" stretch="7,3">
-      <item>
-       <layout class="QVBoxLayout" name="rentalsLayout">
-        <item>
-         <widget class="QLabel" name="rentalsLabel">
-          <property name="text">
-           <string>Таблиця &quot;Прокат&quot;</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QTableView" name="rentalsTable"/>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="rentalsButtons">
-          <item>
-           <widget class="QPushButton" name="rentalsAddButton">
-            <property name="text">
-             <string>Додати</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="rentalsSaveButton">
-            <property name="text">
-             <string>Зберегти</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="rentalsDeleteButton">
-            <property name="text">
-             <string>Видалити</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="infoLayout">
-        <item>
-         <widget class="QLabel" name="tapeInfoLabel">
-          <property name="text">
-           <string>Інформація про касету</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QTextEdit" name="tapeInfoText"/>
-        </item>
-        <item>
-         <widget class="QLabel" name="customerInfoLabel">
-          <property name="text">
-           <string>Інформація про клієнта</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QTextEdit" name="customerInfoText"/>
-        </item>
-       </layout>
+        </widget>
+        <widget class="QWidget" name="tabViewRecords">
+         <attribute name="title">
+          <string>Перегляд записів</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tabRelations">
+         <attribute name="title">
+          <string>Зв’язки</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tabComputedFields">
+         <attribute name="title">
+          <string>Обчислювані поля</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tabSorting">
+         <attribute name="title">
+          <string>Сортування</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tabFiltering">
+         <attribute name="title">
+          <string>Фільтрація</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tabSearch">
+         <attribute name="title">
+          <string>Пошук даних</string>
+         </attribute>
+        </widget>
+       </widget>
       </item>
      </layout>
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

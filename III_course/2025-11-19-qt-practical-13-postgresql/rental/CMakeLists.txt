@@ -17,12 +17,14 @@ add_executable(rental
         db/sql_helper.cpp
         delegates/combo_delegate.cpp
         delegates/no_edit_delegate.cpp
+        tabs/visual_components.cpp
 )
 
 target_include_directories(rental PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}
         ${CMAKE_CURRENT_SOURCE_DIR}/db
         ${CMAKE_CURRENT_SOURCE_DIR}/delegates
+        ${CMAKE_CURRENT_SOURCE_DIR}/tabs
 )
 
 target_link_libraries(rental PRIVATE

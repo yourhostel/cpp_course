@@ -14,6 +14,8 @@
 #include <QHeaderView>
 #include <QSqlQuery>
 
+#include "debug_log.h"
+
 /**
  * Конструктор головного вікна.
  *
@@ -74,6 +76,19 @@ Rental::Rental(QWidget *parent)
     // 6. Завантаження БД в моделі
     loadAllTables();
 
+    DLOG(QString("Before VC MODELS: tapes=%1 customers=%2 rentals=%3")
+        .arg(tapesModel->rowCount())
+        .arg(customersModel->rowCount())
+        .arg(rentalsModel->rowCount()));
+
+    visualComponents = new VisualComponents(
+    ui,
+    tapesModel,
+    customersModel,
+    rentalsModel,
+    this
+    );
+
     // Таблиця касет
     connect(ui->tapesAddButton, &QPushButton::clicked,
         this, &Rental::onAddTapeClicked);
@@ -127,6 +142,7 @@ Rental::Rental(QWidget *parent)
             &QItemSelectionModel::currentRowChanged,
             this,
             &Rental::onCustomerRowChanged);
+
 }
 
 /** ========================================================================

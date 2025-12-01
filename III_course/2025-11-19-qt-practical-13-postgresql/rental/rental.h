@@ -11,6 +11,7 @@
 
 #include "db/sql_helper.h"
 #include "delegates/combo_delegate.h"
+#include "tabs/visual_components.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Rental; }
@@ -30,6 +31,7 @@ public:
 
 private:
     Ui::Rental *ui = nullptr;
+    VisualComponents* visualComponents = nullptr;
 
     QSqlDatabase db;
 
