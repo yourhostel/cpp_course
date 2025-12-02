@@ -20,7 +20,7 @@
       <item>
        <widget class="QTabWidget" name="rentalTabs">
         <property name="currentIndex">
-         <number>0</number>
+         <number>3</number>
         </property>
         <widget class="QWidget" name="tabViewTables">
          <attribute name="title">
@@ -1000,11 +1000,118 @@
          <attribute name="title">
           <string>Перегляд записів</string>
          </attribute>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <layout class="QVBoxLayout" name="rvforwardLayout">
+            <item>
+             <widget class="QTextEdit" name="rvForwardTextEdit"/>
+            </item>
+            <item>
+             <widget class="QPushButton" name="rvForwardButton">
+              <property name="text">
+               <string>Перегляд від початку до кінця</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="rvbackwardLayout">
+            <item>
+             <widget class="QTextEdit" name="rvBackwardTextEdit"/>
+            </item>
+            <item>
+             <widget class="QPushButton" name="rvBackwardButton">
+              <property name="text">
+               <string>Перегляд від кінця до початку</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
         </widget>
         <widget class="QWidget" name="tabRelations">
          <attribute name="title">
           <string>Зв’язки</string>
          </attribute>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <layout class="QVBoxLayout" name="rvMainLayout" stretch="8,8,1">
+            <item>
+             <layout class="QHBoxLayout" name="rvTopLayout">
+              <item>
+               <layout class="QVBoxLayout" name="rvTopTapeLayout">
+                <item>
+                 <widget class="QLabel" name="rvTapesLabel">
+                  <property name="text">
+                   <string>Касети</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QTableView" name="rvTapesTable"/>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" name="rvTopCustomerLayout">
+                <item>
+                 <widget class="QLabel" name="rvCustomersLabel">
+                  <property name="text">
+                   <string>Клієнти</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QTableView" name="rvCustomersTable"/>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="rvMiddleLayout">
+              <item>
+               <widget class="QLabel" name="rvRentalsLabel">
+                <property name="text">
+                 <string>Прокат</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTableView" name="rvRentalsTable"/>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_6">
+              <item>
+               <widget class="QPushButton" name="rvTapeLinkButton">
+                <property name="text">
+                 <string>Зв’язок з касетами</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="rvClearLinkButton">
+                <property name="text">
+                 <string>Прибрати зв’язки</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="rvCustomerLinkButton">
+                <property name="text">
+                 <string>Зв’язок з клієнтами</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
         </widget>
         <widget class="QWidget" name="tabComputedFields">
          <attribute name="title">

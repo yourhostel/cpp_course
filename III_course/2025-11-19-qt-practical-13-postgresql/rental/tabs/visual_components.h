@@ -14,9 +14,6 @@ class VisualComponents final : public QObject
 {
     Q_OBJECT
 
-    TableSpec tapeSpec;
-    TableSpec rentalSpec;
-
 public:
     explicit VisualComponents(Ui_Rental* ui,
                               QStandardItemModel* tapesModel,
@@ -32,6 +29,10 @@ public:
 
 private:
     Ui_Rental* ui;
+
+    TableSpec tapeSpec;
+    TableSpec rentalSpec;
+
     QStandardItemModel* tapesModel;
     QStandardItemModel* customersModel;
     QStandardItemModel* rentalsModel;

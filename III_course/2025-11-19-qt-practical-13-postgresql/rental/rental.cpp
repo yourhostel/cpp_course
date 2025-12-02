@@ -5,12 +5,15 @@
 // III_course/2025-11-19-qt-practical-13-postgresql/rental/rental.cpp
 #include "rental.h"
 #include "ui_rental.h"
+#include "view_tables.h"
+#include "visual_components.h"
+#include "records_view.h"
 
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QSqlQuery>
 
-#include "view_tables.h"
+#include "relations_view.h"
 
 /**
  * Конструктор головного вікна.
@@ -53,6 +56,11 @@ Rental::Rental(QWidget *parent)
 
     visualComponents = new VisualComponents(ui, tapesModel, customersModel,
     rentalsModel, helper, this);
+
+    recordsView = new RecordsView(ui, tapesModel, this);
+
+    relationsView = new RelationsView(ui, tapesModel, customersModel,
+    rentalsModel, this);
 }
 
 /** ========================================================================

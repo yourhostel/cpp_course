@@ -19,6 +19,8 @@ add_executable(rental
         delegates/no_edit_delegate.cpp
         tabs/visual_components.cpp
         tabs/view_tables.cpp
+        tabs/records_view.cpp
+        tabs/relations_view.cpp
 )
 
 target_include_directories(rental PRIVATE

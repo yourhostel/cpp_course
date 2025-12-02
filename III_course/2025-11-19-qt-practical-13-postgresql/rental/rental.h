@@ -9,9 +9,11 @@
 #include <QMainWindow>
 #include "db/sql_helper.h"
 #include "delegates/combo_delegate.h"
-#include "tabs/visual_components.h"
 
 class ViewTables;
+class RecordsView;
+class VisualComponents;
+class RelationsView;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Rental; }
@@ -21,10 +23,6 @@ class Rental final : public QMainWindow
 {
     Q_OBJECT
 
-    TableSpec tapeSpec;
-    TableSpec customerSpec;
-    TableSpec rentalSpec;
-
 public:
     explicit Rental(QWidget *parent = nullptr);
     ~Rental() override;
@@ -32,9 +30,15 @@ public:
 private:
     Ui::Rental *ui = nullptr;
 
+    TableSpec tapeSpec;
+    TableSpec customerSpec;
+    TableSpec rentalSpec;
+
     // Таби
     VisualComponents* visualComponents = nullptr;
     ViewTables* viewTables = nullptr;
+    RecordsView* recordsView = nullptr;
+    RelationsView* relationsView = nullptr;
 
     QSqlDatabase db;
 
