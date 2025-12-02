@@ -4,19 +4,28 @@
 
 // III_course/2025-11-19-qt-practical-13-postgresql/rental/tabs/visual_components.cpp
 #include "visual_components.h"
+#include "sql_helper.h"
+#include "table_specs.h"
 #include "../ui_rental.h"
+
+#include <QMessageBox>
 
 VisualComponents::VisualComponents(Ui_Rental* ui,
                                    QStandardItemModel* tapesModel,
                                    QStandardItemModel* customersModel,
                                    QStandardItemModel* rentalsModel,
+                                   SqlHelper* helper,
                                    QObject* parent)
     : QObject(parent),
       ui(ui),
       tapesModel(tapesModel),
       customersModel(customersModel),
-      rentalsModel(rentalsModel)
+      rentalsModel(rentalsModel),
+      helper(helper)
 {
+    tapeSpec = TapeSpec;
+    rentalSpec = RentalSpec;
+
     // ===== CONNECT NAVIGATION =====
     connect(ui->vcTapeFirstButton,  &QToolButton::clicked, this, &VisualComponents::onTapeFirst);
     connect(ui->vcTapePrevButton,   &QToolButton::clicked, this, &VisualComponents::onTapePrev);
@@ -47,14 +56,20 @@ VisualComponents::VisualComponents(Ui_Rental* ui,
     loadFirstRental();
 }
 
-// ===== NAV TAPE =====
+// ====================================================================
+// Навігація по касетах
+// ====================================================================
+
 void VisualComponents::onTapeFirst()
 {
+    if (!checkTapeEditingBeforeNavigate()) return;
     if (tapesModel->rowCount() == 0) return;
     loadTapeFields(0);
 }
+
 void VisualComponents::onTapePrev()
 {
+    if (!checkTapeEditingBeforeNavigate()) return;
     if (tapesModel->rowCount() == 0) return;
 
     int newIndex = currentTapeIndex - 1;
@@ -62,8 +77,10 @@ void VisualComponents::onTapePrev()
 
     loadTapeFields(newIndex);
 }
+
 void VisualComponents::onTapeNext()
 {
+    if (!checkTapeEditingBeforeNavigate()) return;
     const int total = tapesModel->rowCount();
     if (total == 0) return;
 
@@ -72,23 +89,44 @@ void VisualComponents::onTapeNext()
 
     loadTapeFields(newIndex);
 }
+
 void VisualComponents::onTapeLast()
 {
+    if (!checkTapeEditingBeforeNavigate()) return;
     const int total = tapesModel->rowCount();
     if (total == 0) return;
 
     loadTapeFields(total - 1);
 }
 
-// ===== NAV RENTAL =====
+bool VisualComponents::checkTapeEditingBeforeNavigate()
+{
+    // Перевірити чи стан редагування
+    if (!tapeState.editing && !tapeState.adding)
+        return true;
+
+    if (!askCancelEditing("Стан касет", "Скасувати редагування?"))
+        return false;
+
+    // Скасувати редагування/додавання
+    onTapeCancel();
+    return true;
+}
+
+// ====================================================================
+// Навігація по прокатах
+// ====================================================================
+
 void VisualComponents::onRentalFirst()
 {
+    if (!checkRentalEditingBeforeNavigate()) return;
     if (rentalsModel->rowCount() == 0) return;
     loadRentalFields(0);
 }
 
 void VisualComponents::onRentalPrev()
 {
+    if (!checkRentalEditingBeforeNavigate()) return;
     if (rentalsModel->rowCount() == 0) return;
 
     int newIndex = currentRentalIndex - 1;
@@ -99,6 +137,7 @@ void VisualComponents::onRentalPrev()
 
 void VisualComponents::onRentalNext()
 {
+    if (!checkRentalEditingBeforeNavigate()) return;
     const int total = rentalsModel->rowCount();
     if (total == 0) return;
 
@@ -110,14 +149,29 @@ void VisualComponents::onRentalNext()
 
 void VisualComponents::onRentalLast()
 {
+    if (!checkRentalEditingBeforeNavigate()) return;
     const int total = rentalsModel->rowCount();
     if (total == 0) return;
 
     loadRentalFields(total - 1);
 }
 
+bool VisualComponents::checkRentalEditingBeforeNavigate()
+{
+    if (!rentalState.editing && !rentalState.adding)
+        return true;
 
-// ===== BUTTONS TAPE =====
+    if (!askCancelEditing("Стан прокату", "Скасувати редагування?"))
+        return false;
+
+    onRentalCancel();
+    return true;
+}
+
+// ====================================================================
+// Кнопки дій над станом касет
+// ====================================================================
+
 void VisualComponents::onTapeAdd()
 {
     if (tapeState.adding || tapeState.editing)
@@ -131,6 +185,7 @@ void VisualComponents::onTapeAdd()
     tapeState.newIndex = tapesModel->rowCount() - 1;
 
     currentTapeIndex = tapeState.newIndex;
+    tapesModel->setItem(currentTapeIndex, 0, new QStandardItem("-"));
 
     clearTapeFields();
     setTapeFieldsEditable(true);
@@ -172,17 +227,113 @@ void VisualComponents::onTapeCancel()
     tapeState = {};
 }
 
-void VisualComponents::onTapeDelete()
-{
-    //TODO: Implementation in the next commit
-}
-
 void VisualComponents::onTapeSave()
 {
-    //TODO: Implementation in the next commit
+    if (!tapeState.adding && !tapeState.editing)
+        return;
+
+    const int row = currentTapeIndex;
+
+    // Перенести значення з UI у модель
+    tapesModel->setItem(row, 1, new QStandardItem(ui->vcTapeTitleEdit->text()));
+    tapesModel->setItem(row, 2, new QStandardItem(ui->vcTapeTypeEdit->text()));
+    tapesModel->setItem(row, 3, new QStandardItem(ui->vcTapePriceEdit->text()));
+    tapesModel->setItem(row, 4, new QStandardItem(ui->vcTapeDescriptionEdit->toPlainText()));
+
+    QString error;
+    if (!helper->saveModel(tapesModel, tapeSpec, error))
+    {
+        QMessageBox::critical(nullptr, "Помилка збереження", error);
+        return;
+    }
+
+    // Отримати id з моделі після save
+    const QString savedId = tapesModel->item(row, 0)->text();
+
+    // Оновити модель повністю
+    if (!helper->loadModel(tapesModel, tapeSpec, error))
+    {
+        QMessageBox::critical(nullptr, "Помилка оновлення", error);
+        return;
+    }
+
+    // Оновити комбо у rentals
+    fillTapeCombo();
+
+    // Знайти рядок з id у оновленій моделі
+    int newIndex = 0;
+    for (int i = 0; i < tapesModel->rowCount(); i++)
+    {
+        if (tapesModel->item(i, 0)->text() == savedId)
+        {
+            newIndex = i;
+            break;
+        }
+    }
+
+    // Показати оновлені дані
+    loadTapeFields(newIndex);
+    currentTapeIndex = newIndex;
+
+    setTapeFieldsEditable(false);
+    tapeState = {};
 }
 
-// ===== BUTTONS RENTAL =====
+void VisualComponents::onTapeDelete()
+{
+    if (tapeState.adding || tapeState.editing)
+    {
+        QMessageBox::warning(nullptr, "Увага",
+                             "Спочатку завершіть або скасуйте редагування.");
+        return;
+    }
+
+    const int row = currentTapeIndex;
+    if (row < 0 || row >= tapesModel->rowCount())
+        return;
+
+    const int id = tapesModel->item(row, 0)->text().toInt();
+
+    if (QMessageBox::question(nullptr, "Підтвердження",
+                              "Видалити запис?",
+                              QMessageBox::Yes | QMessageBox::No)
+        != QMessageBox::Yes)
+        return;
+
+    QString error;
+    if (!helper->deleteRow(tapeSpec, id, error))
+    {
+        QMessageBox::critical(nullptr, "Помилка видалення", error);
+        return;
+    }
+
+    // Reload моделі після delete
+    if (!helper->loadModel(tapesModel, tapeSpec, error))
+    {
+        QMessageBox::critical(nullptr, "Помилка оновлення", error);
+        return;
+    }
+
+    // Оновити комбо у rentals
+    fillTapeCombo();
+
+    int newRow = row;
+    if (newRow >= tapesModel->rowCount())
+        newRow = tapesModel->rowCount() - 1;
+    if (newRow < 0)
+    {
+        clearTapeFields();
+        return;
+    }
+
+    loadTapeFields(newRow);
+    currentTapeIndex = newRow;
+}
+
+// ====================================================================
+// Кнопки дій над станом прокату
+// ====================================================================
+
 void VisualComponents::onRentalAdd()
 {
     if (rentalState.adding || rentalState.editing)
@@ -195,6 +346,7 @@ void VisualComponents::onRentalAdd()
     rentalState.newIndex = rentalsModel->rowCount() - 1;
 
     currentRentalIndex = rentalState.newIndex;
+    rentalsModel->setItem(currentRentalIndex, 0, new QStandardItem("-"));
 
     clearRentalFields();
     setRentalFieldsEditable(true);
@@ -232,17 +384,119 @@ void VisualComponents::onRentalCancel()
     rentalState = {};
 }
 
-void VisualComponents::onRentalDelete()
-{
-   //TODO: Implementation in the next commit
-}
-
 void VisualComponents::onRentalSave()
 {
-    //TODO: Implementation in the next commit
+    if (!rentalState.adding && !rentalState.editing)
+        return;
+
+    const int row = currentRentalIndex;
+
+    // Отримуємо вибрані ID з комбо
+    const int tapeId = findTapeIdByName(ui->vcRentalTapeCombo->currentText());
+    const int customerId = findCustomerIdByName(ui->vcRentalCustomerCombo->currentText());
+
+    // Переносимо у модель
+    rentalsModel->setItem(row, 1, new QStandardItem(QString::number(tapeId)));
+    rentalsModel->setItem(row, 2, new QStandardItem(ui->vcRentalIssueDateEdit->text()));
+    rentalsModel->setItem(row, 3, new QStandardItem(ui->vcRentalReturnDateEdit->text()));
+    rentalsModel->setItem(row, 4, new QStandardItem(QString::number(customerId)));
+    rentalsModel->setItem(row, 5, new QStandardItem(ui->vcRentalCopiesEdit->text()));
+    rentalsModel->setItem(row, 6, new QStandardItem(ui->vcRentalDeadlineEdit->text()));
+    rentalsModel->setItem(row, 7, new QStandardItem(ui->vcRentalReturnedCheck->isChecked() ? "true" : "false"));
+
+    QString error;
+    if (!helper->saveModel(rentalsModel, rentalSpec, error))
+    {
+        QMessageBox::critical(nullptr, "Помилка збереження", error);
+        return;
+    }
+
+    // Зберегти id
+    const QString savedId = rentalsModel->item(row, 0)->text();
+
+    // Перезавантажити прокати
+    if (!helper->loadModel(rentalsModel, rentalSpec, error))
+    {
+        QMessageBox::critical(nullptr, "Помилка оновлення", error);
+        return;
+    }
+
+    // Оновлюємо комбо
+    fillTapeCombo();
+    fillCustomerCombo();
+
+    // Знайти рядок з цим id
+    int newIndex = 0;
+    for (int i = 0; i < rentalsModel->rowCount(); i++)
+    {
+        if (rentalsModel->item(i, 0)->text() == savedId)
+        {
+            newIndex = i;
+            break;
+        }
+    }
+
+    loadRentalFields(newIndex);
+    currentRentalIndex = newIndex;
+
+    setRentalFieldsEditable(false);
+    rentalState = {};
 }
 
-// ===== LOADERS =====
+void VisualComponents::onRentalDelete()
+{
+    if (rentalState.adding || rentalState.editing)
+    {
+        QMessageBox::warning(nullptr, "Увага",
+                             "Спочатку завершіть або скасуйте редагування.");
+        return;
+    }
+
+    const int row = currentRentalIndex;
+    if (row < 0 || row >= rentalsModel->rowCount())
+        return;
+
+    const int id = rentalsModel->item(row, 0)->text().toInt();
+
+    if (QMessageBox::question(nullptr, "Підтвердження",
+                              "Видалити запис?",
+                              QMessageBox::Yes | QMessageBox::No)
+        != QMessageBox::Yes)
+        return;
+
+    QString error;
+    if (!helper->deleteRow(rentalSpec, id, error))
+    {
+        QMessageBox::critical(nullptr, "Помилка видалення", error);
+        return;
+    }
+
+    // Перезавантажити прокати
+    if (!helper->loadModel(rentalsModel, rentalSpec, error))
+    {
+        QMessageBox::critical(nullptr, "Помилка оновлення", error);
+        return;
+    }
+
+    int newRow = row;
+    if (newRow >= rentalsModel->rowCount())
+        newRow = rentalsModel->rowCount() - 1;
+
+    if (newRow < 0)
+    {
+        clearRentalFields();
+        return;
+    }
+
+    loadRentalFields(newRow);
+    currentRentalIndex = newRow;
+}
+
+
+// ====================================================================
+// Логіка завантажувача касет
+// ====================================================================
+
 void VisualComponents::loadTapeFields(const int row)
 {
     if (row < 0 || row >= tapesModel->rowCount()) {
@@ -280,7 +534,9 @@ void VisualComponents::loadFirstTape()
     fillTapeCombo();
 }
 
-//===============================================================================
+// ====================================================================
+// Логіка завантажувача прокатів
+// ====================================================================
 
 QString VisualComponents::getTapeNameById(const int id) const
 {
@@ -355,10 +611,14 @@ void VisualComponents::loadFirstRental()
     fillCustomerCombo();
 }
 
-// ===== INTERNAL HELPERS =====
+// ====================================================================
+// Внутрішні допоміжні функції
+// ====================================================================
+
 void VisualComponents::setTapeFieldsEditable(const bool enabled) const
 {
-    ui->vcTapeIdEdit->setEnabled(false);   // ID завжди вимкнено
+    // ID завжди вимкнено
+    ui->vcTapeIdEdit->setEnabled(false);
 
     ui->vcTapeTitleEdit->setEnabled(enabled);
     ui->vcTapeTypeEdit->setEnabled(enabled);
@@ -406,4 +666,37 @@ void VisualComponents::clearRentalFields() const
     ui->vcRentalDeadlineEdit->clear();
 
     ui->vcRentalReturnedCheck->setChecked(false);
+}
+
+int VisualComponents::findTapeIdByName(const QString& name) const
+{
+    for (int i = 0; i < tapesModel->rowCount(); i++)
+    {
+        if (tapesModel->item(i, 1)->text() == name)
+            return tapesModel->item(i, 0)->text().toInt();
+    }
+    return -1;
+}
+
+int VisualComponents::findCustomerIdByName(const QString& name) const
+{
+    for (int i = 0; i < customersModel->rowCount(); i++)
+    {
+        if (customersModel->item(i, 1)->text() == name)
+            return customersModel->item(i, 0)->text().toInt();
+    }
+    return -1;
+}
+
+bool VisualComponents::askCancelEditing(const QString& title,
+                                        const QString& message)
+{
+    const QMessageBox::StandardButton reply =
+        QMessageBox::question(nullptr,
+            title,
+            message,
+            QMessageBox::Yes | QMessageBox::No,
+            QMessageBox::No);
+
+    return reply == QMessageBox::Yes;
 }

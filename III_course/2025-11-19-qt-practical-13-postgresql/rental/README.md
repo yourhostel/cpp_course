@@ -57,3 +57,6 @@
 | vcRentalNextButton     | QToolButton | Наступний запис       |
 | vcRentalLastButton     | QToolButton | Останній запис        |
 
+![2025-12-02_06-34-40.png](../screenshots/2025-12-02_06-34-40.png)
+
+2. 

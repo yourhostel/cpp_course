@@ -7,11 +7,11 @@
 #define CPP_COURSE_RENTAL_H
 
 #include <QMainWindow>
-#include <qtableview.h>
-
 #include "db/sql_helper.h"
 #include "delegates/combo_delegate.h"
 #include "tabs/visual_components.h"
+
+class ViewTables;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Rental; }
@@ -31,7 +31,10 @@ public:
 
 private:
     Ui::Rental *ui = nullptr;
+
+    // Таби
     VisualComponents* visualComponents = nullptr;
+    ViewTables* viewTables = nullptr;
 
     QSqlDatabase db;
 
@@ -44,36 +47,10 @@ private:
 
     SqlHelper* helper = nullptr;
 
-    void setupTapesTable();
-    void setupCustomersTable();
-    void setupRentalsTable();
-    static QList<int> getIds(const QStandardItemModel* model);
-    static QStringList getTexts(const QStandardItemModel* model);
-    static int getFirstId(const QStandardItemModel* model) ;
-    [[nodiscard]] QStringList getCustomerNames() const;
-    void refreshComboDelegates() const;
-    void showSaveSuccess(const QString& tableName);
-    void addEmptyRow(QStandardItemModel* model) const;
-
-    void loadAllTables();
-    void loadTapes();
-    void loadCustomers();
-    void loadRentals();
-
     bool connectDatabase();
 
 private slots:
-    void onAddTapeClicked() const;
-    void onAddCustomerClicked() const;
-    void onAddRentalClicked() const;
-    void deleteSelectedRow(const QTableView* table, QStandardItemModel* model, const TableSpec& spec);
 
-    void onSaveTapesClicked();
-    void onSaveCustomersClicked();
-    void onSaveRentalsClicked();
-
-    void onTapeRowChanged(const QModelIndex &current, const QModelIndex &previous) const;
-    void onCustomerRowChanged(const QModelIndex &current, const QModelIndex &previous) const;
 };
 
 #endif //CPP_COURSE_RENTAL_H

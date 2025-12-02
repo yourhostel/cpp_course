@@ -6,8 +6,7 @@
 #ifndef CPP_COURSE_VISUAL_COMPONENTS_H
 #define CPP_COURSE_VISUAL_COMPONENTS_H
 
-#include <QStandardItemModel>
-#include <QModelIndex>
+#include "sql_helper.h"
 
 class Ui_Rental; // forward declaration не тягнемо весь ui
 
@@ -15,11 +14,15 @@ class VisualComponents final : public QObject
 {
     Q_OBJECT
 
+    TableSpec tapeSpec;
+    TableSpec rentalSpec;
+
 public:
     explicit VisualComponents(Ui_Rental* ui,
                               QStandardItemModel* tapesModel,
                               QStandardItemModel* customersModel,
                               QStandardItemModel* rentalsModel,
+                              SqlHelper* helper,
                               QObject* parent = nullptr);
 
     void loadFirstTape();
@@ -32,6 +35,7 @@ private:
     QStandardItemModel* tapesModel;
     QStandardItemModel* customersModel;
     QStandardItemModel* rentalsModel;
+    SqlHelper* helper;
 
     // Універсальна структура стану для скасування
 private:
@@ -58,6 +62,10 @@ private:
     void setRentalFieldsEditable(bool enabled) const;
     void clearTapeFields() const;
     void clearRentalFields() const;
+    [[nodiscard]] int findTapeIdByName(const QString& name) const;
+    [[nodiscard]] int findCustomerIdByName(const QString& name) const;
+    static bool askCancelEditing(const QString& title = "Увага",
+                                 const QString& message = "Скасувати?");
 
 private slots:
     // ===== NAV TAPE =====
@@ -65,12 +73,14 @@ private slots:
     void onTapePrev();
     void onTapeNext();
     void onTapeLast();
+    bool checkTapeEditingBeforeNavigate();
 
     // ===== NAV RENTAL =====
     void onRentalFirst();
     void onRentalPrev();
     void onRentalNext();
     void onRentalLast();
+    bool checkRentalEditingBeforeNavigate();
 
     // ===== TAPE BUTTONS =====
     void onTapeAdd();
