@@ -16,6 +16,7 @@ class RecordsView;
 class VisualComponents;
 class RelationsView;
 class CalculatedFieldsView;
+class SortingView;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Rental; }
@@ -42,6 +43,7 @@ private:
     RecordsView* recordsView = nullptr;
     RelationsView* relationsView = nullptr;
     CalculatedFieldsView *calculatedFieldsView = nullptr;
+    SortingView* sortingView = nullptr;
 
     QSqlDatabase db;
 

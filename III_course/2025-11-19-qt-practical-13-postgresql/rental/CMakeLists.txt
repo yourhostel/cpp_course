@@ -22,6 +22,7 @@ add_executable(rental
         tabs/records_view.cpp
         tabs/relations_view.cpp
         tabs/calculated_fields_view.cpp
+        tabs/sorting_view.cpp
 )
 
 target_include_directories(rental PRIVATE

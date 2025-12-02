@@ -50,8 +50,11 @@ private:
     void loadTapes();
     void loadCustomers();
     void loadRentals();
+
+public:
     void loadAllTables();
 
+private:
     // Додавання (CRUD)
     void addEmptyRow(QStandardItemModel* model) const;
     void onAddTapeClicked() const;

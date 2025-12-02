@@ -15,6 +15,7 @@
 
 #include "debug_log.h"
 #include "relations_view.h"
+#include "sorting_view.h"
 
 /**
  * Конструктор головного вікна.
@@ -65,6 +66,15 @@ Rental::Rental(QWidget *parent)
 
     calculatedFieldsView = new CalculatedFieldsView(ui, tapesModel, rentalsModel,
     viewTables,this);
+
+    sortingView = new SortingView(ui, tapesModel, rentalsModel,
+        TapeSorting, RentalSorting, this);
+
+    connect(viewTables, &ViewTables::dataReloaded,
+        sortingView, &SortingView::reloadView);
+
+    connect(sortingView, &SortingView::requestReloadAllTables,
+        viewTables, &ViewTables::loadAllTables);
 }
 
 /** ========================================================================
