@@ -7,6 +7,7 @@
 #define CPP_COURSE_RENTAL_H
 
 #include <QMainWindow>
+#include "calculated_fields_view.h"
 #include "db/sql_helper.h"
 #include "delegates/combo_delegate.h"
 
@@ -14,6 +15,7 @@ class ViewTables;
 class RecordsView;
 class VisualComponents;
 class RelationsView;
+class CalculatedFieldsView;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Rental; }
@@ -39,6 +41,7 @@ private:
     ViewTables* viewTables = nullptr;
     RecordsView* recordsView = nullptr;
     RelationsView* relationsView = nullptr;
+    CalculatedFieldsView *calculatedFieldsView = nullptr;
 
     QSqlDatabase db;
 

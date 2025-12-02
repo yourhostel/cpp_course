@@ -93,15 +93,41 @@
   - `Звʼязок з клієнтами` встановлює режим: фільтруємо `rentals` по `customer_id`
   - `Убрати звʼязки показує` усі rentals (без фільтру)
 
-- Поля та кнопки:
+- Таблиці та кнопки:
 
-- | Елемент                | Тип         | Текст у інтерфейсі  |
-  |------------------------|-------------|---------------------|
-  | `rvTapesTable`         | QTableView  | (Касети)            |
-  | `rvCustomersTable`     | QTableView  | (Клієнти)           |
-  | `rvRentalsTable`       | QTableView  | (Прокат)            |
-  | `rvTapeLinkButton`     | QPushButton | Зв’язок з касетами  |
-  | `rvCustomerLinkButton` | QPushButton | Зв’язок з клієнтами |
-  | `rvClearLinkButton`    | QPushButton | Прибрати зв’язки    |
+| Елемент                | Тип         | Текст у інтерфейсі  |
+|------------------------|-------------|---------------------|
+| `rvTapesTable`         | QTableView  | (Касети)            |
+| `rvCustomersTable`     | QTableView  | (Клієнти)           |
+| `rvRentalsTable`       | QTableView  | (Прокат)            |
+| `rvTapeLinkButton`     | QPushButton | Зв’язок з касетами  |
+| `rvCustomerLinkButton` | QPushButton | Зв’язок з клієнтами |
+| `rvClearLinkButton`    | QPushButton | Прибрати зв’язки    |
 
 ![2025-12-02_08-52-25.png](../screenshots/2025-12-02_08-52-25.png)
+
+---
+
+#### 4. Вичислюване поле
+
+- Сума = (ціна касети з `tapesModel`) * `copies`
+  - беремо `rentalsModel` знаходимо `tape_id` знаходимо відповідну ціну в `tapesModel` і множимо.
+
+- Таблиці:
+
+| Елемент          | Тип        | Текст у інтерфейсі                 |
+|------------------|------------|------------------------------------|
+| `cfTapesLabel`   | QLabel     | Вичислюване поле головної таблиці  |
+| `cfTapesTable`   | QTableView | (без тексту)                       |
+| `cfRentalsLabel` | QLabel     | Вичислюване поле підлеглої таблиці |
+| `cfRentalsTable` | QTableView | (без тексту)                       |
+
+![025-12-02_13-00-30.png](../screenshots/025-12-02_13-00-30.png)
+
+---
+
+#### 4. Сортування
+
+- 
+
+

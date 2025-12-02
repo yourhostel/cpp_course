@@ -9,7 +9,6 @@
 #include "no_edit_delegate.h"
 #include "sql_helper.h"
 #include "table_specs.h"
-#include "debug_log.h"
 
 ViewTables::ViewTables(Ui::Rental* uiPtr,
                        QStandardItemModel* tapes_model,
@@ -84,15 +83,18 @@ ViewTables::ViewTables(Ui::Rental* uiPtr,
         deleteSelectedRow(ui->rentalsTable, this->rentalsModel, rentalSpec);
     });
 
-    connect(ui->tapesTable->selectionModel(),
-        &QItemSelectionModel::currentRowChanged,
-        this,
-        &ViewTables::onTapeRowChanged);
+    if (auto sel = ui->tapesTable->selectionModel(); sel)
+    {
+        connect(sel, &QItemSelectionModel::currentRowChanged,
+                this, &ViewTables::onTapeRowChanged);
+    }
 
-    connect(ui->customersTable->selectionModel(),
-            &QItemSelectionModel::currentRowChanged,
-            this,
-            &ViewTables::onCustomerRowChanged);
+    if (auto sel = ui->customersTable->selectionModel(); sel)
+    {
+        connect(sel, &QItemSelectionModel::currentRowChanged,
+                this, &ViewTables::onCustomerRowChanged);
+    }
+
 }
 
 /** ========================================================================
@@ -134,7 +136,7 @@ void ViewTables::showSaveSuccess(const QString& tableName) const
  *
  * @return void
  */
-void ViewTables::loadTapes() const
+void ViewTables::loadTapes()
 {
     if (QString err; !helper->loadModel(tapesModel, tapeSpec, err))
         QMessageBox::critical(ui->tapesTable, "Помилка", err);
@@ -152,7 +154,7 @@ void ViewTables::loadTapes() const
  *
  * @return void
  */
-void ViewTables::loadCustomers() const
+void ViewTables::loadCustomers()
 {
     if (QString err; !helper->loadModel(customersModel, customerSpec, err))
         QMessageBox::critical(ui->customersTable, "Помилка", err);
@@ -171,7 +173,7 @@ void ViewTables::loadCustomers() const
  *
  * @return void
  */
-void ViewTables::loadRentals() const
+void ViewTables::loadRentals()
 {
     if (QString err; !helper->loadModel(rentalsModel, rentalSpec, err))
         QMessageBox::critical(ui->rentalsTable, "Помилка", err);
@@ -193,7 +195,7 @@ void ViewTables::loadRentals() const
  *
  * @return void
  */
-void ViewTables::loadAllTables() const
+void ViewTables::loadAllTables()
 {
     loadTapes();
     loadCustomers();
@@ -201,6 +203,8 @@ void ViewTables::loadAllTables() const
 
     // оновити комбо
     refreshComboDelegates();
+
+    emit dataReloaded();
 }
 
 //==========================================================================
@@ -224,7 +228,7 @@ void ViewTables::loadAllTables() const
  *
  * @return void
  */
-void ViewTables::onSaveTapesClicked() const
+void ViewTables::onSaveTapesClicked()
 {
     if (QString err; !helper->saveModel(tapesModel, tapeSpec, err))
     {
@@ -233,6 +237,8 @@ void ViewTables::onSaveTapesClicked() const
     }
 
     showSaveSuccess("Касети");
+
+    emit dataReloaded();
 }
 
 /** ========================================================================
@@ -299,6 +305,7 @@ void ViewTables::onSaveRentalsClicked() const
  */
 void ViewTables::addEmptyRow(QStandardItemModel* model) const
 {
+    //model->blockSignals(true);
     const int r = model->rowCount();
     model->insertRow(r);
 
@@ -343,7 +350,7 @@ void ViewTables::onAddRentalClicked() const { addEmptyRow(rentalsModel); }
 
 void ViewTables::deleteSelectedRow(const QTableView* table,
                                QStandardItemModel* model,
-                               const TableSpec& spec) const
+                               const TableSpec& spec)
 {
     const QModelIndex idx = table->currentIndex();
 
@@ -361,6 +368,7 @@ void ViewTables::deleteSelectedRow(const QTableView* table,
         // просто видаляємо рядок без БД
         model->removeRow(row);
         refreshComboDelegates();
+        emit dataReloaded();
         return;
     }
 
@@ -682,7 +690,10 @@ QStringList ViewTables::getCustomerNames() const
  */
 void ViewTables::refreshComboDelegates() const
 {
-    tapeDelegate->updateData(getTexts(tapesModel), getIds(tapesModel));
-    customerDelegate->updateData(getTexts(customersModel), getIds(customersModel));
+    if (tapeDelegate)
+        tapeDelegate->updateData(getTexts(tapesModel), getIds(tapesModel));
+
+    if (customerDelegate)
+        customerDelegate->updateData(getTexts(customersModel), getIds(customersModel));
 }
 

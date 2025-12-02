@@ -6,7 +6,6 @@
 #ifndef CPP_COURSE_VIEW_TABLES_H
 #define CPP_COURSE_VIEW_TABLES_H
 
-#include "rental.h"
 #include "sql_helper.h"
 #include "../ui_rental.h"
 #include "../delegates/combo_delegate.h"
@@ -14,11 +13,6 @@
 class ViewTables final : public QObject
 {
     Q_OBJECT
-
-    // Специ таблиць
-    TableSpec tapeSpec;
-    TableSpec customerSpec;
-    TableSpec rentalSpec;
 
 public:
     explicit ViewTables(Ui::Rental* ui,
@@ -31,6 +25,11 @@ public:
 private:
     Ui::Rental* ui;
     SqlHelper* helper;
+
+    // Специ таблиць
+    TableSpec tapeSpec;
+    TableSpec customerSpec;
+    TableSpec rentalSpec;
 
     // Моделі отримані з Rental
     QStandardItemModel* tapesModel;
@@ -48,10 +47,10 @@ private:
     void setupRentalsTable();
 
     // Загальні завантаження
-    void loadTapes() const;
-    void loadCustomers() const;
-    void loadRentals() const;
-    void loadAllTables() const;
+    void loadTapes();
+    void loadCustomers();
+    void loadRentals();
+    void loadAllTables();
 
     // Додавання (CRUD)
     void addEmptyRow(QStandardItemModel* model) const;
@@ -60,14 +59,14 @@ private:
     void onAddRentalClicked() const;
 
     // Збереження
-    void onSaveTapesClicked() const;
+    void onSaveTapesClicked();
     void onSaveCustomersClicked() const;
     void onSaveRentalsClicked() const;
 
     // Видалення
     void deleteSelectedRow(const QTableView* table,
                            QStandardItemModel* model,
-                           const TableSpec& spec) const;
+                           const TableSpec& spec);
 
     // Події вибору рядків
     void onTapeRowChanged(const QModelIndex& current,
@@ -80,10 +79,11 @@ private:
     int getFirstId(const QStandardItemModel* model) const;
     QList<int> getIds(const QStandardItemModel* model) const;
     QStringList getTexts(const QStandardItemModel* model) const;
-    QStringList getCustomerNames() const;
+    [[nodiscard]] QStringList getCustomerNames() const;
     void showSaveSuccess(const QString& tableName) const;
 
-    //ViewTables(Ui_Rental* ui, SqlHelper* helper, QObject* parent);
+signals:
+    void dataReloaded();
 };
 
 

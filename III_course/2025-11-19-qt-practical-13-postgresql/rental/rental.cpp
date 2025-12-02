@@ -13,6 +13,7 @@
 #include <QMessageBox>
 #include <QSqlQuery>
 
+#include "debug_log.h"
 #include "relations_view.h"
 
 /**
@@ -46,10 +47,10 @@ Rental::Rental(QWidget *parent)
     customersModel = new QStandardItemModel(this);
     rentalsModel = new QStandardItemModel(this);
 
-    // DLOG(QString("Before VC MODELS: tapes=%1 customers=%2 rentals=%3")
-    // .arg(tapesModel->rowCount())
-    // .arg(customersModel->rowCount())
-    // .arg(rentalsModel->rowCount()));
+    DLOG(QString("Before VC MODELS: tapes=%1 customers=%2 rentals=%3")
+    .arg(tapesModel->rowCount())
+    .arg(customersModel->rowCount())
+    .arg(rentalsModel->rowCount()));
 
     viewTables = new ViewTables(ui, tapesModel, customersModel,
     rentalsModel, helper, this);
@@ -61,6 +62,9 @@ Rental::Rental(QWidget *parent)
 
     relationsView = new RelationsView(ui, tapesModel, customersModel,
     rentalsModel, this);
+
+    calculatedFieldsView = new CalculatedFieldsView(ui, tapesModel, rentalsModel,
+    viewTables,this);
 }
 
 /** ========================================================================
