@@ -14,6 +14,7 @@
 #include <QSqlQuery>
 
 #include "debug_log.h"
+#include "filtering_view.h"
 #include "relations_view.h"
 #include "sorting_view.h"
 
@@ -75,6 +76,11 @@ Rental::Rental(QWidget *parent)
 
     connect(sortingView, &SortingView::requestReloadAllTables,
         viewTables, &ViewTables::loadAllTables);
+
+    filteringView = new FilteringView(ui, tapesModel, rentalsModel, this);
+
+    connect(viewTables, &ViewTables::dataReloaded,
+            filteringView, &FilteringView::reloadView);
 }
 
 /** ========================================================================

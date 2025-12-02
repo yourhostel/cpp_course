@@ -20,7 +20,7 @@
       <item>
        <widget class="QTabWidget" name="rentalTabs">
         <property name="currentIndex">
-         <number>0</number>
+         <number>6</number>
         </property>
         <widget class="QWidget" name="tabViewTables">
          <attribute name="title">
@@ -1177,7 +1177,7 @@
                 <item alignment="Qt::AlignmentFlag::AlignHCenter">
                  <widget class="QLabel" name="sortTapesComboLabel">
                   <property name="text">
-                   <string>Поле головної таблиці</string>
+                   <string>Сортування по касетах</string>
                   </property>
                  </widget>
                 </item>
@@ -1208,7 +1208,7 @@
                 <item alignment="Qt::AlignmentFlag::AlignHCenter">
                  <widget class="QLabel" name="sortRentalsComboLabel">
                   <property name="text">
-                   <string>Поле підлеглої таблиці</string>
+                   <string>Сортування по прокатах</string>
                   </property>
                  </widget>
                 </item>
@@ -1244,6 +1244,103 @@
          <attribute name="title">
           <string>Фільтрація</string>
          </attribute>
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <item>
+           <layout class="QHBoxLayout" name="filterMainLayout">
+            <item>
+             <layout class="QVBoxLayout" name="filterLeftLayout">
+              <item>
+               <widget class="QLabel" name="filterLeftLabel">
+                <property name="text">
+                 <string>Введіть найменування касети</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="filterTitleEdit"/>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="filterTitleCheckBox">
+                <property name="text">
+                 <string>Включити фільтрацію</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="filterTapesTableLabel">
+                <property name="text">
+                 <string>Касети</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTableView" name="filterTapesTable"/>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="filterRightLayout">
+              <item>
+               <widget class="QLabel" name="filterRightLabel">
+                <property name="text">
+                 <string>Відібрати записи по даті</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="filterDateLayout">
+                <item>
+                 <layout class="QVBoxLayout" name="filterDateFromLayout">
+                  <item>
+                   <widget class="QLabel" name="filterDateFromLabel">
+                    <property name="text">
+                     <string>З якого</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QDateEdit" name="filterDateFromEdit"/>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QVBoxLayout" name="filterDateToLayout">
+                  <item>
+                   <widget class="QLabel" name="filterDateToLabel">
+                    <property name="text">
+                     <string>По яке число</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QDateEdit" name="filterDateToEdit"/>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="filterDateCheckBox">
+                <property name="text">
+                 <string>Включити фільтрацію по даті</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="filterRentalsTableLabel">
+                <property name="text">
+                 <string>Прокат</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTableView" name="filterRentalsTable"/>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
         </widget>
         <widget class="QWidget" name="tabSearch">
          <attribute name="title">

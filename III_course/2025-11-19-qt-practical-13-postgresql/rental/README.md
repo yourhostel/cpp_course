@@ -126,7 +126,7 @@
 
 ---
 
-#### 4. Сортування
+#### 5. Сортування
 
 - Залежно від типу стовпця застосовується правильний режим сортування (числовий, датовий, булевий або текстовий) через `applySortRole(model, spec, columnIndex)`.
 - Виконуємо сортування моделі за вказаним індексом `model->sort(columnIndex, Qt::AscendingOrder)`.
@@ -153,5 +153,47 @@
 
 ---
 
-#### 4. Фільтр
+#### 6. Фільтр
+
+- Фільтрація назв (лівий блок)
+  - Якщо checkBox не включений, фільтр не активний, показуємо все.
+  - Якщо включений, беремо текст із `QLineEdit`, робимо `setFilterRegularExpression("^" + text + ".*")`.
+  - Фільтрація по стовпцю `setFilterKeyColumn( indexOf("title") )`.
+- Фільтрація по даті (правий блок)
+  - За умови увімкненого checkBox:
+    - беремо `dateFrom` і `dateTo`
+    - робимо фільтр через `filterAcceptsRow`
+    - дістаємо значення дати з моделі
+    - пропускаємо тільки ті рядки, де `dateFrom` `<=` `rowDate` `<=` `dateTo`
+
+- Неймінг елементів:
+
+| Елемент                 | Тип         | Текст у інтерфейсі          |
+|-------------------------|-------------|-----------------------------|
+| filterTab               | QWidget     |                             |
+| filterMainLayout        | QHBoxLayout |                             |
+| filterLeftLayout        | QVBoxLayout |                             |
+| filterRightLayout       | QVBoxLayout |                             |
+| filterLeftLabel         | QLabel      | Введіть найменування касети |
+| filterTitleEdit         | QLineEdit   |                             |
+| filterTitleCheckBox     | QCheckBox   | Включити фільтрацію         |
+| filterTapesTableLabel   | QLabel      | Касети                      |
+| filterTapesTable        | QTableView  |                             |
+| filterRightLabel        | QLabel      | Відібрати записи по даті    |
+| filterDateLayout        | QHBoxLayout |                             |
+| filterDateFromLayout    | QVBoxLayout |                             |
+| filterDateToLayout      | QVBoxLayout |                             |
+| filterDateFromLabel     | QLabel      | З якого                     |
+| filterDateFromEdit      | QDateEdit   |                             |
+| filterDateToLabel       | QLabel      | По яке число                |
+| filterDateToEdit        | QDateEdit   |                             |
+| filterDateCheckBox      | QCheckBox   | Включити фільтрацію по даті |
+| filterRentalsTableLabel | QLabel      | Прокат                      |
+| filterRentalsTable      | QTableView  |                             |
+
+![2025-12-02_18-14-39.png](../screenshots/2025-12-02_18-14-39.png)
+
+---
+
+#### 6. Пошук
 

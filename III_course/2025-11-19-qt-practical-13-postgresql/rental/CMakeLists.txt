@@ -23,6 +23,8 @@ add_executable(rental
         tabs/relations_view.cpp
         tabs/calculated_fields_view.cpp
         tabs/sorting_view.cpp
+        tabs/filtering_view.cpp
+        tabs/date_filter_proxy.cpp
 )
 
 target_include_directories(rental PRIVATE
