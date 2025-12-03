@@ -16,6 +16,7 @@
 #include "debug_log.h"
 #include "filtering_view.h"
 #include "relations_view.h"
+#include "search_view.h"
 #include "sorting_view.h"
 
 /**
@@ -54,20 +55,26 @@ Rental::Rental(QWidget *parent)
     .arg(customersModel->rowCount())
     .arg(rentalsModel->rowCount()));
 
+    // Таб "Відображення таблиць"
     viewTables = new ViewTables(ui, tapesModel, customersModel,
     rentalsModel, helper, this);
 
+    // Таб "Робота з візуальними компонентами"
     visualComponents = new VisualComponents(ui, tapesModel, customersModel,
     rentalsModel, helper, this);
 
+    // Таб "Перегляд записів"
     recordsView = new RecordsView(ui, tapesModel, this);
 
+    // Таб "Зв'язки"
     relationsView = new RelationsView(ui, tapesModel, customersModel,
     rentalsModel, this);
 
+    // Таб "Обчислювані поля"
     calculatedFieldsView = new CalculatedFieldsView(ui, tapesModel, rentalsModel,
     viewTables,this);
 
+    // Таб "Сортування"
     sortingView = new SortingView(ui, tapesModel, rentalsModel,
         TapeSorting, RentalSorting, this);
 
@@ -77,10 +84,21 @@ Rental::Rental(QWidget *parent)
     connect(sortingView, &SortingView::requestReloadAllTables,
         viewTables, &ViewTables::loadAllTables);
 
-    filteringView = new FilteringView(ui, tapesModel, rentalsModel, this);
+    // Таб "Фільтрація"
+    filteringView = new FilteringView(ui, tapesModel,
+        rentalsModel, this);
 
     connect(viewTables, &ViewTables::dataReloaded,
             filteringView, &FilteringView::reloadView);
+
+    // Таб "Пошук даних"
+    searchView = new SearchView(ui, tapesModel,
+        rentalsModel, customersModel, this);
+
+    connect(viewTables, &ViewTables::dataReloaded,
+        searchView, &SearchView::reloadView);
+
+    // Таб "Пошук по SQL запиту"
 }
 
 /** ========================================================================

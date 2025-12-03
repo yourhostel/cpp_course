@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1023</width>
-    <height>545</height>
+    <width>960</width>
+    <height>591</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
       <item>
        <widget class="QTabWidget" name="rentalTabs">
         <property name="currentIndex">
-         <number>6</number>
+         <number>7</number>
         </property>
         <widget class="QWidget" name="tabViewTables">
          <attribute name="title">
@@ -1346,6 +1346,242 @@
          <attribute name="title">
           <string>Пошук даних</string>
          </attribute>
+         <layout class="QHBoxLayout" name="horizontalLayout_10">
+          <item>
+           <layout class="QHBoxLayout" name="srMainLayout" stretch="4,2">
+            <item>
+             <layout class="QVBoxLayout" name="srLeftLayout">
+              <item>
+               <layout class="QVBoxLayout" name="srClientsBlockLayout">
+                <item>
+                 <widget class="QLabel" name="srClientsLabel">
+                  <property name="text">
+                   <string>Клієнти</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QTableView" name="srClientsTable"/>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="srClientsNavLayout">
+                  <item>
+                   <widget class="QToolButton" name="srClientsFirstButton">
+                    <property name="text">
+                     <string>...</string>
+                    </property>
+                    <property name="icon">
+                     <iconset theme="QIcon::ThemeIcon::MediaSkipBackward"/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="srClientsPrevButton">
+                    <property name="text">
+                     <string>...</string>
+                    </property>
+                    <property name="icon">
+                     <iconset theme="QIcon::ThemeIcon::MediaSeekBackward"/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="srClientsNextButton">
+                    <property name="text">
+                     <string>...</string>
+                    </property>
+                    <property name="icon">
+                     <iconset theme="QIcon::ThemeIcon::MediaSeekForward"/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="srClientsLastButton">
+                    <property name="text">
+                     <string>...</string>
+                    </property>
+                    <property name="icon">
+                     <iconset theme="QIcon::ThemeIcon::MediaSkipForward"/>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" name="srRentalsBlockLayout">
+                <item>
+                 <widget class="QLabel" name="srRentalsLabel">
+                  <property name="text">
+                   <string>Прокат</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QTableView" name="srRentalsTable"/>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="srRentalsNavLayout">
+                  <item>
+                   <widget class="QToolButton" name="srRentalsFirstButton">
+                    <property name="text">
+                     <string>...</string>
+                    </property>
+                    <property name="icon">
+                     <iconset theme="QIcon::ThemeIcon::MediaSkipBackward"/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="srRentalsPrevButton">
+                    <property name="text">
+                     <string>...</string>
+                    </property>
+                    <property name="icon">
+                     <iconset theme="QIcon::ThemeIcon::MediaSeekBackward"/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="srRentalsNextButton">
+                    <property name="text">
+                     <string>...</string>
+                    </property>
+                    <property name="icon">
+                     <iconset theme="QIcon::ThemeIcon::MediaSeekForward"/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="srRentalsLastButton">
+                    <property name="text">
+                     <string>...</string>
+                    </property>
+                    <property name="icon">
+                     <iconset theme="QIcon::ThemeIcon::MediaSkipForward"/>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="srRightLayout">
+              <item>
+               <widget class="QGroupBox" name="srGroupSearchByName">
+                <property name="title">
+                 <string>Пошук за ПІБ</string>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_3">
+                 <item>
+                  <widget class="QLabel" name="srSbnLabel">
+                   <property name="text">
+                    <string>Введіть ПІБ клієнта</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="srSbnInput"/>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="srSbnButton">
+                   <property name="text">
+                    <string>Показати у підпорядкованій таблиці</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QGroupBox" name="srGroupSearchTwoFields">
+                <property name="title">
+                 <string>Пошук по двох полях</string>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_4">
+                 <item>
+                  <widget class="QDateEdit" name="srStfDateInput"/>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="srStfCombo"/>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="srStfButton">
+                   <property name="text">
+                    <string>Пошук</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QGroupBox" name="srGroupSearchLookup">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>240</height>
+                 </size>
+                </property>
+                <property name="title">
+                 <string>Пошук Lookup</string>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_5">
+                 <item>
+                  <widget class="QLabel" name="rSluTitleLabel">
+                   <property name="text">
+                    <string>Назва фільму</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="srSluTitleInput"/>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="rSluTypeLabel">
+                   <property name="text">
+                    <string>Тип</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="srSluTypeInput"/>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="srSluButton">
+                   <property name="text">
+                    <string>Пошук</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="srSluResultLabel">
+                   <property name="text">
+                    <string>Результат пошуку</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="srSluResultOutput"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
         </widget>
        </widget>
       </item>

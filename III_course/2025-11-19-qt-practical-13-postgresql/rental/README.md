@@ -197,3 +197,51 @@
 
 #### 6. Пошук
 
+- Три способи пошуку:
+  - Пошук за ПІБ шукає клієнта і позиціонує курсор у `Клієнтах` на шуканого, та у підпорядкованої таблиці показує всі його прокати.
+  - Пошук по двох полях шукає за датою та клієнтом і позиціонує курсор у `Прокатах`.
+  - Пошук Lookup шукає касету за назвою і типом та показує код і ціну у форматі: `Код касети=003<пробіл>Ціна=3`.
+- У кожній таблиці кнопки навігації переміщують курсор.
+- Курсором є виділення строки.
+
+- Неймінг елементів:
+
+| Елемент                | Тип         | Текст у інтерфейсі                          |
+|------------------------|-------------|---------------------------------------------|
+| srMainLayout           | QHBoxLayout |                                             |
+| srLeftLayout           | QVBoxLayout |                                             |
+| srClientsBlockLayout   | QVBoxLayout |                                             |
+| srClientsLabel         | QLabel      | Клієнти                                     |
+| srClientsNavLayout     | QHBoxLayout |                                             |
+| srClientsFirstButton   | QToolButton |                                             |
+| srClientsLastButton    | QToolButton |                                             |
+| srClientsNextButton    | QToolButton |                                             |
+| srClientsPrevButton    | QToolButton |                                             |
+| srClientsTable         | QTableView  |                                             |
+| srRentalsBlockLayout   | QVBoxLayout |                                             |
+| srRentalsLabel         | QLabel      | Прокат                                      |
+| srRentalsNavLayout     | QHBoxLayout |                                             |
+| srRentalsFirstButton   | QToolButton |                                             |
+| srRentalsLastButton    | QToolButton |                                             |
+| srRentalsNextButton    | QToolButton |                                             |
+| srRentalsPrevButton    | QToolButton |                                             |
+| srRentalsTable         | QTableView  |                                             |
+| srRightLayout          | QVBoxLayout |                                             |
+| srGroupSearchByName    | QGroupBox   | Пошук за ПІБ                                |
+| srSbInLabel            | QLabel      | Введіть ПІБ клієнта                         |
+| srSbInput              | QLineEdit   |                                             |
+| srSbButton             | QPushButton | Показати у підпорядкованій таблиці          |
+| srGroupSearchTwoFields | QGroupBox   | Пошук по двох полях                         |
+| srSfInput              | QDateEdit   | 01.01.00 (плейсхолдер або початковий текст) |
+| srSfCombo              | QComboBox   |                                             |
+| srSfButton             | QPushButton | Пошук                                       |
+| srGroupSearchLookup    | QGroupBox   | Пошук Lookup                                |
+| srSluTitleLabel        | QLabel      | Назва фільму                                |
+| srSluTitleInput        | QLineEdit   |                                             |
+| srSluTypeLabel         | QLabel      | Тип                                         |
+| srSluTypeInput         | QLineEdit   |                                             |
+| srSluButton            | QPushButton | Пошук                                       |
+| srSluResultLabel       | QLabel      | Результат пошуку                            |
+| srSluResultOutput      | QLineEdit   |                                             |
+
+![2025-12-02_23-42-31.png](../screenshots/2025-12-02_23-42-31.png)

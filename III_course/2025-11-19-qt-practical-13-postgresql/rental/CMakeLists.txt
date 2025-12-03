@@ -25,6 +25,7 @@ add_executable(rental
         tabs/sorting_view.cpp
         tabs/filtering_view.cpp
         tabs/date_filter_proxy.cpp
+        tabs/search_view.cpp
 )
 
 target_include_directories(rental PRIVATE
