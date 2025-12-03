@@ -18,6 +18,7 @@
 #include "relations_view.h"
 #include "search_view.h"
 #include "sorting_view.h"
+#include "sql_query_helper.h"
 
 /**
  * Конструктор головного вікна.
@@ -99,6 +100,7 @@ Rental::Rental(QWidget *parent)
         searchView, &SearchView::reloadView);
 
     // Таб "Пошук по SQL запиту"
+    sqlQuery = new SqlQuery(ui, new SqlQueryHelper(db, this), this);
 }
 
 /** ========================================================================

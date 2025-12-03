@@ -9,6 +9,7 @@
 #include <QMainWindow>
 #include "calculated_fields_view.h"
 #include "filtering_view.h"
+#include "sql_query.h"
 #include "db/sql_helper.h"
 #include "delegates/combo_delegate.h"
 
@@ -20,6 +21,7 @@ class CalculatedFieldsView;
 class SortingView;
 class FilteringView;
 class SearchView;
+class SqlQuery;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Rental; }
@@ -49,6 +51,7 @@ private:
     SortingView* sortingView = nullptr;
     FilteringView* filteringView = nullptr;
     SearchView* searchView = nullptr;
+    SqlQuery* sqlQuery = nullptr;
 
     QSqlDatabase db;
 

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>960</width>
+    <width>1138</width>
     <height>591</height>
    </rect>
   </property>
@@ -20,7 +20,7 @@
       <item>
        <widget class="QTabWidget" name="rentalTabs">
         <property name="currentIndex">
-         <number>7</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tabViewTables">
          <attribute name="title">
@@ -1576,6 +1576,213 @@
                  </item>
                 </layout>
                </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tabSqlQuery">
+         <attribute name="title">
+          <string>SQL запит</string>
+         </attribute>
+         <layout class="QHBoxLayout" name="horizontalLayout_11">
+          <item>
+           <layout class="QHBoxLayout" name="sqlMainLayout" stretch="2,4,6">
+            <item>
+             <layout class="QVBoxLayout" name="sqlLeftLayout">
+              <item>
+               <widget class="QLabel" name="sqlLeftLabel">
+                <property name="text">
+                 <string>SQL запити</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="sqlBtn1">
+                <property name="text">
+                 <string>Показати всі касети</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="sqlBtn2">
+                <property name="text">
+                 <string>Прокати за касетою</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="sqlBtn3">
+                <property name="text">
+                 <string>Пошук клієнтів по ПІБ</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="sqlBtn4">
+                <property name="text">
+                 <string>Сума за прокат</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="sqlBtn5">
+                <property name="text">
+                 <string>Кількість прокатів касет</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="sqlBtn6">
+                <property name="text">
+                 <string>ТОП клієнти за кількістю касет</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="sqlBtn7">
+                <property name="text">
+                 <string>Прокати за діапазоном дат</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="sqlBtn8">
+                <property name="text">
+                 <string>Фільтр касет (AND / OR)</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="sqlBtn9">
+                <property name="text">
+                 <string>Статистика цін</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="sqlBtn10">
+                <property name="text">
+                 <string>Кількість прокатів по клієнтах</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="sqlLeftSpacer">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="sqlCenterLayout">
+              <item>
+               <widget class="QLabel" name="sqlEditorLabel">
+                <property name="text">
+                 <string>Введіть SQL запит або оберіть у лівій панелі</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTextEdit" name="sqlEditorInput"/>
+              </item>
+              <item>
+               <widget class="QGroupBox" name="sqlActionsGroup">
+                <property name="title">
+                 <string>Дії</string>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_8">
+                 <item>
+                  <widget class="QPushButton" name="sqlClearSqlButton">
+                   <property name="text">
+                    <string>Очистити SQL</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="sqlRunButton">
+                   <property name="text">
+                    <string>Виконати</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="sqlClearTableButton">
+                   <property name="text">
+                    <string>Очистити таблицю</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="sqlRightLayout">
+              <item>
+               <widget class="QLabel" name="sqlResultLabel">
+                <property name="text">
+                 <string>Результат запиту SQL</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTableView" name="sqlResultTable"/>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="sqlNavLayout">
+                <item>
+                 <widget class="QToolButton" name="sqlNavFirstButton">
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="QIcon::ThemeIcon::MediaSkipBackward"/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="sqlNavPrevButton">
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="QIcon::ThemeIcon::MediaSeekBackward"/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="sqlNavNextButton">
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="QIcon::ThemeIcon::MediaSeekForward"/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="sqlNavLastButton">
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="QIcon::ThemeIcon::MediaSkipForward"/>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
              </layout>
             </item>

@@ -245,3 +245,85 @@
 | srSluResultOutput      | QLineEdit   |                                             |
 
 ![2025-12-02_23-42-31.png](../screenshots/2025-12-02_23-42-31.png)
+
+#### 1. SQL запит
+- Таб містить текстове `SQL` для введення запиту з клавіатури.
+  - Результат повертається у таблицю, з автоматичним формуванням хедеру залежним від даних.
+- Друга можливість табу, шість фіксованих `SQL`, прив'язаних до шістьох кнопок. Натискання на кнопку вставляє в поле для SQL запиту, відповідний кнопці запит.
+- Фіксовані `SQL` запити:
+  - 1)`Показати всі касети`
+     - ```sql
+       SELECT * FROM tapes;
+       ```
+  - 2)`Прокати за касетою`
+     - ```sql
+       SELECT * FROM rentals
+       WHERE tape_id = 3; 
+       ```
+  - 3)`Пошук клієнтів по ПІБ`
+     - ```sql
+       SELECT * FROM customers
+       WHERE full_name ILIKE '%ів%';
+       ``` 
+  - 4)`Сума за прокат`
+     - ```sql
+       SELECT r.rental_id,
+              c.full_name,
+              t.title,
+              r.copies,
+              t.price,
+              r.copies * t.price AS total
+       FROM rentals r
+       JOIN customers c ON r.customer_id = c.customer_id
+       JOIN tapes t ON r.tape_id = t.tape_id
+       ORDER BY total DESC;
+       ```  
+  - 5)`Кількість прокатів касет`
+    - ```sql
+      SELECT tape_id, COUNT(*) AS total_rentals
+      FROM rentals
+      GROUP BY tape_id
+      ORDER BY total_rentals DESC; 
+      ```
+  - 6)`ТОП клієнти за кількістю касет`
+    - ```sql
+      SELECT c.full_name,
+             SUM(r.copies) AS total_copies
+      FROM rentals r
+      JOIN customers c ON r.customer_id = c.customer_id
+      GROUP BY c.full_name
+      ORDER BY total_copies DESC;
+      ```  
+  - 7)`Прокати за діапазоном дат`
+    - ```sql
+      SELECT *
+      FROM rentals
+      WHERE issue_date BETWEEN '2025-01-01' AND '2025-12-31';      
+      ```
+  - 8)`Фільтр касет (AND / OR)`
+    - ```sql
+      SELECT *
+      FROM tapes
+      WHERE (price > 10 AND type = 'Фільм')
+      OR (price <= 10 AND type = 'Мультфільм');
+      ```
+  - 9)`Статистика цін`
+    - ```sql
+      SELECT 
+          MIN(price) AS min_price,
+          MAX(price) AS max_price,
+          AVG(price) AS avg_price
+      FROM tapes;
+      ```
+  - 10)`Кількість прокатів по клієнтах`
+    - ```sql
+      SELECT 
+          c.full_name,
+          COUNT(*) AS rentals_count
+      FROM rentals r
+      JOIN customers c ON r.customer_id = c.customer_id
+      GROUP BY c.full_name
+      ORDER BY rentals_count DESC;
+     ```
+
+![2025-12-03_23-58-18.png](../screenshots/2025-12-03_23-58-18.png)

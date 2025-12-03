@@ -15,6 +15,7 @@ add_executable(rental
         main.cpp
         rental.cpp
         db/sql_helper.cpp
+        db/sql_query_helper.cpp
         delegates/combo_delegate.cpp
         delegates/no_edit_delegate.cpp
         tabs/visual_components.cpp
@@ -26,6 +27,7 @@ add_executable(rental
         tabs/filtering_view.cpp
         tabs/date_filter_proxy.cpp
         tabs/search_view.cpp
+        tabs/sql_query.cpp
 )
 
 target_include_directories(rental PRIVATE
