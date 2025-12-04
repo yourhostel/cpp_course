@@ -30,5 +30,6 @@
 ### Qt6 Удосконалення інтерпретатора математичних виразів. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-11-15-qt-practical-11-tree-parser-2)
 ### Qt6 Лабораторна робота №12. Тема: Основні функції базової графіки 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-11-12-qt-drawing)
 ### Тема 14. Порушення прав доступу. Дружні функції 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-11-18-topic-14)
-### Qt6 Лабораторна робота №13. Розробка простого додатка управління БД. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-11-19-qt-practical-13-postgresql)
+### Qt6 Лабораторна робота №13. Розробка простого додатка управління БД 1. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-11-19-qt-practical-13-postgresql)
 ### Тема 15. Шаблони та успадкування. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-11-30-inheritance-templates)
+### Qt6 Лабораторна робота №14. Розробка простого додатка управління БД 2.👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-11-19-qt-practical-13-postgresql/rental)
