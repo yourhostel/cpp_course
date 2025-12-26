@@ -33,3 +33,4 @@
 ### Qt6 Лабораторна робота №13. Розробка простого додатка управління БД 1. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-11-19-qt-practical-13-postgresql)
 ### Тема 15. Шаблони та успадкування. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-11-30-inheritance-templates)
 ### Qt6 Лабораторна робота №14. Розробка простого додатка управління БД 2.👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-11-19-qt-practical-13-postgresql/rental)
+### Semester assessments 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-12-26_semester_assessments)
