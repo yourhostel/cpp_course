@@ -22,3 +22,7 @@
 ---
 
 ![img.png](screenshots/img.png)
+
+---
+
+[Пояснення к тестам](https://github.com/yourhostel/cpp_course/blob/main/III_course/2025-12-26-semester-assessments/tests)
