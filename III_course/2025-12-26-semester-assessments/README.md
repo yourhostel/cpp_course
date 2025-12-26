@@ -4,7 +4,7 @@
 
 1. Створити ієрархію класів "Університет" – "Факультет" – "Кафедра". Створити масив указівників і вивести в циклі дані про об'єкти різних типів.
   - [University.cpp](https://github.com/yourhostel/cpp_course/blob/main/III_course/2025-12-26-semester-assessments/classes/University.cpp) 
-  - [University.h]() 
+  - [University.h](III_course/2025-12-26-semester-assessments) 
   - демо-функція в `main`: `demoUniversityHierarchy(https://github.com/yourhostel/cpp_course/blob/main/III_course/2025-12-26-semester-assessments/classes/University.h)`
 2. Створити ієрархію класів "Фігури обертання" – "Конус". Створити масив указівників і вивести в циклі дані про об'єкти різних типів.
   - [SolidOfRevolution.cpp](https://github.com/yourhostel/cpp_course/blob/main/III_course/2025-12-26-semester-assessments/classes/SolidOfRevolution.cpp)
