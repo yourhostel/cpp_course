@@ -1,18 +1,147 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>Client</class>
- <widget class="QMainWindow" name="clientWindow">
+ <widget class="QMainWindow" name="Client">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>500</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Клієнт чату</string>
   </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_3" stretch="2,7,0">
+    <item>
+     <layout class="QVBoxLayout" name="connectionSettingsLayout">
+      <item>
+       <widget class="QGroupBox" name="groupBox">
+        <property name="title">
+         <string>Налаштування підключення:</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="nickLineEdit"/>
+         </item>
+         <item row="3" column="2">
+          <widget class="QLineEdit" name="portLineEdit">
+           <property name="text">
+            <string>5000</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="3">
+          <widget class="QLineEdit" name="ipLineEdit">
+           <property name="text">
+            <string>127.0.0.1</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="nickLabel">
+           <property name="text">
+            <string>Нікнейм:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3">
+          <widget class="QLabel" name="ipLabel">
+           <property name="text">
+            <string>IP:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QLabel" name="portLabel">
+           <property name="text">
+            <string>Порт:</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="centralLayout" stretch="6,4">
+      <item>
+       <layout class="QVBoxLayout" name="chatLayout">
+        <item>
+         <widget class="QLabel" name="chatLabel">
+          <property name="text">
+           <string>Вікно чата:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPlainTextEdit" name="chatPlainTextEdit"/>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="usersListLayout">
+        <item>
+         <widget class="QPushButton" name="connectButton">
+          <property name="text">
+           <string>З'єднати</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="usersListLabel">
+          <property name="text">
+           <string>Cписок користувачів:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QListWidget" name="usersListWidget">
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SelectionMode::ExtendedSelection</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QGridLayout" name="inputLayout" rowstretch="0,0" columnminimumwidth="0,0">
+      <item row="0" column="0">
+       <widget class="QLabel" name="inputLabel">
+        <property name="text">
+         <string>Повідомлення:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="inputLineEdit"/>
+      </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="sendButton">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset theme="QIcon::ThemeIcon::MailReplyAll"/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="clockLabel">
+        <property name="text">
+         <string>00:00:00</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
  </widget>
  <resources/>
  <connections/>

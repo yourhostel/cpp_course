@@ -1,18 +1,134 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>Server</class>
- <widget class="QMainWindow" name="serverWindow">
+ <widget class="QMainWindow" name="Server">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>700</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Сервер чату</string>
   </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout" stretch="6,4">
+    <item>
+     <layout class="QVBoxLayout" name="mainLayout" stretch="2,8">
+      <item>
+       <layout class="QGridLayout" name="controlLayout">
+        <item row="1" column="0">
+         <widget class="QLabel" name="ipLabel">
+          <property name="text">
+           <string>IP:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="portLabel">
+          <property name="text">
+           <string>Порт:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="ipLineEdit">
+          <property name="text">
+           <string>127.0.0.1 </string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="portLineEdit">
+          <property name="text">
+           <string>5000</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QPushButton" name="stopButton">
+          <property name="text">
+           <string>Зупинити</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="clockLabel">
+          <property name="text">
+           <string>00:00:00</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::TextFormat::AutoText</enum>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QPushButton" name="startButton">
+          <property name="text">
+           <string>Запустити</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="Line" name="line">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="sessionLogLabel">
+          <property name="text">
+           <string>Лог сесії:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="sessionLogTextEdit">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="connectedUsersLayout">
+      <item>
+       <widget class="QLabel" name="connectedUsersLabel">
+        <property name="text">
+         <string>Підключені користувачі</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTextEdit" name="connectedUsersTextEdit">
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
  </widget>
  <resources/>
  <connections/>

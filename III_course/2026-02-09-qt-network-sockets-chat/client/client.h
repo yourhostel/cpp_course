@@ -8,6 +8,9 @@
 
 #include <QMainWindow>
 
+#include <QTcpSocket>
+#include <QTimer>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class Client; }
 QT_END_NAMESPACE
@@ -20,6 +23,25 @@ public:
     explicit Client(QWidget* parent = nullptr);
     ~Client() override;
 
+private slots:
+    void onConnectClicked();
+    void onSendClicked();
+
+    void onConnected();
+    void onDisconnected();
+    void onReadyRead();
+
+    void onClockTick();
+
 private:
+    void appendChat(const QString& text);
+
+    QTcpSocket* socket;
+    QTimer* clockTimer;
+
+    QByteArray rxBuffer;
+
+    QString myNick;
+
     Ui::Client* ui;
 };
