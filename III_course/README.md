@@ -1,5 +1,7 @@
 # III course
 
+## Autumn semester:
+
 ### Тема 1 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-09-04-sqrt)
 ### Тема 3 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-09-11-topic-3)
 - `linkedlist_insert`
@@ -34,3 +36,10 @@
 ### Тема 15. Шаблони та успадкування. 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-11-30-inheritance-templates)
 ### Qt6 Лабораторна робота №14. Розробка простого додатка управління БД 2.👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-11-19-qt-practical-13-postgresql/rental)
 ### Semester assessments 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2025-12-26-semester-assessments)
+
+---
+
+## Spring semester:
+
+### Поліморфізм у мовах програмування 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2026-02-05-polymorphism)
+### Qt6 TCP Client-Server Chat 👉 [🔗](https://github.com/yourhostel/cpp_course/tree/main/III_course/2026-02-09-qt-network-sockets-chat)
