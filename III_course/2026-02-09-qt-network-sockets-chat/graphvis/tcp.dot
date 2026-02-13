@@ -1,0 +1,100 @@
+digraph qt_tcp_one_machine_clean_signals {
+    rankdir=TB;
+    bgcolor="#ffffff";
+    splines=true;
+    nodesep=0.35;
+    ranksep=0.55;
+
+    node [
+    shape=box,
+    style="rounded,filled",
+    fontname="DejaVu Sans",
+    fontsize=11,
+    color="#444444",
+    fillcolor="#f5f5f5",
+    margin="0.18,0.12"
+    ];
+
+    edge [
+    fontname="DejaVu Sans",
+    fontsize=10,
+    color="#444444",
+    arrowsize=0.7
+    ];
+
+    subgraph cluster_machine {
+    label="Linux машина";
+    style="rounded";
+    color="#666666";
+
+    kernel [label="Ядро Linux\nTCP стек\nfd readiness", fillcolor="#fff3cd"];
+
+    subgraph cluster_other_clients {
+    label="Інші клієнти";
+    style="rounded";
+    color="#aaaaaa";
+
+    c2 [label="Клієнт C2\n..."];
+    c3 [label="Клієнт C3\n..."];
+    ck [label="Клієнт Ck\n..."];
+    }
+
+    subgraph cluster_server {
+    label="Сервер процес Qt6";
+    style="rounded";
+    color="#aaaaaa";
+
+    s_tcpserver [label="QTcpServer\nlisten\nnewConnection", fillcolor="#fde9c4"];
+    s_sock1 [label="QTcpSocket C1\nreadyRead\ndisconnected", fillcolor="#fde9c4"];
+    s_loop [label="Event Loop\nQEventLoop", shape=circle, width=1.6, height=1.6, fillcolor="#e3f2fd"];
+    s_handlers [label="Server handlers\nonNewConnection\nonReadyRead\nhandleLine\nbroadcast", fillcolor="#e8f5e9"];
+    s_state [label="Стан\nclients\nrxBuffers", fillcolor="#fff3cd"];
+
+    s_tcpserver -> s_sock1 [label="accept"];
+    s_tcpserver -> s_loop [label="signal newConnection"];
+    s_sock1 -> s_loop [label="signal readyRead"];
+    s_loop -> s_handlers [label="signals slots"];
+    s_handlers -> s_state [label="update"];
+    s_handlers -> s_sock1 [label="write async"];
+    }
+
+    subgraph cluster_client_c1 {
+    label="Клієнт C1 процес Qt6";
+    style="rounded";
+    color="#aaaaaa";
+
+    c1_sock [label="QTcpSocket\nconnectToHost\nwrite\nreadyRead", fillcolor="#cfe2ff"];
+    c1_loop [label="Event Loop\nQEventLoop", shape=circle, width=1.6, height=1.6, fillcolor="#e3f2fd"];
+
+    c1_sig_connected [label="signal connected", fillcolor="#e8f5e9"];
+    c1_sig_ready [label="signal readyRead", fillcolor="#e8f5e9"];
+
+    c1_buf [label="rxBuffer\nsplit by \\n\nparse", fillcolor="#dbeafe"];
+    c1_ui [label="UI\nconnect send\nappendChat", fillcolor="#e2e3e5"];
+
+    c1_ui -> c1_sock [label="async call"];
+    c1_sock -> c1_sig_connected;
+    c1_sock -> c1_sig_ready;
+
+    c1_sig_connected -> c1_loop;
+    c1_sig_ready -> c1_loop;
+
+    c1_loop -> c1_buf [label="slot onReadyRead"];
+    c1_buf -> c1_ui [label="update UI"];
+    }
+    }
+
+    c1_sock -> kernel [label="send"];
+    kernel -> s_tcpserver [label="connect request"];
+
+    kernel -> s_sock1 [label="recv"];
+    s_sock1 -> kernel [label="send"];
+    kernel -> c1_sock [label="recv"];
+
+    c2 -> kernel [label="..."];
+    c3 -> kernel [label="..."];
+    ck -> kernel [label="..."];
+}
+
+
+
