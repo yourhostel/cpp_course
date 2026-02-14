@@ -1,4 +1,4 @@
-# `Qt6 TCP Client-Server Chat`
+# `Qt6 TCP Client-Server Chat` [![YouTube](https://img.shields.io/badge/YouTube-Video-red?logo=youtube&logoColor=white)](https://youtu.be/zU6_6mor4UU)
 (Практичне заняття №1. ЗМ2. ЛЗ1.)
 
 Навчальний проект, що реалізує базову клієнт-серверну систему чату з використанням Qt6 та C++23.
