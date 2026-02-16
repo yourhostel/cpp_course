@@ -1,0 +1,64 @@
+digraph FullArchitecture {
+
+    rankdir=TB;
+    fontname="Arial";
+    fontsize=16;
+
+    node [
+    shape=box,
+    fontname="Arial",
+    fontsize=16,
+    width=1.5,
+    height=0.9,
+    fixedsize=true
+    ];
+    edge [fontname="Arial", fontsize=16];
+
+    splines=curved;
+    nodesep=0.4;
+    ranksep=1.2;
+
+    QObject;
+    QWidget;
+    Components;
+    CounterTab;
+    GridTab;
+
+    QPushButton_Counter [label="QPushButton\nx2"];
+    QLabel_Counter      [label="QLabel\nCounter"];
+
+    QPushButton_Grid    [label="QPushButton\nx2"];
+    QSpinBox_Grid       [label="QSpinBox\nx2"];
+    QTableWidget_Grid   [label="QTableWidget"];
+
+    { rank=min; QObject; }
+    { rank=same; QWidget; }
+    { rank=same; Components; CounterTab; GridTab; }
+    { rank=max; QPushButton_Counter; QLabel_Counter; QPushButton_Grid; QSpinBox_Grid; QTableWidget_Grid; }
+
+    QObject -> QWidget      [dir=both, arrowtail=empty, arrowhead=none];
+    QObject -> CounterTab   [dir=both, arrowtail=empty, arrowhead=none];
+    QObject -> GridTab      [dir=both, arrowtail=empty, arrowhead=none];
+    QWidget -> Components   [dir=both, arrowtail=empty, arrowhead=none];
+
+    QWidget -> QPushButton_Counter [dir=both, arrowtail=empty, arrowhead=none];
+    QWidget -> QLabel_Counter      [dir=both, arrowtail=empty, arrowhead=none];
+    QWidget -> QPushButton_Grid    [dir=both, arrowtail=empty, arrowhead=none];
+    QWidget -> QSpinBox_Grid       [dir=both, arrowtail=empty, arrowhead=none];
+    QWidget -> QTableWidget_Grid   [dir=both, arrowtail=empty, arrowhead=none];
+
+    Components -> CounterTab [label="creates", style="dotted"];
+    Components -> GridTab    [label="creates", style="dotted"];
+
+    QPushButton_Counter -> CounterTab [label="clicked()", style="dashed"];
+    QPushButton_Grid    -> GridTab    [label="clicked()", style="dashed"];
+
+    CounterTab -> QLabel_Counter [label="setText()", style="dashed"];
+}
+
+
+
+
+
+
+
