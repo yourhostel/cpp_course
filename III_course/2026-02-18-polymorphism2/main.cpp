@@ -10,7 +10,7 @@ struct Box
 
 Box prompt()
 {
-    Box b;
+    Box b{};
 
     std::cout << "Enter base: ";
     std::cin >> b.base;
@@ -21,7 +21,7 @@ Box prompt()
     return b;
 }
 
-int main()
+void test1()
 {
     Box b = prompt();
 
@@ -45,9 +45,54 @@ int main()
         std::cout << fast->power_recursive(b.base, b.power) << std::endl;
         std::cout << fast->power(b.base) << std::endl;
     }
-    catch(const std::exception& e)
+    catch (const std::exception& e)
     {
         std::cout << "Error: " << e.what() << std::endl;
     }
+}
+
+void zeroSmaller(int& a, int& b)
+{
+    if(a < b)
+        a = 0;
+    else if(b < a)
+        b = 0;
+}
+
+void test2()
+{
+    std::pair<int,int> cases[] =
+    {
+        {5, 10},
+        {10, 5},
+        {7, 7}
+    };
+
+    for(size_t i = 0; i < std::size(cases); ++i)
+    {
+        int arg1 = cases[i].first;
+        int arg2 = cases[i].second;
+
+        std::cout << std::string(21, '=') << ' '
+                  << i + 1 << ' '
+                  << std::string(21, '=') << "\n\n";
+
+        std::cout << "Before: arg1 = " << arg1
+                  << ", arg2 = " << arg2 << '\n';
+
+        zeroSmaller(arg1, arg2);
+
+        std::cout << "After:  arg1 = " << arg1
+                  << ", arg2 = " << arg2 << "\n\n";
+    }
+}
+
+int main()
+{
+
+    //test1();
+    //test2();
+
+
     return 0;
 }

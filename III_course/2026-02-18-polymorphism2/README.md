@@ -111,3 +111,24 @@ double power_recursive(double n, int p)
 ---
 
 ## Завдання 2
+
+```cpp
+void zeroSmaller(int& a, int& b)
+{
+    if(a < b)
+        a = 0;
+    else if(b < a)
+        b = 0;
+}
+```
+
+---
+
+## Завдання 3
+
+```cpp
+Distance maxDistance(const Distance& d1, const Distance& d2)
+{
+    return (d1 > d2) ? d1 : d2;
+}
+```
