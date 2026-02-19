@@ -5,9 +5,6 @@
 #ifndef CPP_COURSE_POWERSTRATEGY_H
 #define CPP_COURSE_POWERSTRATEGY_H
 
-
-#pragma once
-
 class PowerStrategy
 {
 public:

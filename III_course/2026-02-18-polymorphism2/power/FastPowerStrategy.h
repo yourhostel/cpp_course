@@ -5,7 +5,6 @@
 #ifndef CPP_COURSE_FASTPOWERSTRATEGY_H
 #define CPP_COURSE_FASTPOWERSTRATEGY_H
 
-#pragma once
 #include "PowerStrategy.h"
 
 class FastPowerStrategy : public PowerStrategy
