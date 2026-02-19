@@ -30,38 +30,33 @@ public:
     /*
     Ітеративне лінійне піднесення до степеня.
 
-    Реалізація:
     Послідовне множення основи absP разів.
-    Часова складність O(|p|).
+    Складність O(|p|).
     */
     [[nodiscard]] virtual double power(double n, int p) const;
 
     /*
     Перевантаження для піднесення до квадрату.
-    Еквівалентно power(n, 2).
     */
     [[nodiscard]] double power(double n) const;
 
     /*
     Допоміжна рекурсивна функція для лінійного піднесення.
 
-    Реалізація:
     Рекурсивне множення base на себе absP разів.
-    Глибина рекурсії O(|p|).
+    Складність рекурсії O(|p|).
     */
     [[nodiscard]] virtual double power_recursive_core(double base, int absP) const;
 
     /*
     Рекурсивне лінійне піднесення до степеня з попередньою
     валідацією та нормалізацією.
-
-    Часова складність O(|p|).
+    Використовує power_recursive_core
     */
     [[nodiscard]] virtual double power_recursive(double n, int p) const;
 
     /*
     Перевантаження для рекурсивного піднесення до квадрату.
-    Еквівалентно power_recursive(n, 2).
     */
     [[nodiscard]] double power_recursive(double n) const;
 
