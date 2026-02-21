@@ -2,6 +2,7 @@
 #include "PowerStrategy.h"
 #include "FastPowerStrategy.h"
 
+// ================== Testing for task1 ==================
 struct Box
 {
     double base;
@@ -51,6 +52,7 @@ void test1()
     }
 }
 
+// ================== Testing for task2 ==================
 void zeroSmaller(int& a, int& b)
 {
     if(a < b)
@@ -87,11 +89,39 @@ void test2()
     }
 }
 
+// ================== Testing for task3 ==================
+class Distance
+{
+public:
+    double meters;
+
+    bool operator>(const Distance& other) const
+    {
+        return meters > other.meters;
+    }
+};
+
+Distance maxDistance(const Distance& d1, const Distance& d2)
+{
+    return (d1 > d2) ? d1 : d2;
+}
+
+void test3()
+{
+    Distance d1{10.5};
+    Distance d2{7.2};
+
+    Distance result = maxDistance(d1, d2);
+
+    std::cout << result.meters << std::endl;  // очікуємо 10.5
+}
+
 int main()
 {
 
     //test1();
     //test2();
+    test3();
 
 
     return 0;

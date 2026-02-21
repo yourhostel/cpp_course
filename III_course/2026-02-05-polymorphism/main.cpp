@@ -200,8 +200,8 @@ int main()
 
     // const std::list<double> result = solve_plain(in);
     // const std::list<double> result = solve_ad_hoc_overload(in);
-    // const std::list<double> result = solve_parametric_templates(in);
-    const std::list<double> result = solve_subtype_virtual(in);
+     const std::list<double> result = solve_parametric_templates(in);
+    // const std::list<double> result = solve_subtype_virtual(in);
 
     print_reverse(result);
     return 0;
