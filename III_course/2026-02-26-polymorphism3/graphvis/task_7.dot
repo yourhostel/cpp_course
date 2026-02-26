@@ -1,0 +1,29 @@
+digraph WorkerInheritance {
+    rankdir=TB;
+    node [shape=record, style=filled, fillcolor=lightgreen];
+
+    Worker [label="{Worker\l |
+    name : string\l |
+    salary() : double\l
+    print() : void\l
+    }"];
+
+    HourlyWorker [label="{HourlyWorker\l |
+    hours : double\l
+    rate : double\l |
+    salary() : double\l
+    print() : void\l
+    }"];
+
+    SalariedWorker [label="{SalariedWorker\l |
+    monthly : double\l |
+    salary() : double\l
+    print() : void\l
+    }"];
+
+    { rank=min; Worker; }
+    { rank=max; HourlyWorker; SalariedWorker; }
+
+    HourlyWorker -> Worker [arrowhead=empty];
+    SalariedWorker -> Worker [arrowhead=empty];
+}
