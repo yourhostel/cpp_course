@@ -132,3 +132,18 @@ Distance maxDistance(const Distance& d1, const Distance& d2)
     return (d1 > d2) ? d1 : d2;
 }
 ```
+
+```bash
+pandoc README.md -s \
+  --pdf-engine=xelatex \
+  -V mainfont="DejaVu Serif" \
+  -V monofont="DejaVu Sans Mono" \
+  -V fontsize=12pt \
+  -V linestretch=1.15 \
+  -V geometry:a4paper \
+  -V geometry:margin=20mm \
+  --toc --toc-depth=3 \
+  --number-sections \
+  --metadata title="Поліморфізм 2" \
+  -o README.pdf
+```

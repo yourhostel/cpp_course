@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-
+#include <random>
 class Worker
 {
 protected:
@@ -20,7 +20,7 @@ public:
 
 class HourlyWorker : public Worker
 {
-    double hours;
+    int hours;
     double rate;
 
 public:
@@ -70,12 +70,38 @@ public:
 
 int main()
 {
-    HourlyWorker w1("Іван", 120, 150);
-    SalariedWorker w2("Олена", 25000);
+    //HourlyWorker w1("Іван", 120, 150);
+    // SalariedWorker w2("Олена", 25000);
 
-    Worker* staff[2];
+    std::random_device rd;
+    std::mt19937 gen(rd());
+
+    std::uniform_real_distribution<> hoursDist(0, 21 * 24);
+    // std::uniform_real_distribution<> rateDist(0, 300);
+
+    constexpr double rate1 = 200.00;
+    constexpr double rate2 = 300.00;
+    constexpr double rate3 = 400.00;
+
+    HourlyWorker w1("Іван", hoursDist(gen), rate1);
+    HourlyWorker w2("Петро", hoursDist(gen), rate2);
+    HourlyWorker w3("Микола", hoursDist(gen), rate3);
+    HourlyWorker w4("Андрій", hoursDist(gen), rate1);
+
+
+    // HourlyWorker w1("Іван", hoursDist(gen), rateDist(gen));
+    // HourlyWorker w2("Петро", hoursDist(gen), rateDist(gen));
+    // HourlyWorker w3("Микола", hoursDist(gen), rateDist(gen));
+    // HourlyWorker w4("Андрій", hoursDist(gen), rateDist(gen));
+
+    SalariedWorker w5("Олена", 25000);
+
+    Worker* staff[5];
     staff[0] = &w1;
     staff[1] = &w2;
+    staff[2] = &w3;
+    staff[3] = &w4;
+    staff[4] = &w5;
 
     for (Worker* p : staff)
     {

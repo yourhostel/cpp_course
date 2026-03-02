@@ -196,3 +196,28 @@
 ![1.png](screenshots/1.png)
 
 ![2.png](screenshots/2.png)
+
+
+```bash
+pandoc README.md -s \
+  --pdf-engine=xelatex \
+  -V mainfont="DejaVu Serif" \
+  -V monofont="DejaVu Sans Mono" \
+  -V fontsize=12pt \
+  -V linestretch=1.15 \
+  -V geometry:a4paper \
+  -V geometry:landscape \
+  -V geometry:margin=20mm \
+  --toc --toc-depth=3 \
+  --number-sections \
+  --metadata title="Поліморфізм" \
+  -V header-includes="\usepackage{enumitem}" \
+  -V header-includes="\setlistdepth{9}" \
+  -V header-includes="\renewlist{itemize}{itemize}{9}" \
+  -V header-includes="\renewlist{enumerate}{enumerate}{9}" \
+  -V header-includes="\setlist[itemize]{label=\textbullet}" \
+  -V header-includes="\usepackage{etoolbox}" \
+  -V header-includes="\AtBeginEnvironment{tabular}{\fontsize{9pt}{11pt}\selectfont}" \
+  -V header-includes="\AtBeginEnvironment{longtable}{\fontsize{9pt}{11pt}\selectfont}" \
+  -o README.pdf
+```
