@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
 #include <random>
+
+std::basic_string<char>
+
 class Worker
 {
 protected:
