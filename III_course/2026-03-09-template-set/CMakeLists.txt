@@ -10,7 +10,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_executable(template-set
         main.cpp
-        Set.cpp
+        Set.tpp
         #        <dir>/class.h
         #        <dir>/class.cpp
 )
