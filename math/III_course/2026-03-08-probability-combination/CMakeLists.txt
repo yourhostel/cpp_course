@@ -10,8 +10,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_executable(probability-combination
         main.cpp
-        Validator.h
-        Validator.tpp
+        Probability.cpp
+        Configurations.cpp
 
         # <dir>/class.h
         # <dir>/class.cpp
