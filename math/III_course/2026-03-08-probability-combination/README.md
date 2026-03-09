@@ -240,7 +240,7 @@ $$x_j\ge h$$
 
 І функція що обчислює суму всіх конфігурацій:
 
-$$\text{sum\_probability}(N_1,\ldots,N_k,m,j,h) = \sum_{(x_1,\ldots,x_k)\in \text{configurations}} P(x_1,\ldots,x_k)$$
+$$\text{sumprobability}(N_1,\ldots,N_k,m,j,h) = \sum_{(x_1,\ldots,x_k)\in \text{configurations}} P(x_1,\ldots,x_k)$$
 
 - `sum_probability`
 
