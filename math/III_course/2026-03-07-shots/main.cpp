@@ -1,5 +1,7 @@
+#include <cmath>
 #include <iostream>
 #include <concepts>
+#include <iomanip>
 
 template<std::integral ShotType, std::floating_point ProbType>
 bool validate_input(ShotType shots, ProbType probability)
@@ -53,8 +55,14 @@ void prompt_loop()
 
     const double result = expected_hits(shots, probability);
 
+    // std::cout << std::fixed << std::setprecision(0);
+
+    std::cout << "Очікувана кількість влучень не округлено: "
+      << result << std::endl;
+
     std::cout << "Очікувана кількість влучень: "
-              << result << std::endl;
+     << std::round(result) << std::endl;
+
   }
 }
 
