@@ -77,7 +77,8 @@ double binomial_probability(
     }
 }
 
-int main()
+
+void test()
 {
     constexpr long long n = 100;
     constexpr double p = 0.01;
@@ -93,5 +94,11 @@ int main()
     std::cout << "P(X < 3)  = " << b << '\n';
     std::cout << "P(X > 3)  = " << c << '\n';
     std::cout << "P(X >= 1) = " << d << '\n';
+}
+int main()
+{
+    //test();
+
+
     return 0;
 }
