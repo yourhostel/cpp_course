@@ -68,7 +68,7 @@ $$\binom{n}{r}=\frac{n!}{r!(n-r)!}$$
 
 Підставляємо означення біноміального коефіцієнта:
 
-$$P(x_1,x_2,\dots,x_k)=\frac{\frac{N_1!}{x_1!(N_1-x_1)!}\cdot\frac{N_2!}{x_2!(N_2-x_2)!}\cdots\frac{N_k!}{x_k!(N_k-x_k)!}}{\frac{N!}{m!(N-m)!}}=\frac{\prod_{i=1}^{k}\frac{N_i!}{c_i!(N_i-c_i)!}}{m!\frac{N!}{(N-m)!}}$$
+$$P(x_1,x_2,\dots,x_k)=\frac{\frac{N_1!}{x_1!(N_1-x_1)!}\cdot\frac{N_2!}{x_2!(N_2-x_2)!}\cdots\frac{N_k!}{x_k!(N_k-x_k)!}}{\frac{N!}{m!(N-m)!}}=\frac{\prod_{i=1}^{k}\frac{N_i!}{c_i!(N_i-c_i)!}}{\frac{N!}{m!(N-m)!}}$$
 
 Перевертаємо знаменник:
 
