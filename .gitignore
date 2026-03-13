@@ -56,3 +56,7 @@ cmake-build-debug/
 # Ignore compiled executables
 main
 cmake-build-release/
+
+# generated PDF
+header.tex
+logo.png

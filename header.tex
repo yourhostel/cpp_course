@@ -1,0 +1,65 @@
+\usepackage{graphicx}
+\usepackage{eso-pic}
+\usepackage{fancyhdr}
+\usepackage{etoolbox}
+\usepackage{titling}
+
+% Логотип
+\AddToShipoutPictureBG*{%
+  \put(\LenToUnit{\paperwidth-4.5cm},\LenToUnit{\paperheight-3.5cm}){%
+    \includegraphics[width=3.5cm]{../../../logo.png}%
+  }%
+}
+
+% Центрування титулу по вертикалі
+\pretitle{\begin{center}\vfill}
+\posttitle{\par\end{center}}
+\preauthor{\begin{center}}
+\postauthor{\par\end{center}}
+\predate{\begin{center}}
+\postdate{\par\vfill\end{center}}
+
+% Розрив сторінки після титулу
+\apptocmd{\maketitle}{\clearpage}{}{}
+
+% Колонтитули
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[L]{© ЗВО «МНТУ» Тищенко С.С., Київ-2026}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Plain без колонтитулів
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+% Назва змісту
+\renewcommand{\contentsname}{Зміст}
+
+\usepackage{etoolbox}
+
+\apptocmd{\tableofcontents}{\clearpage}{}{}
+
+% Стиль метаданих
+\pretitle{\begin{center}\vfill\Huge\bfseries}
+\posttitle{\par\end{center}\vspace{1em}}
+
+\preauthor{\begin{center}\large}
+\postauthor{\par\end{center}\vspace{0.5em}}
+
+\predate{\begin{center}\normalsize}
+\postdate{\par\vfill\end{center}}
+
+% Обробка підписів рисунків
+\renewcommand{\figurename}{Рис.}
+\usepackage{caption}
+\captionsetup[figure]{labelsep=space}
+
+% фіксація рисунків на своїх місцях
+\usepackage{float}
+% H означає ставити рисунок саме тут.
+\floatplacement{figure}{H}
