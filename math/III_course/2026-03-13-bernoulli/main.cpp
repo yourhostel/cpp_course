@@ -95,6 +95,7 @@ void test()
     std::cout << "P(X > 3)  = " << c << '\n';
     std::cout << "P(X >= 1) = " << d << '\n';
 }
+
 int main()
 {
     //test();
