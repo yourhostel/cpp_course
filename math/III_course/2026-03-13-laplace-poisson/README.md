@@ -118,7 +118,7 @@ $$\Phi(x)=\int_{0}^{x}\frac{1}{\sqrt{2\pi}}e^{-t^{2}/2}\,dt$$
 
 яка виражається через функцію помилки так:
 
-$$\Phi(x)=\frac{1}{2}\,\operatorname{erf} \left(\frac{x}{\sqrt{2}}\right)$$
+$$\Phi(x)=\frac{1}{2}\text{erf}\left(\frac{x}{\sqrt{2}}\right)$$
 
 ```cpp
 double laplace_phi(double x)
