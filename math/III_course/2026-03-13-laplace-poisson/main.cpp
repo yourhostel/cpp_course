@@ -84,9 +84,23 @@ bool validator(long long n, long long k, double p)
 {
     bool ok = true;
 
+    if (n > 1000000)
+    {
+        std::cout << RED << "Помилка: " << RESET
+                  << "n занадто велике для прямого обчислення у типі double\n";
+        ok = false;
+    }
+
     if (n <= 0)
     {
         std::cout << RED << "Помилка: " << RESET << "n повинно бути додатним цілим числом\n";
+        ok = false;
+    }
+
+    if (k > 1000)
+    {
+        std::cout << RED << "Помилка: " << RESET
+                  << "k занадто велике для обчислення факторіала у типі double\n";
         ok = false;
     }
 
@@ -121,30 +135,32 @@ bool validator(long long n, long long k, double p)
     return ok;
 }
 
-bool prompt_out(long long& n, long long& k, double& p)
+int prompt_out(long long& n, long long& k, double& p)
 {
     std::string input;
 
     std::cout << "Введіть загальну кількість випробувань n = ";
     std::cin >> input;
     if (input == "q")
-        return false;
+        return 2;
     n = std::stoll(input);
 
     std::cout << "Введіть ймовірність p = ";
     std::cin >> input;
     if (input == "q")
-        return false;
+        return 2;
     p = std::stod(input);
 
     std::cout << "Введіть очікувану кількість успіхів k = ";
     std::cin >> input;
     if (input == "q")
-        return false;
+        return 2;
     k = std::stoll(input);
 
+    if (validator(n, k, p))
+        return 1;
 
-    return validator(n, k, p);
+    return 0;
 }
 
 void prompt()
@@ -155,7 +171,12 @@ void prompt()
 
     while (true)
     {
-        if (!prompt_out(n, k, p))
+        int check = prompt_out(n, k, p);
+
+        if (check == 2)
+            break;
+
+        if (check == 0)
             continue;
 
         const double q = 1 - p;
@@ -175,10 +196,9 @@ void prompt()
     }
 }
 
-[[noreturn]] int main()
+int main()
 {
     prompt();
-
     // laplace_integral_phi();
 
 }
