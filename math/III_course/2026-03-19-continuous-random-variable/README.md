@@ -135,7 +135,7 @@ $$\sigma=\sqrt{\mathrm{Var}(X)}$$
 
 Результат виконання:
 
-![Завдання 8.2](screenshots/img.png)
+![Завдання 8.2](screenshots/img_0.png)
 
 ![Розподіл F(x)](screenshots/img_1.png)
 

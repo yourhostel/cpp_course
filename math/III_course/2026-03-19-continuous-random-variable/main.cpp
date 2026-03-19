@@ -15,8 +15,13 @@ constexpr auto RESET = "\033[0m";
 
 double probability(const distribution_case& c)
 {
-    return c.distribution_function(c.beta) -
-           c.distribution_function(c.alpha);
+    auto F = [&](double x) -> double {
+        if (x <= c.a) return 0.0;
+        if (x <= c.b) return c.distribution_function(x);
+        return 1.0;
+    };
+
+    return F(c.beta) - F(c.alpha);
 }
 
 void plots(const DistributionRepository& repository, const int task)
