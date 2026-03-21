@@ -13,7 +13,7 @@ public:
 
     [[nodiscard]] double density(double x) const;
 
-    static double standard_density(double x);
+    static double standard_normal_density(double x);
     static double laplace_phi(double x);
 
     void plot_density_with_interval(

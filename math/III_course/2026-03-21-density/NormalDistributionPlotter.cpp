@@ -15,7 +15,7 @@ NormalDistributionPlotter::NormalDistributionPlotter(const double mean, const do
 }
 
 // Щільність нормального розподілу N (0, 1)
-double NormalDistributionPlotter::standard_density(const double x)
+double NormalDistributionPlotter::standard_normal_density(const double x)
 {
     return (1.0 / std::sqrt(2.0 * std::numbers::pi_v<double>)) * std::exp(-x * x / 2.0);
 }
@@ -23,10 +23,10 @@ double NormalDistributionPlotter::standard_density(const double x)
 // Щільність нормального розподілу N (a, sigma^2)
 double NormalDistributionPlotter::density(const double x) const
 {
-    return (1.0 / sigma_) * standard_density((x - mean_) / sigma_);
+    return (1.0 / sigma_) * standard_normal_density((x - mean_) / sigma_);
 }
 
-// Таблична функція Лапласа
+// Таблична функція Лапласа (не CDF)
 double NormalDistributionPlotter::laplace_phi(const double x)
 {
     return 0.5 * std::erf(x / std::sqrt(2.0));
