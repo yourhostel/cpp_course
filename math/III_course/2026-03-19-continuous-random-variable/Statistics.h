@@ -53,6 +53,13 @@
  */
 class Statistics {
 public:
+    Statistics() = delete;
+    ~Statistics() = delete;
+
+    Statistics(const Statistics&) = delete;
+    Statistics& operator=(const Statistics&) = delete;
+
+public:
     /**
      * Обчислює математичне сподівання неперервної випадкової величини
      * за її щільністю розподілу на відрізку [a, b].

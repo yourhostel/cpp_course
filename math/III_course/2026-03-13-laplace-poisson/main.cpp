@@ -37,7 +37,7 @@ double laplace_x(const long long n,
 // Щільність нормального розподілу
 double laplace_local_phi(const double x)
 {
-    return (1.0 / std::sqrt(2.0 * M_PI)) * std::exp(-x * x / 2.0);
+    return (1.0 / std::sqrt(2.0 * std::numbers::pi_v<double>)) * std::exp(-x * x / 2.0);
 }
 
 void laplace_local(const long long n,
@@ -198,7 +198,6 @@ void prompt()
 
 int main()
 {
-    prompt();
-    // laplace_integral_phi();
-
+    // prompt();
+    laplace_integral_phi();
 }
