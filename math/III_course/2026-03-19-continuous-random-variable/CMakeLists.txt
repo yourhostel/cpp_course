@@ -11,8 +11,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_executable(continuous-random-variable
         main.cpp
         DistributionRepository.cpp
-        DistributionStatistics.tpp
-        DistributionStatistics.h
+        Statistics.tpp
+        Statistics.h
         # ../2026-03-08-probability-combination/Probability.cpp
 
         # <dir>/class.h

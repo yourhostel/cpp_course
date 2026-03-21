@@ -2,7 +2,8 @@
 
 Закон розподілу неперервної випадкової величини
 
-Неперервна випадкова величина
+ТІМС-ЛПР-08+
+
 
 # Завдання 8
 
@@ -34,7 +35,7 @@ $P(\alpha \leq X \leq \beta) = F(\beta) - F(\alpha)$
 Для цього використовується функція:
 
 ```cpp
-double probability(const distribution_case& c)
+double probability(const distribution_case& c);
 ```
 
 `distribution_case` тримає параметри конкретної задачі:
@@ -80,7 +81,7 @@ void plot_density_function(std::size_t variant_number) const;
 Формула чисельного інтегрування за методом Сімпсона.
 
 ```cpp
-double DistributionStatistics::integrate(Function f, double a, double b)
+double DistributionStatistics::integrate(Function f, double a, double b);
 ```
 
 Інтервал $[a,b]$ розбивається на $n$ рівних частин.
@@ -96,7 +97,7 @@ $$h=\frac{b-a}{n}, \quad x_k=a+kh$$
 ## Математичне сподівання
 
 ```cpp
-double DistributionStatistics::expectation(Function f, double a, double b)
+double DistributionStatistics::expectation(Function f, double a, double b);
 ```
 
 Cереднє значення випадкової величини. Воно показує, навколо якого значення зосереджена випадкова величина при великій кількості спостережень.
@@ -106,7 +107,7 @@ $$\mathbb{E}[X]=\int_a^b x f(x)\,dx$$
 ## Математичне сподівання квадрата
 
 ```cpp
-double DistributionStatistics::second_moment(Function f, double a, double b)
+double DistributionStatistics::second_moment(Function f, double a, double b);
 ```
 
 Допоміжна величина, яка характеризує розподіл значень з урахуванням їх квадрата. Вона використовується для обчислення дисперсії.
@@ -116,7 +117,7 @@ $$\mathbb{E}[X^2]=\int_a^b x^2 f(x)\,dx$$
 ## Дисперсія
 
 ```cpp
-double DistributionStatistics::variance(Function f, double a, double b)
+double DistributionStatistics::variance(Function f, double a, double b);
 ```
 
 Міра розкиду значень випадкової величини відносно її середнього. Якщо дисперсія мала, значення зосереджені близько до математичного сподівання.
@@ -126,7 +127,7 @@ $$\mathrm{Var}(X)=\mathbb{E}[X^2]-(\mathbb{E}[X])^2$$
 ## Середнє квадратичне відхилення
 
 ```cpp
-ouble DistributionStatistics::standard_deviation(Function f, double a, double b)
+double DistributionStatistics::standard_deviation(Function f, double a, double b);
 ```
 
 Це корінь із дисперсії. Показує типове відхилення значень від середнього.
@@ -143,6 +144,114 @@ $$\sigma=\sqrt{\mathrm{Var}(X)}$$
 
 ---
 
+# Додаток
+
+Якщо є конкретна вибірка значень $x_1, ... , x_n$, формули описані нижче застосовуються напряму без інтегрування.
+Це класичний підхід математичної статистики. Інтегрування використовується тоді, коли є лише аналітична щільність розподілу $f(x)$ або теоретична модель випадкової величини.
+Тоді характеристики визначаються через інтеграли, наприклад $E[X]= \int xf(x)dx$.
+Якщо ж дані емпіричні, інтегрування є зайвим і навіть гіршим за точністю підходом, оскільки додає чисельну похибку.
+
+## Вибіркове середнє
+
+Обчислює вибіркове середнє для емпіричної вибірки як оцінку математичного сподівання випадкової величини.
+Перевантажує метод математичного сподівання з інтегруванням
+Повертає значення вибіркового середнього.
+
+```cpp
+static double expectation(const Container& data);
+```
+
+$$\bar{x}=\frac{1}{n}\sum_{i=1}^{n}x_i$$
+
+## Математичне сподівання квадрата:
+
+Обчислює середнє значення квадратів елементів емпіричної вибірки.
+Перевантажує метод другого початкового моменту неперервної випадкової величини.
+Повертає значення середнього квадрата.
+
+```cpp
+static double second_moment(const Container& data);
+```
+
+$$\overline{x^2}=\frac{1}{n}\sum_{i=1}^{n}x_i^2$$
+
+## Дисперсія:
+
+Обчислює емпіричну дисперсію вибірки. Перевантажує дисперсію неперервної випадкової величини.
+
+```cpp
+static double variance(const Container& data);
+```
+
+$$s^2=\overline{x^2}-\bar{x}^2$$
+
+Або еквівалентно:
+Обчислює емпіричну дисперсію вибірки за стабільною формулою. Ця реалізація є більш чисельно стабільною при великих значеннях.
+
+```cpp
+static double variance_stable(const Container& data);
+```
+
+$$s^2=\frac{1}{n}\sum_{i=1}^{n}(x_i-\bar{x})^2$$
+
+## Виправлена дисперсія:
+
+Обчислює виправлену дисперсію емпіричної вибірки.
+
+```cpp
+static double variance_unbiased(const Container& data);
+```
+
+$$s^2=\frac{1}{n-1}\sum_{i=1}^{n}(x_i-\bar{x})^2$$
+
+## Середнє квадратичне відхилення:
+
+Обчислює емпіричне середнє квадратичне відхилення.
+
+```cpp
+static double standard_deviation(const Container& data);
+```
+
+$$s=\sqrt{s^2}$$
+
+## Виправлене середнє квадратичне відхилення:
+
+```cpp
+static double standard_deviation_unbiased(const Container& data);
+```
+
+$$s=\sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(x_i-\bar{x})^2}$$
+
+де 
+
+$$\bar{x}=\frac{1}{n}\sum_{i=1}^{n}x_i$$
+
+# Виправлення:
+
+| Дата       | Причина                                            | що виправлено                                                                                                                             |
+|------------|----------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| 2026-03-21 | Оновлення класу `DistributionStatistics`           | Додано методи для емперичних даних: Математичне сподівання для вибірки, Математичне сподівання квадрата, Дисперсія, Виправлена дисперсія, |
+| 2026-03-21 | Задача на оновлення класу `DistributionStatistics` | Додати окремими класами `ParameterEstimation` для методу максимальної правдоподібності та `StatisticalTests` для критерію Фішера.         |
+
+
+> `ParameterEstimation`
+> ```cpp
+> template<typename Container>
+> static double mle_mean(const Container& data);
+> 
+> template<typename Container>
+> static double mle_variance(const Container& data);
+> 
+> template<typename Container>
+> static double mle_stddev(const Container& data);
+> ```
+
+> `StatisticalTests`
+> ```cpp
+> template<typename Container1, typename Container2>
+> static double fisher_statistic(const Container1& data1, const Container2& data2);
+> ```
+
  -V geometry:landscape \
 ```bash
 pandoc README.md -s \
@@ -156,7 +265,7 @@ pandoc README.md -s \
 --toc-depth=3 \
 --number-sections \
 --metadata title="Теорія ймовірностей та математична статистика" \
---metadata subtitle="Закон розподілу дискретної випадкової величини. ТІМС-ЛПР-06+" \
+--metadata subtitle="Закон розподілу неперервної випадкової величини. ТІМС-ЛПР-08+" \
 --metadata author="Тищенко Сергій, alk-43" \
 --metadata date="2026-03-19" \
 -H ../../../header.tex \

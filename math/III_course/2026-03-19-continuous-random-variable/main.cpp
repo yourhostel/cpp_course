@@ -5,7 +5,7 @@
 #include <iostream>
 
 #include "DistributionRepository.h"
-#include "DistributionStatistics.h"
+#include "Statistics.h"
 
 constexpr auto RED     = "\033[31m";
 constexpr auto GREEN   = "\033[32m";
@@ -34,19 +34,19 @@ void statistics(const DistributionRepository& repository, const int task)
 {
     const distribution_case& c = repository.get_case(task);
 
-    const double ex = DistributionStatistics::expectation(
+    const double ex = Statistics::expectation(
         c.density_function,
         c.a,
         c.b
     );
 
-    const double var = DistributionStatistics::variance(
+    const double var = Statistics::variance(
         c.density_function,
         c.a,
         c.b
     );
 
-    const double sigma = DistributionStatistics::standard_deviation(
+    const double sigma = Statistics::standard_deviation(
         c.density_function,
         c.a,
         c.b
