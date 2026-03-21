@@ -2,7 +2,6 @@
 // Created by tysser on 21.03.26.
 //
 
-#pragma once
 #include "NormalDistributionPlotter.h"
 #include <cmath>
 #include <cstdio>
