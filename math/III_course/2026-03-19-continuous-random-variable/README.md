@@ -74,14 +74,14 @@ void plot_distribution_function(std::size_t variant_number) const;
 void plot_density_function(std::size_t variant_number) const;
 ```
 
-Інші значення вираховуються методами класу `DistributionStatistics`
+Інші значення вираховуються методами класу `Statistics`
 
-# Клас DistributionStatistics
+# Клас Statistics
 
 Формула чисельного інтегрування за методом Сімпсона.
 
 ```cpp
-double DistributionStatistics::integrate(Function f, double a, double b);
+double Statistics::integrate(Function f, double a, double b);
 ```
 
 Інтервал $[a,b]$ розбивається на $n$ рівних частин.
@@ -97,7 +97,7 @@ $$h=\frac{b-a}{n}, \quad x_k=a+kh$$
 ## Математичне сподівання
 
 ```cpp
-double DistributionStatistics::expectation(Function f, double a, double b);
+double Statistics::expectation(Function f, double a, double b);
 ```
 
 Cереднє значення випадкової величини. Воно показує, навколо якого значення зосереджена випадкова величина при великій кількості спостережень.
@@ -107,7 +107,7 @@ $$\mathbb{E}[X]=\int_a^b x f(x)\,dx$$
 ## Математичне сподівання квадрата
 
 ```cpp
-double DistributionStatistics::second_moment(Function f, double a, double b);
+double Statistics::second_moment(Function f, double a, double b);
 ```
 
 Допоміжна величина, яка характеризує розподіл значень з урахуванням їх квадрата. Вона використовується для обчислення дисперсії.
@@ -117,7 +117,7 @@ $$\mathbb{E}[X^2]=\int_a^b x^2 f(x)\,dx$$
 ## Дисперсія
 
 ```cpp
-double DistributionStatistics::variance(Function f, double a, double b);
+double Statistics::variance(Function f, double a, double b);
 ```
 
 Міра розкиду значень випадкової величини відносно її середнього. Якщо дисперсія мала, значення зосереджені близько до математичного сподівання.
@@ -127,7 +127,7 @@ $$\mathrm{Var}(X)=\mathbb{E}[X^2]-(\mathbb{E}[X])^2$$
 ## Середнє квадратичне відхилення
 
 ```cpp
-double DistributionStatistics::standard_deviation(Function f, double a, double b);
+double Statistics::standard_deviation(Function f, double a, double b);
 ```
 
 Це корінь із дисперсії. Показує типове відхилення значень від середнього.
@@ -194,7 +194,9 @@ static double variance_stable(const Container& data);
 
 $$s^2=\frac{1}{n}\sum_{i=1}^{n}(x_i-\bar{x})^2$$
 
-## Виправлена дисперсія:
+## Виправлена дисперсія (Незміщена оцінка дисперсії.): 
+
+
 
 Обчислює виправлену дисперсію емпіричної вибірки.
 
