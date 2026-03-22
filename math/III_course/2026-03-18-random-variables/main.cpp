@@ -139,8 +139,6 @@ std::string center(const std::string& s, int width)
     return std::string(left, ' ') + s + std::string(right, ' ');
 }
 
-#include <iostream>
-#include <iomanip>
 #include <sstream>
 
 void print_distribution_table(const std::string& number,

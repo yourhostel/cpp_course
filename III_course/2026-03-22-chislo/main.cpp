@@ -2,6 +2,7 @@
 // Created by tysser on 22.03.26.
 //
 
+#include <complex>
 #include <iostream>
 #include "Chislo.h"
 #include "Matrix.h"
