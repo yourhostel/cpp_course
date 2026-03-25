@@ -1,5 +1,5 @@
-# III_course/2026-03-22-finder/CMakeLists.txt
-project(finder)
+# III_course/2026-03-25-sparse/CMakeLists.txt
+project(sparse)
 
 set(CMAKE_CXX_STANDARD 23)
 # Якщо компілятор не підтримує вказаний стандарт C++(тут 23), збірка має впасти.
@@ -8,14 +8,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Код збирається однаково в GCC, Clang, MSVC.
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_executable(finder
+add_executable(sparse
         main.cpp
-        Finder.tpp
+        SparseItem.tpp
+        SparseArray.tpp
         #        <dir>/class.h
         #        <dir>/class.cpp
 )
 
-target_include_directories(finder PRIVATE
+target_include_directories(sparse PRIVATE
         #        ${CMAKE_CURRENT_SOURCE_DIR}
         #        ${CMAKE_CURRENT_SOURCE_DIR}/<dir>
 )
