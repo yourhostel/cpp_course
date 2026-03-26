@@ -1,7 +1,7 @@
 // CsvToHostelStayMapper.h
 #pragma once
 
-#include "../HostelStay.h"
+#include "HostelStay.h"
 #include <string>
 #include <vector>
 
@@ -90,4 +90,4 @@ private:
     static int calculateStayDays(const std::string& checkinDate, const std::string& checkoutDate);
 };
 
-#include "../CsvToHostelStayMapper.tpp"
+#include "CsvToHostelStayMapper.tpp"

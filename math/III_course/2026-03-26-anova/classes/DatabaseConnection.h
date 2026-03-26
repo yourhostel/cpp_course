@@ -3,7 +3,7 @@
 
 #include <string>
 
-struct PGconn;
+#include <libpq-fe.h>
 
 template<typename NativeConnection = PGconn>
 class DatabaseConnection
@@ -18,4 +18,4 @@ private:
     NativeConnection* connection_;
 };
 
-#include "../DatabaseConnection.tpp"
+#include "DatabaseConnection.tpp"

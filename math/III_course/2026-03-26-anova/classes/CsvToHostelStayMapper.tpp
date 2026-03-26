@@ -17,9 +17,10 @@ std::vector<Record> CsvToHostelStayMapper<Record>::read(const std::string& fileP
     std::string line;
 
     std::getline(file, line);
-
+    int rowIndex = 0;
     while (std::getline(file, line))
     {
+        ++rowIndex;
         if (line.empty())
         {
             continue;
@@ -32,11 +33,18 @@ std::vector<Record> CsvToHostelStayMapper<Record>::read(const std::string& fileP
             continue;
         }
 
-        Record record = mapRow(fields);
-
-        if (record.stayDays == 1 || record.stayDays == 7 || record.stayDays == 28)
+        try
         {
-            result.push_back(record);
+            Record record = mapRow(fields);
+
+            if (record.stayDays == 1 || record.stayDays == 7 || record.stayDays == 28)
+            {
+                result.push_back(record);
+            }
+        }
+        catch (const std::exception& ex)
+        {
+            std::cout << "row " << rowIndex << " parse error: " << ex.what() << '\n';
         }
     }
 
@@ -161,6 +169,13 @@ double CsvToHostelStayMapper<Record>::normalizePrice(const std::string& value)
         {
             clean += static_cast<char>(ch);
         }
+    }
+
+    clean = trim(clean);
+
+    if (clean.empty())
+    {
+        throw std::invalid_argument("price is empty");
     }
 
     return std::stod(clean);

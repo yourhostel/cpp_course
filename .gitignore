@@ -42,7 +42,6 @@ ConsoleA.35858a34/
 *.filters
 *.vcxproj.user
 
-*.obj
 *.pdb
 *.ilk
 *.idb
@@ -61,3 +60,9 @@ cmake-build-release/
 header.tex
 logo.png
 README.pdf
+
+# data
+*.csv
+
+Env*
+**/Env*

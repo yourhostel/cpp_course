@@ -17,4 +17,4 @@ private:
     DatabaseConnection<Connection> connection_;
 };
 
-#include "../HostelStayRepository.tpp"
+#include "HostelStayRepository.tpp"
