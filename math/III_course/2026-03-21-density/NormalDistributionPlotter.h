@@ -16,6 +16,13 @@ public:
     static double standard_normal_density(double x);
     static double laplace_phi(double x);
 
+    static void validate_plot_arguments(
+    double x_min,
+    double x_max,
+    double interval_left,
+    double interval_right
+    );
+
     void plot_density_with_interval(
     double x_min,
     double x_max,

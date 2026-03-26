@@ -8,6 +8,22 @@
 #include <stdexcept>
 #include <string>
 
+void NormalDistributionPlotter::validate_plot_arguments(
+    const double x_min,
+    const double x_max,
+    const double interval_left,
+    const double interval_right
+)
+{
+    const char* msg =
+        (x_min >= x_max) ? "x_min має бути меншим за x_max" :
+        (interval_left >= interval_right) ? "interval_left має бути меншим за interval_right" :
+        (interval_left < x_min || interval_right > x_max) ? "інтервал має знаходитись у межах діапазону побудови" :
+        nullptr;
+
+    msg ? throw std::invalid_argument(msg) : void();
+}
+
 NormalDistributionPlotter::NormalDistributionPlotter(const double mean, const double sigma) : mean_(mean), sigma_(sigma)
 {
         if (sigma_ <= 0.0)throw std::invalid_argument("sigma має бути додатним");
@@ -39,20 +55,7 @@ void NormalDistributionPlotter::plot_density_with_interval(
     const std::string& title
 ) const
 {
-    if (x_min >= x_max)
-    {
-        throw std::invalid_argument("x_min має бути меншим за x_max");
-    }
-
-    if (interval_left >= interval_right)
-    {
-        throw std::invalid_argument("interval_left має бути меншим за interval_right");
-    }
-
-    if (interval_left < x_min || interval_right > x_max)
-    {
-        throw std::invalid_argument("інтервал має знаходитись у межах діапазону побудови");
-    }
+    validate_plot_arguments(x_min, x_max, interval_left, interval_right);
 
     FILE* gp = popen("gnuplot -persistent", "w");
     if (!gp) {

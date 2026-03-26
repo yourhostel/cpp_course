@@ -141,4 +141,22 @@
 
 ---
 
+```bash
+pandoc README.md -s \
+  --pdf-engine=xelatex \
+  -V mainfont="DejaVu Serif" \
+  -V monofont="DejaVu Sans Mono" \
+  -V fontsize=12pt \
+  -V linestretch=1.15 \
+  -V geometry:a4paper \
+  -V geometry:margin=20mm \
+  --toc --toc-depth=3 \
+  --number-sections \
+  --metadata title="Об'єктно орієнтоване програмування" \
+  --metadata subtitle="Практичне заняття №6. ЗМ3. ЛЗ7." \
+  --metadata author="Тищенко Сергій, alk-43" \
+  --metadata date="2026-03-26" \
+  -H ../../header.tex \
+  -o README.pdf
+```
 
