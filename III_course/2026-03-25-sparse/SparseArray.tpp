@@ -10,7 +10,7 @@
 #include "SparseItem.h"
 
 template<typename T>
-typename std::list<SparseItem<T>>::iterator SparseArray<T>::find_item(std::size_t index)
+std::list<SparseItem<T>>::iterator SparseArray<T>::find_item(std::size_t index)
 {
     return std::find_if(data_.begin(), data_.end(),
         [index](const SparseItem<T>& item)
@@ -20,7 +20,7 @@ typename std::list<SparseItem<T>>::iterator SparseArray<T>::find_item(std::size_
 }
 
 template<typename T>
-typename std::list<SparseItem<T>>::const_iterator SparseArray<T>::find_item(std::size_t index) const
+std::list<SparseItem<T>>::const_iterator SparseArray<T>::find_item(std::size_t index) const
 {
     return std::find_if(data_.cbegin(), data_.cend(),
         [index](const SparseItem<T>& item)

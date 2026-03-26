@@ -61,5 +61,31 @@
 
 % фіксація рисунків на своїх місцях
 \usepackage{float}
+
 % H означає ставити рисунок саме тут.
 \floatplacement{figure}{H}
+
+% Додати стилі для посилань
+\usepackage{xcolor}
+\usepackage[normalem]{ulem}
+\usepackage{xstring}
+
+\AtBeginDocument{%
+  \let\oldhref\href
+  \renewcommand{\href}[2]{%
+    \IfSubStr{\detokenize{#2}}{\string\includegraphics}{%
+      \oldhref{#1}{#2}%
+    }{%
+      \oldhref{#1}{\textcolor{blue}{\uline{#2}}}%
+    }%
+  }%
+}
+
+% Додати стилі для inline code
+\definecolor{inlinecodebg}{HTML}{F5F5F5}
+\definecolor{inlinecodefg}{HTML}{1B5E20}
+
+\let\oldtexttt\texttt
+\renewcommand{\texttt}[1]{%
+  \colorbox{inlinecodebg}{\oldtexttt{\textcolor{inlinecodefg}{\bfseries #1}}}%
+}
