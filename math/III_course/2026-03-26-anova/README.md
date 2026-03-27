@@ -14,13 +14,13 @@
 Залежна змінна:
 
 $$
-y = \text{revenue\_per\_day} = \frac{price}{\text{stay_days}}
+y = \text{revenuePerDay} = \frac{price}{\text{stayDays}}
 $$
 
 Фактор:
 
 $$
-g \in \{ \texttt{1_day},\ \texttt{7_days},\ \texttt{28_days}\}
+g \in \left \{ 1Dday,\ 7Ddays,\ 28Days \right \}
 $$
 
 ---
@@ -68,22 +68,22 @@ $$
 Обчислення тривалості:
 
 $$
-\text{stay_days} = \text{date_out} - \text{date_in}
+stayDays = dateOut - dateIn
 $$
 
 Фільтрація:
 
 $$
-stay\_days = 1 \quad \text{або} \quad 7 \quad \text{або} \quad 28
+stayDays = 1 \quad \text{або} \quad 7 \quad \text{або} \quad 28
 $$
 
 ---
 
 ## Формування вибірок
 
-- Група 1: всі значення $\quad \text{revenue_per_day} \quad$ при $\quad \text{stay_days} = 1$
-- Група 2: всі значення $\quad \text{revenue_per_day} \quad$ при $\quad \text{stay_days} = 7$
-- Група 3: всі значення $\quad \text{revenue_per_day} \quad$ при $\quad \text{stay_days} = 28$
+- Група 1: всі значення $\quad revenuePerDay \quad$ при $\quad stayDays = 1$
+- Група 2: всі значення $\quad revenuePerDay \quad$ при $\quad stayDays = 7$
+- Група 3: всі значення $\quad revenuePerDay \quad$ при $\quad stayDays = 28$
 
 ---
 
@@ -137,23 +137,46 @@ $$
 Якщо різниця статистично значуща, робиться висновок, що дохід за добу залежить від тривалості проживання.
 
 
-```bash
+## Docker:
 
-## Перезапуск
-```bash
-docker rm -f nova-db
-
-```
-```bash
-docker volume rm 2026-03-26-anova_data
-```
-
+- Запуск контейнера
 ```bash
 docker compose up -d
 ```
 
+- Зупинка та повне очищення середовища
+
 ```bash
 docker compose down -v
+```
+
+- Примусово видаляє контейнер бази даних
+
+```bash
+docker rm -f nova-db
+```
+
+- Перегляд усіх `volume`
+
+```bash
+docker volume ls
+```
+
+- Детальна інформація про конкретний `volume`
+
+```bash
+docker volume inspect 2026-03-26-anova_data
+```
+
+- Перегляд використання `volume` контейнерами
+
+```bash
+docker ps -a --filter volume=2026-03-26-anova_data
+```
+
+-  Ручне видалення `volume`
+```bash
+docker volume rm 2026-03-26-anova_data
 ```
 
 
