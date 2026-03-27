@@ -156,7 +156,7 @@ int main()
 {
     HostelStayRepository<> repository(EnvAnova::connectionString);
 
-    // read_normalization_and_save_to_db(repository);
+    //read_normalization_and_save_to_db(repository);
 
     stats(repository);
 
