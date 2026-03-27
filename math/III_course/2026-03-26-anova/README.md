@@ -20,7 +20,7 @@ $$
 Фактор:
 
 $$
-g \in \left \{ 1Dday,\ 7Ddays,\ 28Days \right \}
+g \in \{1Dday,\ 7Ddays,\ 28Days\}
 $$
 
 ---
