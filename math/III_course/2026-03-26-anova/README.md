@@ -20,7 +20,7 @@ $$
 Фактор:
 
 $$
-g \in \{ \text{1\_day},\ \text{7\_days},\ \text{28\_days}\}
+g \in \{ \mathrm{1\_day},\ \mathrm{7\_days},\ \mathrm{28\_days}\}
 $$
 
 ---
