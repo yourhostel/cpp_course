@@ -14,13 +14,13 @@
 Залежна змінна:
 
 $$
-y = revenue\_per\_day = \frac{price}{stay\_days}
+y = revenue\_per\_day = \frac{price}{\text{stay_days}}
 $$
 
 Фактор:
 
 $$
-g \in \{1\_day,\ 7\_days,\ 28\_days\}
+g \in \{ \text{1_day},\ \text{7_days},\ \text{28_days}\}
 $$
 
 ---
@@ -68,7 +68,7 @@ $$
 Обчислення тривалості:
 
 $$
-stay\_days = date\_out - date\_in
+\text{stay_days} = \text{date_out} - \text{date_in}
 $$
 
 Фільтрація:
@@ -81,9 +81,9 @@ $$
 
 ## Формування вибірок
 
-- Група 1: всі значення $revenue\_per\_day$ при $stay\_days = 1$
-- Група 2: всі значення $revenue\_per\_day$ при $stay\_days = 7$
-- Група 3: всі значення $revenue\_per\_day$ при $stay\_days = 28$
+- Група 1: всі значення $\quad \text{revenue_per_day} \quad$ при $\quad \text{stay_days} = 1$
+- Група 2: всі значення $\quad \text{revenue_per_day} \quad$ при $\quad \text{stay_days} = 7$
+- Група 3: всі значення $\quad \text{revenue_per_day} \quad$ при $\quad \text{stay_days} = 28$
 
 ---
 
