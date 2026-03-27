@@ -14,13 +14,13 @@
 Залежна змінна:
 
 $$
-y = revenue\_per\_day = \frac{price}{\text{stay_days}}
+y = \text{revenue\_per\_day} = \frac{price}{\text{stay_days}}
 $$
 
 Фактор:
 
 $$
-g \in \{ \text{1_day},\ \text{7_days},\ \text{28_days}\}
+g \in \{ \text{1\_day},\ \text{7\_days},\ \text{28\_days}\}
 $$
 
 ---
