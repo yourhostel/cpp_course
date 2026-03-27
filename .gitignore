@@ -66,3 +66,8 @@ README.pdf
 
 Env*
 **/Env*
+
+.env
+.env.*
+**/.env
+**/.env.*

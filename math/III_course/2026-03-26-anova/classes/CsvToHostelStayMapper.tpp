@@ -158,20 +158,19 @@ double CsvToHostelStayMapper<Record>::normalizePrice(const std::string& value)
 
     for (unsigned char ch : value)
     {
-        if (ch == ',')
-        {
-            clean += '.';
-        }
-        else if (ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r' || ch == 0xA0)
-        {
-        }
-        else
+        if (ch >= '0' && ch <= '9')
         {
             clean += static_cast<char>(ch);
         }
+        else if (ch == ',')
+        {
+            clean += '.';
+        }
+        else if (ch == '.')
+        {
+            clean += '.';
+        }
     }
-
-    clean = trim(clean);
 
     if (clean.empty())
     {

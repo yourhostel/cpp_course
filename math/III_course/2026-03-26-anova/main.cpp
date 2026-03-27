@@ -19,7 +19,7 @@ void read_normalization_and_save_to_db()
 
 int main()
 {
-    // read_normalization_and_save_to_db();
+    read_normalization_and_save_to_db();
 
     return 0;
 }
