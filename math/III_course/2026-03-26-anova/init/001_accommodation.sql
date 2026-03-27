@@ -1,33 +1,26 @@
--- 001_accommodation.sql
+--------------------------------------
+-- Таблиця для нормалізованих даних --
+--------------------------------------
 
-create table if not exists hostel_stays
+CREATE TABLE IF NOT EXISTS hostel_stays
 (
-    id bigserial primary key,
+    id BIGSERIAL PRIMARY KEY,
 
-    hostel text not null,
-    room text,
-    last_name text,
-    full_name text,
+    hostel TEXT NOT NULL,
+    room TEXT,
+    last_name TEXT,
+    full_name TEXT,
 
-    source_file_date date,
-    checkin_date date not null,
-    checkout_date date not null,
+    source_file_date DATE,
+    checkin_date DATE NOT NULL,
+    checkout_date DATE NOT NULL,
 
-    prise integer,
-    tariff_term integer,
-    stay_days integer not null,
+    prise INTEGER,
+    tariff_term INTEGER,
+    stay_days INTEGER NOT NULL,
 
-    total_price numeric(12,2) not null,
-    revenue_per_day numeric(12,2) not null,
+    total_price NUMERIC(12,2) NOT NULL,
+    revenue_per_day NUMERIC(12,2) NOT NULL,
 
-    source text
-    );
-
-create index if not exists idx_hostel_stays_hostel
-    on hostel_stays(hostel);
-
-create index if not exists idx_hostel_stays_stay_days
-    on hostel_stays(stay_days);
-
-create index if not exists idx_hostel_stays_tariff_term
-    on hostel_stays(tariff_term);
+    source TEXT
+);

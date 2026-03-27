@@ -36,6 +36,15 @@ private:
 
     /**
      *
+     * Перевіряє, чи схожий рядок на дату у форматі dd.mm.yyyy
+     *
+     * @param value дата
+     * @return чи є рядок схожим на дату
+     */
+    static bool isDateLike(const std::string& value);
+
+    /**
+     *
      * Відсіює сміття і службові записи
      *
      * @param fields поля CSV
