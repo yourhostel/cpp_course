@@ -150,8 +150,6 @@ void stats(HostelStayRepository<>& repository)
     },[&](const auto& r){rend_stats(r, repository);});
 }
 
-
-
 int main()
 {
     HostelStayRepository<> repository(EnvAnova::connectionString);
