@@ -165,46 +165,44 @@ $$P(x_1,\ldots,x_k)=\frac{\prod_{i=1}^{k}C(N_i,x_i)}{C(N,m)}$$
 
 ### Таблиця функцій алгоритму моделі
 
-| Мат модель                                                    | Опис                                                                                                                                      | Програмна реалізація      |
-|---------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|---------------------------|
-| $r' = min(r, n-r)$                                            | Повертає $r'$ який використовується у функції $C(n,r)$                                                                                    | `mirror_index`            |
-| $C(n,r) =\prod_{t=1}^{r'}\frac{n-{r'}+t}{t}$                  | Функція обчислює комбінацію через добуток, використовує `mirror_index`, для скорочення кроків.                                            | `combination_by_product`  |
-| $P(x_1,\ldots,x_k)=\frac{\prod_{i=1}^{k}C(N_i,x_i)}{C(N,m)}$  | Загальна модель розподілу де $$\sum_{i=1}^{k} N_i = N$$ та $$\sum_{i=1}^{k} x_i = m$$ для однієї конкретної конфігурації $x_1,\ldots,x_k$ | `probability`             |
+| Мат модель                                                    | Опис                                                                                                                                      | Програмна реалізація                                      |
+|---------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------|
+| $r' = min(r, n-r)$                                            | Повертає $r'$ який використовується у функції $C(n,r)$                                                                                    | `mirror_index`                                            |
+| $C(n,r) =\prod_{t=1}^{r'}\frac{n-{r'}+t}{t}$                  | Функція обчислює комбінацію через добуток, використовує `mirror_index`, для скорочення кроків.                                            | `combination_by_product`                                  |
+| $P(x_1,\ldots,x_k)=\frac{\prod_{i=1}^{k}C(N_i,x_i)}{C(N,m)}$  | Загальна модель розподілу де $$\sum_{i=1}^{k} N_i = N$$ та $$\sum_{i=1}^{k} x_i = m$$ для однієї конкретної конфігурації $x_1,\ldots,x_k$ | `probability`                                             |
 
 - `Probability`
 
-![Probability.png](screenshots/Probability.png)
+![Клас Probability](screenshots/Probability.png)
 
 - `Probability::mirror_index`
 
-![mirror_index.png](screenshots/mirror_index.png)
+![Блок схема обчислення дзеркального індексу](screenshots/mirror_index.png)
 
 - `Probability::combination_by_product`
 
-![combination_by_product.png](screenshots/combination_by_product.png)
+![Блок схема ітеративного обчислення біноміального коефіцієнта](screenshots/combination_by_product.png)
 
 - `Probability::probability` 
 
-![probability.png](screenshots/probability.png)
+![Блок схема обчислення ймовірності за гіпергеометричним розподілом](screenshots/hypergeometric_probability_flowchart.png){ height=85% }
 
 Таблиця перевірок в `Validator`
 
-| №  | Перевірка                    | Пояснення                                                                                      | Функція в коді                                  |
-|----|------------------------------|------------------------------------------------------------------------------------------------|-------------------------------------------------|
-| 1  | $N \ge 0$                    | Загальна кількість об'єктів не може бути від'ємною.                                            | `validate_total_coun`                           |
-| 2  | $k \ge 0$                    | Кількість типів об'єктів не може бути від'ємною.                                               | `validate_type_count`                           |
-| 3  | $N_i \ge 0,\; i=1,\ldots,k$  | Кількість об'єктів кожного типу не може бути від'ємною.                                        | `validate_type_sizes_non_negative`              |
-| 4  | $\sum_{i=1}^{k} N_i = N$     | Сума кількостей об'єктів усіх типів повинна дорівнювати загальній кількості.                   | `validate_type_sizes_sum`                       |
-| 5  | $0 \le m \le N$              | Кількість вибраних об'єктів повинна бути в межах від нуля до загальної кількості.              | `validate_sample_count`                         |
-| 6  | $x_i \ge 0,\; i=1,\ldots,k$  | Кількість вибраних об'єктів кожного типу не може бути від'ємною.                               | `validate_selected_counts_non_negative`         |
-| 7  | $x_i \le N_i,\; i=1,\ldots,k$ | Неможливо вибрати більше об'єктів певного типу, ніж існує у сукупності.                        | `validate_selected_not_greater_than_type_sizes` |
-| 8  | $\sum_{i=1}^{k} x_i = m$     | Сума вибраних об'єктів усіх типів повинна дорівнювати загальній кількості вибірки.             | `validate_selected_counts_sum`                  |
-| 9  | `\|type_sizes\|` = $k$       | Кількість елементів у контейнері `type_sizes` повинна дорівнювати кількості типів `type_count` | `validate_type_sizes_count`                     |
-| 10 | `\|selected_counts\|` = $k$  | Кількість елементів у контейнері selected_counts також повинна дорівнювати `type_count`        | `validate_selected_counts_count`                |
+| №  | Перевірка                                                 | Пояснення                                                                                      | Функція в коді                                                                                                    |
+|----|-----------------------------------------------------------|------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| 1  | $N \ge 0$                                                 | Загальна кількість об'єктів не може бути від'ємною.                                            | `validate_total_coun`                                                                                             |
+| 2  | $k \ge 0$                                                 | Кількість типів об'єктів не може бути від'ємною.                                               | `validate_type_count`                                                                                             |
+| 3  | $N_i \ge 0,\; i=1,\ldots,k$                               | Кількість об'єктів кожного типу не може бути від'ємною.                                        | `validate_type_sizes_non_negative`                                                                                |
+| 4  | $\sum_{i=1}^{k} N_i = N$                                  | Сума кількостей об'єктів усіх типів повинна дорівнювати загальній кількості.                   | `validate_type_sizes_sum`                                                                                         |
+| 5  | $0 \le m \le N$                                           | Кількість вибраних об'єктів повинна бути в межах від нуля до загальної кількості.              | `validate_sample_count`                                                                                           |
+| 6  | $x_i \ge 0,\; i=1,\ldots,k$                               | Кількість вибраних об'єктів кожного типу не може бути від'ємною.                               | `validate_selected_counts_non_negative`                                                                           |
+| 7  | $x_i \le N_i,\; i=1,\ldots,k$                             | Неможливо вибрати більше об'єктів певного типу, ніж існує у сукупності.                        | `validate_selected_not_greater_than_type_sizes`                                                                   |
+| 8  | $\sum_{i=1}^{k} x_i = m$                                  | Сума вибраних об'єктів усіх типів повинна дорівнювати загальній кількості вибірки.             | `validate_selected_counts_sum`                                                                                    |
+| 9  | `\|type_sizes\|` = $k$                                    | Кількість елементів у контейнері `type_sizes` повинна дорівнювати кількості типів `type_count` | `validate_type_sizes_count`                                                                                       |
+| 10 | `\|selected_counts\|` = $k$                               | Кількість елементів у контейнері selected_counts також повинна дорівнювати `type_count`        | `validate_selected_counts_count`                                                                                  |
 
-![Validator.png](screenshots/Validator.png)
-
----
+![Клас Validator](screenshots/Validator.png)
 
 ## Обчислення ймовірності події.
 
@@ -236,7 +234,7 @@ $$x_j\ge h$$
 
 - `Configurations::configurations`
 
-![Configurations.png](screenshots/Configurations.png)
+![Блок схема генерації конфігурацій вибірки за обмеженнями](screenshots/Configurations.png){ height=85% }
 
 І функція що обчислює суму всіх конфігурацій:
 
@@ -244,4 +242,4 @@ $$\text{sumprobability}(N_1,\ldots,N_k,m,j,h) = \sum_{(x_1,\ldots,x_k)\in \text{
 
 - `sum_probability`
 
-![sum_probability.png](screenshots/sum_probability.png)
+![Блок схема обчислення сумарної ймовірності за всіма конфігураціями](screenshots/sum_probability.png)

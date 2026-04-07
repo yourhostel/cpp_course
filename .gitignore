@@ -58,6 +58,7 @@ cmake-build-release/
 
 # generated PDF
 header.tex
+header_sub.tex
 logo.png
 README.pdf
 

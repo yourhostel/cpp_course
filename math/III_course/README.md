@@ -70,5 +70,36 @@
 
 Аналіз гіпотез та нормалізація даних.
 
+```bash
+pandoc \
+2026-03-07-shots/README.md \
+2026-03-08-probability-combination/README.md \
+2026-03-13-bernoulli/README.md \
+2026-03-13-laplace-poisson/README.md \
+2026-03-15-expected-variance/README.md \
+2026-03-18-random-variables/README.md \
+2026-03-19-continuous-random-variable/README.md \
+2026-03-21-density/README.md \
+2026-03-21-empirical-distribution-function/README.md \
+2026-03-26-anova/README.md \
+2026-03-29-confidence_interval/README.md \
+-s \
+--pdf-engine=xelatex \
+--resource-path=.:2026-03-07-shots:2026-03-08-probability-combination:2026-03-13-bernoulli:2026-03-13-laplace-poisson:2026-03-15-expected-variance:2026-03-18-random-variables:2026-03-19-continuous-random-variable:2026-03-21-density:2026-03-21-empirical-distribution-function:2026-03-26-anova \
+-V mainfont="DejaVu Serif" \
+-V monofont="DejaVu Sans Mono" \
+-V fontsize=12pt \
+-V linestretch=1.15 \
+-V geometry:a4paper \
+-V geometry:margin=20mm \
+-V geometry:landscape \
+--toc \
+--toc-depth=3 \
+--number-sections \
+--metadata title="Теорія ймовірностей та математична статистика" \
+-H ../../header.tex \
+-o math_III.pdf
+```
+
 
 

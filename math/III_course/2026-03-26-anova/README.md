@@ -160,9 +160,7 @@ $$
 
 ## Висновок
 
-### Вимірювання по інтервалах
-
-![Результат по групах](screenshots/conclusion_v1.png)
+![Вимірювання по інтервалах](screenshots/conclusion_v1.png){height=85%}
 
 Значення $F$ порівнюється з критичним значенням F-розподілу:
 
@@ -228,7 +226,7 @@ F дуже велике у всіх роках:
 ## Реалізація:
 
 Демонстраційна реалізація зроблена на прикладі ненормалізованих даних, мала вирізка яких показано у файлі [example_non_normalized_sample_csv.txt](https://github.com/yourhostel/cpp_course/blob/main/math/III_course/2026-03-26-anova/example_non_normalized_sample_csv.txt).
-Файл містив близько 27000 рядків. Методами класу `CsvToHostelStayMapper`,  дані були зчитані, нормалізовані, 
+Файл містив близько 27000 рядків. Методами класу `CsvToHostelStayMapper`, дані були зчитані, нормалізовані, 
 а потім методами класу `HostelStayRepository` завантажені в таблицю БД, міграція якої описана у файлі [001_accommodation.sql](https://github.com/yourhostel/cpp_course/blob/main/math/III_course/2026-03-26-anova/init/001_accommodation.sql).
 Покроково виводилися за допомогою `SQL`-запитів етапи обчислення, які описані у файлі [FISHER_PLPGSQL_FUNCTION_OUTPUT.md](https://github.com/yourhostel/cpp_course/blob/main/math/III_course/2026-03-26-anova/FISHER_PLPGSQL_FUNCTION_OUTPUT.md), 
 і потім на іх основі були побудовані дві функції мовою [PL/pgSQL](https://github.com/yourhostel/what-is-plpgsql).
@@ -284,6 +282,7 @@ PGresult* res = PQprepare(
 Docker:
 
 - Запуск контейнера
+
 ```bash
 docker compose up -d
 ```
@@ -319,9 +318,9 @@ docker ps -a --filter volume=2026-03-26-anova_data
 ```
 
 -  Ручне видалення `volume`
+
 ```bash
 docker volume rm 2026-03-26-anova_data
 ```
 
 ---
-

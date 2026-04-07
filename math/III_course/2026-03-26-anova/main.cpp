@@ -150,13 +150,53 @@ void stats(HostelStayRepository<>& repository)
     },[&](const auto& r){rend_stats(r, repository);});
 }
 
+class ICommand
+{
+public:
+    virtual ~ICommand() = default;
+    virtual void execute() = 0;
+};
+
+class CheckInCommand : public ICommand
+{
+public:
+    void execute() override
+    {
+        /* ... */
+    }
+};
+
+class CancelAccommodationCommand : public ICommand
+{
+public:
+    void execute() override
+    {
+        /* ... */
+    }
+};
+
 int main()
 {
-    HostelStayRepository<> repository(EnvAnova::connectionString);
+    //HostelStayRepository<> repository(EnvAnova::connectionString);
 
     //read_normalization_and_save_to_db(repository);
 
-    stats(repository);
+
+    struct my_manip_data
+    {
+        int value;
+    };
+
+    std::ostream& operator<<(std::ostream& os, const my_manip_data& m)
+    {
+        return os;
+    }
+
+    my_manip_data my_manip(int v)
+    {
+        return {v};
+    }
+    //stats(repository);
 
     return 0;
 }

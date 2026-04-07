@@ -1,19 +1,17 @@
-# Практичне заняття №5. ЗМІ. Тема 4.
+# Практичне заняття №5. ЗМІ. Тема 4. Laplace, Poisson
 
-# Laplace, Poisson
-
-# Мета
+## Мета
 
 - Навчитися застосовувати формулу Пуассона, Лапласа для розв'язання практичних задач. Зробити порівняння Бернуллі, Пуассон, Лаплас.
 
 - Приклад реалізації [Бернуллі](https://github.com/yourhostel/cpp_course/tree/main/math/III_course/2026-03-13-bernoulli) був виконаний окремо
 
-# Теорія
+## Теорія
 
 ## Локальна теорема Лапласа
 
 $$
-\boxed{P(X=k) \approx \frac{1}{\sqrt{npq}}\varphi(x)}
+P(X=k) \approx \frac{1}{\sqrt{npq}}\varphi(x)
 $$
 
 де:
@@ -98,7 +96,7 @@ $$
 
 ---
 
-# Завдання 47
+## Завдання 47
 
 Застосовуючи
 
@@ -107,9 +105,6 @@ $$
 - в) формулу Пуассона 
 
 знайти ймовірність того, що серед 200 осіб виявиться четверо шульгів, якщо у середньому шульги становлять 1%.
-
-
-## Допоміжні функції:
 
 ### Таблична функція Лапласа
 Функція для обчислення значень, які беруться з таблиці Лапласа:
@@ -122,9 +117,7 @@ $$\Phi(x)=\frac{1}{2}\text{erf}\left(\frac{x}{\sqrt{2}}\right)$$
 
 ```cpp
 double laplace_phi(double x)
-{
-    return 0.5 * std::erf(x / std::sqrt(2.0));
-}
+{ return 0.5 * std::erf(x / std::sqrt(2.0)); }
 ```
 
 ### Щільність нормального розподілу
@@ -135,20 +128,18 @@ $$\varphi(x) = \frac{1}{\sqrt{2\pi}}e^{-x/2}$$
 
 ```cpp
 double laplace_local_phi(const double x)
-{
-return (1.0 / std::sqrt(2.0 * M_PI)) * std::exp(-x * x / 2.0);
-}
+{ return (1.0 / std::sqrt(2.0 * M_PI)) * std::exp(-x * x / 2.0); }
 ```
 
-## UML diagrams: Bernoulli, Laplace, Poisson
+### UML diagrams: Bernoulli, Laplace, Poisson
 
-![Blank diagram - UML Activity Diagrams Bernoulli, Laplace, Poisson](Bernoulli_Laplace_Poisson.png)
+![Blank diagram - UML Activity Diagrams Bernoulli, Laplace, Poisson](Bernoulli_Laplace_Poisson.png){height=85%}
 
 Приклад обчислень для завдання 47:
 
-![Результат обчислення функцій](img.png)
+![Результат обчислення функцій](result_Bernoulli_Laplace_Poisson.png)
 
-# Висновок
+## Висновок
 
 Формула Бернуллі дає точне значення ймовірності $P(X=k)$ і застосовується безпосередньо для обчислення біноміальної ймовірності.
 Локальна теорема Муавра Лапласа використовується для наближеного обчислення $P(X=k)$ при великому числі випробувань $n$ і достатньо великому значенні дисперсії біноміального розподілу $npq$. Якщо ймовірність успіху $p$ дуже мала або дисперсія біноміального розподілу є малою, точність нормального наближення погіршується.
@@ -156,22 +147,3 @@ return (1.0 / std::sqrt(2.0 * M_PI)) * std::exp(-x * x / 2.0);
 Формула Пуассона використовується для рідкісних подій, коли ймовірність успіху $p$ в одному випробуванні мала, кількість випробувань велика, а математичне сподівання числа успіхів $np$ має скінченне значення. У розглянутій задачі саме наближення Пуассона дає результат, найближчий до точного значення, отриманого за формулою Бернуллі.
 
 ---
-```bash
-pandoc README.md -s \
---pdf-engine=xelatex \
--V mainfont="DejaVu Serif" \
--V monofont="DejaVu Sans Mono" \
--V fontsize=12pt \
--V linestretch=1.15 \
--V geometry:a4paper \
--V geometry:margin=20mm \
-# -V geometry:landscape \ 
---toc --toc-depth=3 \
---number-sections \
---metadata title="Теорія ймовірностей та математична статистика" \
---metadata subtitle="Практичне заняття №5. ЗМІ. Тема 4." \
---metadata author="Тищенко Сергій, alk-43" \
---metadata date="2026-03-15" \
--H ../../../header.tex \
--o README.pdf
-```

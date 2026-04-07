@@ -1,4 +1,13 @@
 \usepackage{graphicx}
+
+\setkeys{Gin}{
+  width=\linewidth,
+  height=0.8\textheight,
+  keepaspectratio
+}
+
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
 \usepackage{eso-pic}
 \usepackage{fancyhdr}
 \usepackage{etoolbox}
@@ -63,7 +72,8 @@
 \usepackage{float}
 
 % H означає ставити рисунок саме тут.
-\floatplacement{figure}{H}
+\floatplacement{figure}{H} %жорстко
+% \floatplacement{figure}{htbp} % м'яко
 
 % Додати стилі для посилань
 \usepackage{xcolor}

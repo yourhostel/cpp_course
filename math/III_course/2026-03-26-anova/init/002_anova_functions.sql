@@ -95,7 +95,7 @@ SELECT
     MIN(revenue_per_day)::NUMERIC AS min_value,
     MAX(revenue_per_day)::NUMERIC AS max_value,
     PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY revenue_per_day)::NUMERIC AS median,
-        PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY revenue_per_day)::NUMERIC AS p25,
+    PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY revenue_per_day)::NUMERIC AS p25,
     PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY revenue_per_day)::NUMERIC AS p75
 FROM hostel_stays
 WHERE stay_days IN (1, 7, 28)

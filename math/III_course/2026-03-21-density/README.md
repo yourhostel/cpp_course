@@ -3,6 +3,7 @@
 $$\varphi(x)=\frac{1}{\sqrt{2\pi}}e^{-x^2/2}$$
 
 $N (0, 1)$:
+
 ```cpp
 double laplace_local_phi(const double x)
 {
@@ -24,4 +25,5 @@ double normal_density(double x, double a, double sigma)
     return (1.0 / sigma) * laplace_local_phi((x - a) / sigma);
 }
 ```
+
 
