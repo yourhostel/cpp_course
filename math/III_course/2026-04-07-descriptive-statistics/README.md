@@ -48,7 +48,8 @@
 
 ## Теорія
 
-Нехай задано вибірку обсягу $$n$$:
+Нехай задано вибірку обсягу $n$:
+
 $$
 X = \{x_1, x_2, \dots, x_n\}
 $$
@@ -209,6 +210,29 @@ void print_empirical_row(int mode,
 Ця функція перетворює статистичний розподіл на набір координат, з яких можна побудувати ступінчастий графік емпіричної функції розподілу.
 Результат містить горизонтальні ділянки та точки стрибків. А сам графік будує функція `plot_empirical_function` с класу `Plotter`.
 
-![Загальний вивід](screenshots/all.png)
+![Загальний вивід](screenshots/all_v_2.png)
 
 ![Графік емпіричної функції завдання 1.23](screenshots/make_empirical_function.png)
+
+---
+
+```bash
+pandoc README.md -s \
+--pdf-engine=xelatex \
+-V mainfont="DejaVu Serif" \
+-V monofont="DejaVu Sans Mono" \
+-V fontsize=12pt \
+-V linestretch=1.15 \
+-V geometry:a4paper \
+-V geometry:margin=20mm \
+--toc --toc-depth=3 \
+--number-sections \
+--metadata title="Теорія ймовірностей та математична статистика" \
+--metadata subtitle="Практичне заняття №12. ЗМІ. Тема 6." \
+--metadata author="Тищенко Сергій, alk-43" \
+--metadata date="2026-04-07" \
+-H ../../../header.tex \
+-o README.pdf
+```
+
+

@@ -49,7 +49,7 @@ inline void Plotter::plot_relative_frequency_polygon(const std::string& variant_
 
 inline void Plotter::plot_empirical_function(
     const std::string& variant,
-    const std::vector<std::pair<double,double>>& points)
+    const std::vector<std::pair<double, double>>& points)
 {
     if (points.empty()) return;
 
@@ -59,21 +59,30 @@ inline void Plotter::plot_empirical_function(
     const double x_min = points.front().first;
     const double x_max = points.back().first;
 
+    const double x_padding = 0.5;
+
     fprintf(gp, "set title 'Емпірична функція розподілу, варіант %s'\n", variant.c_str());
     fprintf(gp, "set grid\n");
     fprintf(gp, "set xlabel 'x'\n");
     fprintf(gp, "set ylabel 'F(x)'\n");
-    fprintf(gp, "set xrange [%f:%f]\n", x_min, x_max);
+    fprintf(gp, "set xrange [%f:%f]\n", x_min - x_padding, x_max + x_padding);
     fprintf(gp, "set yrange [0:1.1]\n");
     fprintf(gp, "set style line 1 lc rgb '#008080' lw 2\n");
     fprintf(gp, "unset key\n");
 
     fprintf(gp, "$data << EOD\n");
+
+    fprintf(gp, "%f %f\n", x_min - x_padding, 0.0);
+    fprintf(gp, "%f %f\n", points.front().first, 0.0);
+
     for (const auto& [x, y] : points)
         fprintf(gp, "%f %f\n", x, y);
+
+    fprintf(gp, "%f %f\n", x_max + x_padding, 1.0);
+
     fprintf(gp, "EOD\n");
 
-    fprintf(gp, "plot $data with lines ls 1\n");
+    fprintf(gp, "plot $data with steps ls 1\n");
 
     pclose(gp);
 }

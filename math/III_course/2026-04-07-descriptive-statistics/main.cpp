@@ -249,50 +249,32 @@ void render_empirical_function(const std::map<int, int>& dist)
 // ============================================
 // Емпірична функція розподілу побудова точок F(x)
 // ============================================
-std::vector<std::pair<double, double>> make_empirical_function_points(const std::map<int, int>& dist)
+std::vector<std::pair<double, double>>
+make_empirical_function_points(const std::map<int, int>& dist)
 {
-    std::vector<std::pair<double,double>> points;
-
+    std::vector<std::pair<double, double>> points;
     if (dist.empty()) return points;
 
-    std::vector<int> xs;
-    std::vector<int> ns;
+    const int total = std::accumulate(
+        dist.begin(),
+        dist.end(),
+        0,
+        [](const int sum, const auto& p)
+        {
+            return sum + p.second;
+        }
+    );
+
+    int acc = 0;
 
     for (const auto& [x, n] : dist)
     {
-        xs.push_back(x);
-        ns.push_back(n);
+        acc += n;
+        points.emplace_back(x, static_cast<double>(acc) / total);
     }
-
-    std::vector<int> prefix(ns.size());
-    std::partial_sum(ns.begin(), ns.end(), prefix.begin());
-
-    const int total = prefix.back();
-
-    points.emplace_back(xs.front() - 0.5, 0.0);
-
-    int prev = 0;
-
-    for (std::size_t i = 0; i < xs.size(); ++i)
-    {
-        const double x = xs[i];
-
-        const double y_prev = static_cast<double>(prev) / total;
-        const double y_new  = static_cast<double>(prefix[i]) / total;
-
-        points.emplace_back(x, y_prev);
-        points.emplace_back(x, y_new);
-
-        if (i + 1 < xs.size()) points.emplace_back(xs[i + 1], y_new);
-
-        prev = prefix[i];
-    }
-
-    points.emplace_back(xs.back() + 0.5, 1.0);
 
     return points;
 }
-
 
 void test()
 {
@@ -330,7 +312,7 @@ void test()
         {"1.30", {1,2,3,5,2,6,1,2,3,5,6,1,2,3,2,5,1,2,3,1,2,3,2,3,2}}
     };
 
-    const std::string v = "1.23";
+    const std::string v = "1.1";
 
     // задана вибірка
     std::cout << GREEN << "Variant " << v << RESET << "\n";
@@ -354,6 +336,12 @@ void test()
     render_empirical_function(dist);
 
     const auto points = make_empirical_function_points(dist);
+
+    // координати емпіричної функції
+    std::cout << CYAN << "Координати емпіричної функції (x, F(x)):\n" << RESET;
+
+    for (const auto& [x, y] : points)
+        std::cout << "(" << x << ", " << y << ") ";
 
     Plotter::plot_empirical_function(v, points);
 
