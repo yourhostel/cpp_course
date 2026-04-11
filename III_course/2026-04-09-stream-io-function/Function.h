@@ -213,7 +213,6 @@ private:
     /**
      *
      * @param row
-     * @param height
      * @param y_min
      * @param y_max
      * @return
