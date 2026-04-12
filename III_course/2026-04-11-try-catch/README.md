@@ -193,6 +193,13 @@ int& operator[](const int i)
 
 ---
 
+Додаткові посилання:
+
+[Створення програм обробки масивів символів](https://github.com/yourhostel/cpp_course/tree/main/II_course/Practical_2_17)
+
+[Клас std::string (C++20/23)](https://github.com/yourhostel/cpp_course/tree/main/II_course/Practical_2_18)
+
+
 ```bash
 pandoc README.md -s \
   --pdf-engine=xelatex \
@@ -213,4 +220,5 @@ pandoc README.md -s \
   -H ../../header_sub.tex \
   -o README.pdf
 ```
+
 

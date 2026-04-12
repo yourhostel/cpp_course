@@ -1,0 +1,35 @@
+# III_course/2026-04-12-doubly-linked-list/CMakeLists.txt
+project(doubly_linked_list)
+
+set(CMAKE_CXX_STANDARD 23)
+# Якщо компілятор не підтримує вказаний стандарт C++(тут 23), збірка має впасти.
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+# Код у чистому стандарті C++, без нестандартних розширень компілятора.
+# Код збирається однаково в GCC, Clang, MSVC.
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+add_executable(doubly_linked_list
+        main.cpp
+        DoublyLinkedList.tpp
+        DoublyLinkedList.h
+        Person.h
+        #        <dir>/class.h
+        #        <dir>/class.cpp
+)
+
+target_include_directories(doubly_linked_list PRIVATE
+        #        ${CMAKE_CURRENT_SOURCE_DIR}
+        #        ${CMAKE_CURRENT_SOURCE_DIR}/<dir>
+)
+
+set(DATA_FILES
+        #       sin_cos.txt
+)
+
+foreach(file ${DATA_FILES})
+    configure_file(
+            ${CMAKE_CURRENT_SOURCE_DIR}/${file}
+            ${CMAKE_CURRENT_BINARY_DIR}/${file}
+            COPYONLY
+    )
+endforeach()
