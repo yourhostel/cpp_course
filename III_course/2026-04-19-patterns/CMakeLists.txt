@@ -11,7 +11,8 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_executable(patterns
         main.cpp
         Decorator.cpp
-        Decorator.h
+        Observer.cpp
+        Visitor.cpp
         #        <dir>/class.h
         #        <dir>/class.cpp
 )
