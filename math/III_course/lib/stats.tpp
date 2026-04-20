@@ -411,3 +411,214 @@ namespace stats
         };
     }
 }
+
+namespace stats::discrete
+{
+    template <floating_point_like Real>
+    class table_distribution final
+    {
+    public:
+        table_distribution(std::vector<Real> values,
+                           std::vector<Real> probabilities)
+            : values_(std::move(values)),
+              probabilities_(std::move(probabilities))
+        {
+            if (values_.empty())
+            {
+                throw std::domain_error("values must not be empty");
+            }
+
+            if (values_.size() != probabilities_.size())
+            {
+                throw std::domain_error(
+                    "values and probabilities must have the same size"
+                );
+            }
+
+            for (const auto value : values_)
+            {
+                stats::detail::require_finite(value, "value");
+            }
+
+            for (const auto probability : probabilities_)
+            {
+                stats::detail::require_probability_closed(probability, "probability");
+            }
+
+            constexpr Real eps = static_cast<Real>(1e-9);
+
+            const auto sum = std::reduce(
+                probabilities_.cbegin(),
+                probabilities_.cend(),
+                Real{0}
+            );
+
+            if (std::abs(sum - Real{1}) > eps)
+            {
+                throw std::domain_error("probabilities must sum to 1");
+            }
+        }
+
+        [[nodiscard]] const std::vector<Real>& values() const noexcept
+        {
+            return values_;
+        }
+
+        [[nodiscard]] const std::vector<Real>& probabilities() const noexcept
+        {
+            return probabilities_;
+        }
+
+        [[nodiscard]] std::size_t size() const noexcept
+        {
+            return values_.size();
+        }
+
+        [[nodiscard]] Real pmf(const Real x) const
+        {
+            stats::detail::require_finite(x, "x");
+
+            auto result = Real{0};
+
+            for (std::size_t i = 0; i < values_.size(); ++i)
+            {
+                if (values_[i] == x)
+                {
+                    result += probabilities_[i];
+                }
+            }
+
+            return std::clamp(result, Real{0}, Real{1});
+        }
+
+        [[nodiscard]] Real cdf(const Real x) const
+        {
+            stats::detail::require_finite(x, "x");
+
+            auto result = Real{0};
+
+            for (std::size_t i = 0; i < values_.size(); ++i)
+            {
+                if (values_[i] <= x)
+                {
+                    result += probabilities_[i];
+                }
+            }
+
+            return std::clamp(result, Real{0}, Real{1});
+        }
+
+        [[nodiscard]] Real mean() const noexcept
+        {
+            return std::transform_reduce(
+                values_.cbegin(),
+                values_.cend(),
+                probabilities_.cbegin(),
+                Real{0}
+            );
+        }
+
+        [[nodiscard]] Real variance() const noexcept
+        {
+            const auto mu = mean();
+
+            const auto second_moment = std::transform_reduce(
+                values_.cbegin(),
+                values_.cend(),
+                probabilities_.cbegin(),
+                Real{0},
+                std::plus<>{},
+                [](const Real x, const Real p)
+                {
+                    return x * x * p;
+                }
+            );
+
+            const auto result = second_moment - mu * mu;
+            return result < Real{0} ? Real{0} : result;
+        }
+
+        [[nodiscard]] Real standard_deviation() const noexcept
+        {
+            return std::sqrt(variance());
+        }
+
+    private:
+        std::vector<Real> values_;
+        std::vector<Real> probabilities_;
+    };
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline table_distribution<Real>
+    make_table_distribution(std::vector<Real> values,
+                            std::vector<Real> probabilities)
+    {
+        return table_distribution<Real>(
+            std::move(values),
+            std::move(probabilities)
+        );
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline auto make_bernoulli(const Real p)
+    {
+        stats::detail::require_probability_closed(p, "p");
+
+        return distribution_wrapper{
+            boost::math::bernoulli_distribution<Real>(p)
+        };
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline auto make_geometric(const Real p)
+    {
+        stats::detail::require_probability_open(p, "p");
+
+        return distribution_wrapper{
+            boost::math::geometric_distribution<Real>(p)
+        };
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline auto make_hypergeometric(const unsigned successes,
+                                                  const unsigned draws,
+                                                  const unsigned population)
+    {
+        if (population == 0U)
+        {
+            throw std::domain_error("population must be > 0");
+        }
+
+        if (successes > population)
+        {
+            throw std::domain_error("successes must be <= population");
+        }
+
+        if (draws > population)
+        {
+            throw std::domain_error("draws must be <= population");
+        }
+
+        return distribution_wrapper{
+            boost::math::hypergeometric_distribution<Real>(
+                successes,
+                draws,
+                population
+            )
+        };
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline auto make_negative_binomial(const unsigned failures,
+                                                     const Real p)
+    {
+        stats::detail::require_probability_open(p, "p");
+
+        return distribution_wrapper{
+            boost::math::negative_binomial_distribution<Real>(
+                static_cast<Real>(failures),
+                p
+            )
+        };
+    }
+}

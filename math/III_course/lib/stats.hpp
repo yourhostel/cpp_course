@@ -4,18 +4,27 @@
 
 #pragma once
 
-#include <boost/math/constants/constants.hpp>
-#include <boost/math/distributions/binomial.hpp>
-#include <boost/math/distributions/normal.hpp>
-#include <boost/math/distributions/poisson.hpp>
-
+#include <algorithm>
 #include <cmath>
 #include <concepts>
 #include <cstddef>
+#include <functional>
 #include <limits>
+#include <numeric>
 #include <stdexcept>
 #include <string_view>
 #include <type_traits>
+#include <utility>
+#include <vector>
+
+#include <boost/math/constants/constants.hpp>
+#include <boost/math/distributions/bernoulli.hpp>
+#include <boost/math/distributions/binomial.hpp>
+#include <boost/math/distributions/geometric.hpp>
+#include <boost/math/distributions/hypergeometric.hpp>
+#include <boost/math/distributions/negative_binomial.hpp>
+#include <boost/math/distributions/normal.hpp>
+#include <boost/math/distributions/poisson.hpp>
 
 namespace stats
 {
@@ -403,6 +412,119 @@ namespace stats
      */
     template <floating_point_like Real = double>
     [[nodiscard]] inline auto make_poisson(Real lambda);
+}
+
+namespace stats
+{
+    namespace discrete
+    {
+        /**
+         * Табличний дискретний розподіл.
+         *
+         * Задається скінченним набором значень випадкової величини та
+         * відповідних їм імовірностей.
+         *
+         * Використовується для задач, де закон розподілу задано явно у вигляді
+         * таблиці:
+         * x1, x2, ..., xn
+         * p1, p2, ..., pn
+         *
+         * Інваріанти:
+         * - масив значень не порожній
+         * - кількість значень дорівнює кількості ймовірностей
+         * - кожна ймовірність належить [0, 1]
+         * - сума ймовірностей дорівнює 1 з допустимою похибкою
+         */
+        template <floating_point_like Real = double>
+        class table_distribution;
+
+        /**
+         * Фабрична функція для табличного дискретного розподілу.
+         *
+         * Створює розподіл за набором значень випадкової величини та
+         * відповідних імовірностей.
+         *
+         * @param values можливі значення випадкової величини
+         * @param probabilities імовірності відповідних значень
+         * @return табличний дискретний розподіл
+         *
+         * @throws std::domain_error якщо:
+         * - values порожній
+         * - sizes values і probabilities не збігаються
+         * - деяка ймовірність не належить [0, 1]
+         * - сума ймовірностей не дорівнює 1
+         */
+        template <floating_point_like Real = double>
+        [[nodiscard]] table_distribution<Real>
+        make_table_distribution(std::vector<Real> values,
+                                std::vector<Real> probabilities);
+
+        /**
+         * Фабрична функція для розподілу Бернуллі Bernoulli(p).
+         *
+         * Моделює одне випробування з двома результатами:
+         * успіх з імовірністю p
+         * неуспіх з імовірністю 1 - p
+         *
+         * @param p імовірність успіху
+         * @return уніфікована обгортка над розподілом Бернуллі
+         *
+         * @throws std::domain_error якщо p не належить [0, 1]
+         */
+        template <floating_point_like Real = double>
+        [[nodiscard]] auto make_bernoulli(Real p);
+
+        /**
+         * Фабрична функція для геометричного розподілу Geometric(p).
+         *
+         * Моделює кількість невдач до першого успіху
+         * або еквівалентну дискретну схему, яку використовує Boost.Math.
+         *
+         * @param p імовірність успіху в одному випробуванні
+         * @return уніфікована обгортка над геометричним розподілом
+         *
+         * @throws std::domain_error якщо p не належить (0, 1)
+         */
+        template <floating_point_like Real = double>
+        [[nodiscard]] auto make_geometric(Real p);
+
+        /**
+         * Фабрична функція для гіпергеометричного розподілу.
+         *
+         * Моделює кількість успіхів у вибірці без повернення з кінцевої
+         * генеральної сукупності.
+         *
+         * @param successes кількість успішних елементів у генеральній сукупності
+         * @param draws кількість вибірок без повернення
+         * @param population загальний обсяг генеральної сукупності
+         * @return уніфікована обгортка над гіпергеометричним розподілом
+         *
+         * @throws std::domain_error якщо:
+         * - population == 0
+         * - successes > population
+         * - draws > population
+         */
+        template <floating_point_like Real = double>
+        [[nodiscard]] auto make_hypergeometric(unsigned successes,
+                                               unsigned draws,
+                                               unsigned population);
+
+        /**
+         * Фабрична функція для негативного біноміального розподілу.
+         *
+         * Моделює число невдач до досягнення заданої кількості успіхів
+         * у незалежних випробуваннях.
+         *
+         * @param failures параметр розподілу, що задає число невдач
+         * або відповідний параметр у термінах реалізації Boost.Math
+         * @param p імовірність успіху в одному випробуванні
+         * @return уніфікована обгортка над негативним біноміальним розподілом
+         *
+         * @throws std::domain_error якщо p не належить (0, 1)
+         */
+        template <floating_point_like Real = double>
+        [[nodiscard]] auto make_negative_binomial(unsigned failures, Real p);
+    }
 }
 
 #include "stats.tpp"
