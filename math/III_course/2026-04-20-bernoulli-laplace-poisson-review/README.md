@@ -1,5 +1,7 @@
 # Повторення незалежних випробувань.
 
+[![StatKit](https://img.shields.io/badge/StatKit-C%2B%2B_Statistics-2d7ff9?labelColor=black&style=flat-square)](https://github.com/yourhostel/cpp_course/tree/main/math/III_course/lib)
+
 Формула Бернуллі. Формула Муавра–Лапласа. Формула Пуассона
 
 ## Порівняльна характеристика
