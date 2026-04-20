@@ -1,59 +1,26 @@
-\usepackage{graphicx}
-
-\setkeys{Gin}{
-  width=\linewidth,
-  height=0.8\textheight,
-  keepaspectratio
-}
-
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% =========================
+% БАЗОВІ ПАКЕТИ
+% =========================
 
 \usepackage{eso-pic}
 \usepackage{fancyhdr}
 \usepackage{etoolbox}
 \usepackage{titling}
 
-% Логотип
+% =========================
+% ЛОГОТИП
+% =========================
+
 \AddToShipoutPictureBG*{%
   \put(\LenToUnit{\paperwidth-4.5cm},\LenToUnit{\paperheight-3.5cm}){%
     \includegraphics[width=3.5cm]{../../../logo.png}%
   }%
 }
 
-% Центрування титулу по вертикалі
-\pretitle{\begin{center}\vfill}
-\posttitle{\par\end{center}}
-\preauthor{\begin{center}}
-\postauthor{\par\end{center}}
-\predate{\begin{center}}
-\postdate{\par\vfill\end{center}}
+% =========================
+% ТИТУЛ
+% =========================
 
-% Розрив сторінки після титулу
-\apptocmd{\maketitle}{\clearpage}{}{}
-
-% Колонтитули
-\pagestyle{fancy}
-\fancyhf{}
-\fancyfoot[L]{© ЗВО «МНТУ» Тищенко С.С., Київ-2026}
-\fancyfoot[R]{\thepage}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
-
-% Plain без колонтитулів
-\fancypagestyle{plain}{
-  \fancyhf{}
-  \renewcommand{\headrulewidth}{0pt}
-  \renewcommand{\footrulewidth}{0pt}
-}
-
-% Назва змісту
-\renewcommand{\contentsname}{Зміст}
-
-\usepackage{etoolbox}
-
-\apptocmd{\tableofcontents}{\clearpage}{}{}
-
-% Стиль метаданих
 \pretitle{\begin{center}\vfill\Huge\bfseries}
 \posttitle{\par\end{center}\vspace{1em}}
 
@@ -63,19 +30,60 @@
 \predate{\begin{center}\normalsize}
 \postdate{\par\vfill\end{center}}
 
-% Обробка підписів рисунків
-\renewcommand{\figurename}{Рис.}
+\apptocmd{\maketitle}{\clearpage}{}{}
+
+% =========================
+% КОЛОНТИТУЛИ
+% =========================
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[L]{© ЗВО «МНТУ» Тищенко С.С., Київ-2026}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+% =========================
+% ЗМІСТ
+% =========================
+
+\renewcommand{\contentsname}{Зміст}
+\apptocmd{\tableofcontents}{\clearpage}{}{}
+
+% =========================
+% ЗОБРАЖЕННЯ
+% =========================
+
+\usepackage{graphicx}
+
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>0.8\textheight0.8\textheight\else\Gin@nat@height\fi}
+\makeatother
+
+\setkeys{Gin}{
+  width=\maxwidth,
+  height=\maxheight,
+  keepaspectratio
+}
+
 \usepackage{caption}
+\renewcommand{\figurename}{Рис.}
 \captionsetup[figure]{labelsep=space}
 
-% фіксація рисунків на своїх місцях
 \usepackage{float}
+\floatplacement{figure}{H}
 
-% H означає ставити рисунок саме тут.
-\floatplacement{figure}{H} %жорстко
-% \floatplacement{figure}{htbp} % м'яко
+% =========================
+% ПОСИЛАННЯ
+% =========================
 
-% Додати стилі для посилань
 \usepackage{xcolor}
 \usepackage[normalem]{ulem}
 \usepackage{xstring}
@@ -91,11 +99,69 @@
   }%
 }
 
-% Додати стилі для inline code
-\definecolor{inlinecodebg}{HTML}{F5F5F5}
+% \usepackage{xcolor}
+% \usepackage[normalem]{ulem}
+% \usepackage[
+%   colorlinks=true,
+%   linkcolor=blue,
+%   urlcolor=blue,
+%   citecolor=blue
+% ]{hyperref}
+
+% =========================
+% КОД І ПЕРЕНОСИ
+% =========================
+
+\usepackage{fvextra}
+\usepackage{upquote}
+
+\setlength{\emergencystretch}{3em}
+\sloppy
+
+% =========================
+% INLINE CODE
+% =========================
+
 \definecolor{inlinecodefg}{HTML}{1B5E20}
+
+\newcommand{\inlinecodetext}[1]{%
+  \begingroup
+  \ttfamily
+  \hyphenchar\font=-1
+  \exhyphenpenalty=10000
+  \hyphenpenalty=10000
+  \textcolor{inlinecodefg}{%
+    \StrSubstitute{#1}{\string\{}{\char123}[\tmpA]%
+    \StrSubstitute{\tmpA}{\string\}}{\char125}[\tmpB]%
+    \StrSubstitute{\tmpB}{\string\$}{\char36}[\tmpC]%
+    \StrSubstitute{\tmpC}{; }{;\allowbreak\space}[\tmpD]%
+    \tmpD
+  }%
+  \endgroup
+}
 
 \let\oldtexttt\texttt
 \renewcommand{\texttt}[1]{%
-  \colorbox{inlinecodebg}{\oldtexttt{\textcolor{inlinecodefg}{\bfseries #1}}}%
+  \inlinecodetext{#1}%
 }
+
+% =========================
+% ТАБЛИЦІ
+% =========================
+
+\usepackage{array}
+\usepackage{ragged2e}
+\usepackage{longtable}
+\usepackage{booktabs}
+
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+\AtBeginEnvironment{longtable}{%
+  \small
+  \setlength{\tabcolsep}{6pt}
+  \renewcommand{\arraystretch}{1.15}
+  \RaggedRight
+}
+
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{0pt}
