@@ -1,0 +1,413 @@
+//
+// Created by tysser on 20.04.26.
+//
+
+#pragma once
+
+namespace stats
+{
+    namespace detail
+    {
+        template <floating_point_like Real>
+        inline void require_finite(const Real value, const std::string_view name)
+        {
+            if (!std::isfinite(value))
+            {
+                throw std::domain_error(std::string{name} + " must be finite");
+            }
+        }
+
+        template <floating_point_like Real>
+        inline void require_positive(const Real value, const std::string_view name)
+        {
+            require_finite(value, name);
+            if (!(value > Real{0}))
+            {
+                throw std::domain_error(std::string{name} + " must be > 0");
+            }
+        }
+
+        template <floating_point_like Real>
+        inline void require_non_negative(const Real value, const std::string_view name)
+        {
+            require_finite(value, name);
+            if (value < Real{0})
+            {
+                throw std::domain_error(std::string{name} + " must be >= 0");
+            }
+        }
+
+        template <floating_point_like Real>
+        inline void require_probability_closed(const Real value, const std::string_view name)
+        {
+            require_finite(value, name);
+            if (value < Real{0} || value > Real{1})
+            {
+                throw std::domain_error(std::string{name} + " must be in [0, 1]");
+            }
+        }
+
+        template <floating_point_like Real>
+        inline void require_probability_open(const Real value, const std::string_view name)
+        {
+            require_finite(value, name);
+            if (!(value > Real{0} && value < Real{1}))
+            {
+                throw std::domain_error(std::string{name} + " must be in (0, 1)");
+            }
+        }
+
+        inline void require_non_negative_int(const int n, const std::string_view name)
+        {
+            if (n < 0)
+            {
+                throw std::domain_error(std::string{name} + " must be >= 0");
+            }
+        }
+
+        inline void require_ordered_int_interval(
+            const int lo,
+            const int hi,
+            const std::string_view lo_name,
+            const std::string_view hi_name)
+        {
+            if (lo > hi)
+            {
+                throw std::domain_error(
+                    std::string{lo_name} + " must be <= " + std::string{hi_name}
+                );
+            }
+        }
+
+        inline void require_binomial_k(const int m, const int n, const std::string_view name)
+        {
+            require_non_negative_int(n, "n");
+            if (m < 0 || m > n)
+            {
+                throw std::domain_error(std::string{name} + " must be in [0, n]");
+            }
+        }
+
+        template <floating_point_like Real>
+        [[nodiscard]] inline constexpr Real inv_sqrt_2pi() noexcept
+        {
+            return Real{1} /
+                   std::sqrt(
+                       Real{2} * boost::math::constants::pi<Real>()
+                   );
+        }
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline Real phi(const Real x) noexcept
+    {
+        return detail::inv_sqrt_2pi<Real>() * std::exp(Real{-0.5} * x * x);
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline Real normal_cdf(const Real x)
+    {
+        const boost::math::normal_distribution<Real> dist(Real{0}, Real{1});
+        return boost::math::cdf(dist, x);
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline Real laplace_phi(const Real x)
+    {
+        return normal_cdf(x) - Real{0.5};
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline Real inverse_laplace_phi(const Real y)
+    {
+        detail::require_finite(y, "y");
+
+        if (!(y > Real{-0.5} && y < Real{0.5}))
+        {
+            throw std::domain_error("y must be in (-0.5, 0.5)");
+        }
+
+        const boost::math::normal_distribution<Real> dist(Real{0}, Real{1});
+        return boost::math::quantile(dist, y + Real{0.5});
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline Real z_critical(const Real alpha)
+    {
+        detail::require_probability_open(alpha, "alpha");
+
+        const boost::math::normal_distribution<Real> dist(Real{0}, Real{1});
+        return boost::math::quantile(dist, Real{1} - alpha);
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline Real normal_two_tailed_p_value(const Real z)
+    {
+        detail::require_finite(z, "z");
+
+        const Real abs_z = std::abs(z);
+        const Real tail = Real{1} - normal_cdf(abs_z);
+        const Real p = Real{2} * tail;
+
+        return std::clamp(p, Real{0}, Real{1});
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline Real bernoulli_exact(const int n, const int m, const Real p)
+    {
+        detail::require_non_negative_int(n, "n");
+        detail::require_binomial_k(m, n, "m");
+        detail::require_probability_closed(p, "p");
+
+        const boost::math::binomial_distribution<Real> dist(
+            static_cast<Real>(n),
+            p
+        );
+
+        return boost::math::pdf(dist, static_cast<Real>(m));
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline Real binomial_cdf(const int n, const int m, const Real p)
+    {
+        detail::require_non_negative_int(n, "n");
+        detail::require_probability_closed(p, "p");
+
+        if (m < 0)
+        {
+            return Real{0};
+        }
+
+        if (m >= n)
+        {
+            return Real{1};
+        }
+
+        const boost::math::binomial_distribution<Real> dist(
+            static_cast<Real>(n),
+            p
+        );
+
+        return boost::math::cdf(dist, static_cast<Real>(m));
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline Real laplace_local(const int n, const int m, const Real p)
+    {
+        detail::require_non_negative_int(n, "n");
+        detail::require_binomial_k(m, n, "m");
+        detail::require_probability_open(p, "p");
+
+        const Real q = Real{1} - p;
+        const Real npq = static_cast<Real>(n) * p * q;
+
+        detail::require_positive(npq, "n * p * q");
+
+        const Real x =
+            (static_cast<Real>(m) - static_cast<Real>(n) * p) / std::sqrt(npq);
+
+        return phi(x) / std::sqrt(npq);
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline Real laplace_integral(
+        const int n,
+        const int m1,
+        const int m2,
+        const Real p)
+    {
+        detail::require_non_negative_int(n, "n");
+        detail::require_ordered_int_interval(m1, m2, "m1", "m2");
+        detail::require_probability_open(p, "p");
+
+        const Real q = Real{1} - p;
+        const Real sigma = std::sqrt(static_cast<Real>(n) * p * q);
+
+        detail::require_positive(sigma, "sigma");
+
+        const Real x1 =
+            (static_cast<Real>(m1) - static_cast<Real>(n) * p) / sigma;
+        const Real x2 =
+            (static_cast<Real>(m2) - static_cast<Real>(n) * p) / sigma;
+
+        const Real result = normal_cdf(x2) - normal_cdf(x1);
+        return std::clamp(result, Real{0}, Real{1});
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline Real laplace_integral_cc(
+        const int n,
+        const int m1,
+        const int m2,
+        const Real p)
+    {
+        detail::require_non_negative_int(n, "n");
+        detail::require_ordered_int_interval(m1, m2, "m1", "m2");
+        detail::require_probability_open(p, "p");
+
+        const Real q = Real{1} - p;
+        const Real sigma = std::sqrt(static_cast<Real>(n) * p * q);
+
+        detail::require_positive(sigma, "sigma");
+
+        const Real x1 =
+            (static_cast<Real>(m1) - Real{0.5} - static_cast<Real>(n) * p) / sigma;
+        const Real x2 =
+            (static_cast<Real>(m2) + Real{0.5} - static_cast<Real>(n) * p) / sigma;
+
+        const Real result = normal_cdf(x2) - normal_cdf(x1);
+        return std::clamp(result, Real{0}, Real{1});
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline Real poisson_pmf(const int m, const Real lambda)
+    {
+        detail::require_non_negative_int(m, "m");
+        detail::require_non_negative(lambda, "lambda");
+
+        const boost::math::poisson_distribution<Real> dist(lambda);
+        return boost::math::pdf(dist, static_cast<Real>(m));
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline Real poisson_cdf(const int m, const Real lambda)
+    {
+        detail::require_non_negative(lambda, "lambda");
+
+        if (m < 0)
+        {
+            return Real{0};
+        }
+
+        const boost::math::poisson_distribution<Real> dist(lambda);
+        return boost::math::cdf(dist, static_cast<Real>(m));
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline Real binomial_mean(const int n, const Real p) noexcept
+    {
+        return static_cast<Real>(n) * p;
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline Real binomial_variance(const int n, const Real p) noexcept
+    {
+        return static_cast<Real>(n) * p * (Real{1} - p);
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline Real poisson_mean(const Real lambda) noexcept
+    {
+        return lambda;
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline Real poisson_variance(const Real lambda) noexcept
+    {
+        return lambda;
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline constexpr Real normal_mean() noexcept
+    {
+        return Real{0};
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline constexpr Real normal_variance() noexcept
+    {
+        return Real{1};
+    }
+
+    template <typename Distribution>
+    constexpr distribution_wrapper<Distribution>::distribution_wrapper(
+        Distribution distribution) noexcept(std::is_nothrow_move_constructible_v<Distribution>)
+        : distribution_(std::move(distribution))
+    {
+    }
+
+    template <typename Distribution>
+    [[nodiscard]] constexpr const Distribution&
+    distribution_wrapper<Distribution>::native() const noexcept
+    {
+        return distribution_;
+    }
+
+    template <typename Distribution>
+    template <floating_point_like Real>
+    [[nodiscard]] Real distribution_wrapper<Distribution>::pdf(const Real x) const
+    {
+        detail::require_finite(x, "x");
+        return boost::math::pdf(distribution_, x);
+    }
+
+    template <typename Distribution>
+    template <floating_point_like Real>
+    [[nodiscard]] Real distribution_wrapper<Distribution>::cdf(const Real x) const
+    {
+        detail::require_finite(x, "x");
+        return boost::math::cdf(distribution_, x);
+    }
+
+    template <typename Distribution>
+    template <floating_point_like Real>
+    [[nodiscard]] Real distribution_wrapper<Distribution>::quantile(const Real p) const
+    {
+        detail::require_probability_closed(p, "p");
+        return boost::math::quantile(distribution_, p);
+    }
+
+    template <typename Distribution>
+    template <floating_point_like Real>
+    [[nodiscard]] Real distribution_wrapper<Distribution>::mean() const
+    {
+        return static_cast<Real>(boost::math::mean(distribution_));
+    }
+
+    template <typename Distribution>
+    template <floating_point_like Real>
+    [[nodiscard]] Real distribution_wrapper<Distribution>::variance() const
+    {
+        return static_cast<Real>(boost::math::variance(distribution_));
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline auto make_standard_normal()
+    {
+        return distribution_wrapper{
+            boost::math::normal_distribution<Real>(Real{0}, Real{1})
+        };
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline auto make_normal(const Real mean, const Real sigma)
+    {
+        detail::require_finite(mean, "mean");
+        detail::require_positive(sigma, "sigma");
+
+        return distribution_wrapper{
+            boost::math::normal_distribution<Real>(mean, sigma)
+        };
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline auto make_binomial(const int n, const Real p)
+    {
+        detail::require_non_negative_int(n, "n");
+        detail::require_probability_closed(p, "p");
+
+        return distribution_wrapper{
+            boost::math::binomial_distribution<Real>(static_cast<Real>(n), p)
+        };
+    }
+
+    template <floating_point_like Real>
+    [[nodiscard]] inline auto make_poisson(const Real lambda)
+    {
+        detail::require_non_negative(lambda, "lambda");
+
+        return distribution_wrapper{
+            boost::math::poisson_distribution<Real>(lambda)
+        };
+    }
+}
