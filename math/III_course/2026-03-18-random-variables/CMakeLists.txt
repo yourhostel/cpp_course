@@ -16,6 +16,8 @@ add_executable(random-variables
         # <dir>/class.cpp
 )
 
+target_link_libraries(random-variables PRIVATE math_iii_lib)
+
 target_include_directories(random-variables PRIVATE
         # ${CMAKE_CURRENT_SOURCE_DIR}
         # ${CMAKE_CURRENT_SOURCE_DIR}/../2026-03-08-probability-combination
