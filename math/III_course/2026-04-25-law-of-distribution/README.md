@@ -58,6 +58,8 @@ $$
 
 ![Програмне обчислення Геометричного розподілу](screenshots/geometric_distribution_print.png)
 
+![img.png](screenshots/img.png)
+
 ---
 
 ## Висновок

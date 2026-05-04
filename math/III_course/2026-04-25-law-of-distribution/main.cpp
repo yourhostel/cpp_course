@@ -45,7 +45,7 @@ int main()
     cout << fixed << setprecision(6);
     cout << "Law of Distribution \n\n" << endl;
 
-    // task_1();
+    task_1();
     task_2();
     return 0;
 }
