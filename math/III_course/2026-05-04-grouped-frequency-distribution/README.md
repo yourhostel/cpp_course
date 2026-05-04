@@ -13,7 +13,7 @@
 
 Для зручного виконання завдання початкові дані подано у вигляді структур.
 
-[grouped_frequency_tasks.hpp]()
+[grouped_frequency_tasks.hpp](https://github.com/yourhostel/cpp_course/blob/main/math/III_course/2026-05-04-grouped-frequency-distribution/grouped_frequency_tasks.hpp)
 
 ```cpp
 struct interval_frequency
