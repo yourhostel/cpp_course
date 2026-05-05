@@ -3,6 +3,8 @@
 //
 
 #pragma once
+#include <ranges>
+#include <functional>
 
 namespace stats
 {
@@ -620,5 +622,123 @@ namespace stats::discrete
                 p
             )
         };
+    }
+}
+
+namespace stats::sample
+{
+    template <std::ranges::input_range Range, typename ValueFn, typename WeightFn>
+    [[nodiscard]] double weighted_mean(
+        const Range& range,
+        ValueFn value_fn,
+        WeightFn weight_fn
+    )
+    {
+        const double weight_sum = std::ranges::fold_left(
+            range | std::views::transform([&weight_fn](const auto& item)
+            {
+                return static_cast<double>(std::invoke(weight_fn, item));
+            }),
+            0.0,
+            std::plus{}
+        );
+
+        detail::require_positive(weight_sum, "weight_sum");
+
+        const double weighted_value_sum = std::ranges::fold_left(
+            range | std::views::transform([&value_fn, &weight_fn](const auto& item)
+            {
+                const double value = static_cast<double>(std::invoke(value_fn, item));
+                const double weight = static_cast<double>(std::invoke(weight_fn, item));
+
+                return value * weight;
+            }),
+            0.0,
+            std::plus{}
+        );
+
+        return weighted_value_sum / weight_sum;
+    }
+
+    template <std::ranges::input_range Range, typename ValueFn, typename WeightFn>
+    [[nodiscard]] double weighted_variance(
+        const Range& range,
+        ValueFn value_fn,
+        WeightFn weight_fn
+    )
+    {
+        const double mean = weighted_mean(range, value_fn, weight_fn);
+
+        const double weight_sum = std::ranges::fold_left(
+            range | std::views::transform([&weight_fn](const auto& item)
+            {
+                return static_cast<double>(std::invoke(weight_fn, item));
+            }),
+            0.0,
+            std::plus{}
+        );
+
+        detail::require_positive(weight_sum, "weight_sum");
+
+        const double squared_deviation_sum = std::ranges::fold_left(
+            range | std::views::transform([mean, &value_fn, &weight_fn](const auto& item)
+            {
+                const double value = static_cast<double>(std::invoke(value_fn, item));
+                const double weight = static_cast<double>(std::invoke(weight_fn, item));
+                const double deviation = value - mean;
+
+                return weight * deviation * deviation;
+            }),
+            0.0,
+            std::plus{}
+        );
+
+        return squared_deviation_sum / weight_sum;
+    }
+
+    template <std::ranges::input_range Range, typename ValueFn, typename WeightFn>
+    [[nodiscard]] double corrected_weighted_variance(
+        const Range& range,
+        ValueFn value_fn,
+        WeightFn weight_fn
+    )
+    {
+        const double mean = weighted_mean(range, value_fn, weight_fn);
+
+        const double weight_sum = std::ranges::fold_left(
+            range | std::views::transform([&weight_fn](const auto& item)
+            {
+                return static_cast<double>(std::invoke(weight_fn, item));
+            }),
+            0.0,
+            std::plus{}
+        );
+
+        if (weight_sum <= 1.0)
+        {
+            throw std::domain_error("weight_sum must be greater than 1");
+        }
+
+        const double squared_deviation_sum = std::ranges::fold_left(
+            range | std::views::transform([mean, &value_fn, &weight_fn](const auto& item)
+            {
+                const double value = static_cast<double>(std::invoke(value_fn, item));
+                const double weight = static_cast<double>(std::invoke(weight_fn, item));
+                const double deviation = value - mean;
+
+                return weight * deviation * deviation;
+            }),
+            0.0,
+            std::plus{}
+        );
+
+        return squared_deviation_sum / (weight_sum - 1.0);
+    }
+
+    [[nodiscard]] inline double standard_deviation(const double variance)
+    {
+        detail::require_non_negative(variance, "variance");
+
+        return std::sqrt(variance);
     }
 }

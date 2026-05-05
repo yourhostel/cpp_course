@@ -527,5 +527,89 @@ namespace stats::discrete
     [[nodiscard]] auto make_negative_binomial(unsigned failures, Real p);
 }
 
+namespace stats::sample
+{
+    /**
+     * Зважене вибіркове середнє.
+     *
+     * Обчислює середнє значення для даних, заданих парами
+     * значення та вага. Для статистичного ряду вагою зазвичай
+     * є частота.
+     *
+     * Формула:
+     * mean = sum(x_i * w_i) / sum(w_i)
+     *
+     * @param range діапазон елементів
+     * @param value_fn функція отримання значення x_i
+     * @param weight_fn функція отримання ваги або частоти w_i
+     * @return зважене середнє
+     *
+     * @throws std::domain_error якщо сума ваг не є додатною
+     */
+    template <std::ranges::input_range Range, typename ValueFn, typename WeightFn>
+    [[nodiscard]] double weighted_mean(
+        const Range& range,
+        ValueFn value_fn,
+        WeightFn weight_fn
+    );
+
+    /**
+     * Зважена вибіркова дисперсія.
+     *
+     * Обчислює дисперсію для частотного або зваженого ряду
+     * з дільником sum(w_i).
+     *
+     * Формула:
+     * variance = sum(w_i * (x_i - mean)^2) / sum(w_i)
+     *
+     * @param range діапазон елементів
+     * @param value_fn функція отримання значення x_i
+     * @param weight_fn функція отримання ваги або частоти w_i
+     * @return зважена вибіркова дисперсія
+     *
+     * @throws std::domain_error якщо сума ваг не є додатною
+     */
+    template <std::ranges::input_range Range, typename ValueFn, typename WeightFn>
+    [[nodiscard]] double weighted_variance(
+        const Range& range,
+        ValueFn value_fn,
+        WeightFn weight_fn
+    );
+
+    /**
+     * Виправлена зважена вибіркова дисперсія.
+     *
+     * Обчислює дисперсію для частотного або зваженого ряду
+     * з дільником sum(w_i) - 1.
+     *
+     * Формула:
+     * corrected_variance = sum(w_i * (x_i - mean)^2) / (sum(w_i) - 1)
+     *
+     * @param range діапазон елементів
+     * @param value_fn функція отримання значення x_i
+     * @param weight_fn функція отримання ваги або частоти w_i
+     * @return виправлена зважена вибіркова дисперсія
+     *
+     * @throws std::domain_error якщо сума ваг менша або дорівнює 1
+     */
+    template <std::ranges::input_range Range, typename ValueFn, typename WeightFn>
+    [[nodiscard]] double corrected_weighted_variance(
+        const Range& range,
+        ValueFn value_fn,
+        WeightFn weight_fn
+    );
+
+    /**
+     * Вибіркове середнє квадратичне відхилення.
+     *
+     * Обчислює квадратний корінь із дисперсії.
+     *
+     * @param variance дисперсія
+     * @return середнє квадратичне відхилення
+     *
+     * @throws std::domain_error якщо variance < 0 або variance не є скінченним
+     */
+    [[nodiscard]] inline double standard_deviation(double variance);
+}
 
 #include "stats.tpp"
