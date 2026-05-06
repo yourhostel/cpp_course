@@ -685,3 +685,22 @@ int *a, *b;
 
 5. Практичне заняття №12. ЗМ3. ЛЗ14.
 
+```bash
+pandoc README.md -s \
+  --pdf-engine=xelatex \
+  -V mainfont="DejaVu Serif" \
+  -V monofont="DejaVu Sans Mono" \
+  -V fontsize=12pt \
+  -V linestretch=1.15 \
+  -V geometry:a4paper \
+  -V geometry:margin=20mm \
+  -V geometry:landscape \
+  --toc --toc-depth=3 \
+  --number-sections \
+  --metadata title="Об'єктно орієнтоване програмування" \
+  --metadata subtitle="Покажчики C++" \
+  --metadata author="Тищенко Сергій, alk-43" \
+  --metadata date="2026-05-06" \
+  -H ../../header_sub.tex \
+  -o README.pdf
+```
