@@ -94,9 +94,9 @@ namespace stats
         [[nodiscard]] inline constexpr Real inv_sqrt_2pi() noexcept
         {
             return Real{1} /
-                   std::sqrt(
-                       Real{2} * boost::math::constants::pi<Real>()
-                   );
+                std::sqrt(
+                    Real{2} * boost::math::constants::pi<Real>()
+                );
         }
     }
 
@@ -740,5 +740,96 @@ namespace stats::sample
         detail::require_non_negative(variance, "variance");
 
         return std::sqrt(variance);
+    }
+}
+
+namespace stats::intervals
+{
+    template <floating_point_like Real>
+    inline Real normal_critical(const Real gamma)
+    {
+        detail::require_probability_open(gamma, "gamma");
+
+        const boost::math::normal_distribution<Real> dist(0, 1);
+
+        return boost::math::quantile(
+            dist,
+            (Real{1} + gamma) / Real{2}
+        );
+    }
+
+    template <floating_point_like Real>
+    inline confidence_interval<Real> mean_confidence_interval_known_sigma(
+        const Real x_bar,
+        const Real sigma,
+        const int n,
+        const Real gamma
+    )
+    {
+        detail::require_finite(x_bar, "x_bar");
+        detail::require_positive(sigma, "sigma");
+
+        if (n <= 0)
+            throw std::domain_error("n must be positive");
+
+        detail::require_probability_open(gamma, "gamma");
+
+        const Real t_gamma = normal_critical<Real>(gamma);
+        const Real delta = t_gamma * sigma / std::sqrt(static_cast<Real>(n));
+
+        return {
+            x_bar - delta,
+            x_bar + delta
+        };
+    }
+
+    template <floating_point_like Real>
+    inline Real chi_squared_critical(
+        const Real p,
+        const Real k
+    )
+    {
+        // перевіряє, що 0 < p < 1 коректне для квантиля
+        detail::require_probability_open(p, "p");
+        // перевіряє, що k > 0
+        detail::require_positive(k, "k");
+
+        const boost::math::chi_squared_distribution<Real> dist(k);
+
+        return boost::math::quantile(dist, p);
+    }
+
+    template <floating_point_like Real>
+    inline confidence_interval<Real> sigma_confidence_interval(
+        const Real s,
+        const int n,
+        const Real gamma
+    )
+    {
+        // Перевіряє, що s > 0, і що число скінченне.
+        // кидає std::domain_error якщо ні
+        detail::require_positive(s, "s");
+
+        if (n <= 1)
+            throw std::domain_error("n must be greater than 1");
+
+        // перевіряє що 0 < gamma < 1 тобто що надійність оцінки є коректною ймовірністю
+        detail::require_probability_open(gamma, "gamma");
+
+        const Real k = static_cast<Real>(n - 1);
+
+        const Real p_left = (Real{1} - gamma) / Real{2};
+        const Real p_right = (Real{1} + gamma) / Real{2};
+
+        const Real chi_left =
+            chi_squared_critical<Real>(p_left, k);
+
+        const Real chi_right =
+            chi_squared_critical<Real>(p_right, k);
+
+        return {
+            s * std::sqrt(k / chi_right),
+            s * std::sqrt(k / chi_left)
+        };
     }
 }

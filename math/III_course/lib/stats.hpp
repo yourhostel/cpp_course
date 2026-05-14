@@ -25,6 +25,7 @@
 #include <boost/math/distributions/negative_binomial.hpp>
 #include <boost/math/distributions/normal.hpp>
 #include <boost/math/distributions/poisson.hpp>
+#include <boost/math/distributions/chi_squared.hpp>
 
 namespace stats
 {
@@ -610,6 +611,82 @@ namespace stats::sample
      * @throws std::domain_error якщо variance < 0 або variance не є скінченним
      */
     [[nodiscard]] inline double standard_deviation(double variance);
+}
+
+namespace stats::intervals
+{
+    template <floating_point_like Real = double>
+    struct confidence_interval
+    {
+        Real lower;
+        Real upper;
+    };
+
+    /**
+     * Критичне значення стандартного нормального розподілу
+     * для двостороннього надійного інтервалу.
+     *
+     * Математична модель:
+     * t_gamma = F^(-1)((1 + gamma) / 2)
+     *
+     * де F це функція розподілу стандартного нормального закону.
+     *
+     * @param gamma надійність оцінки з інтервалу (0, 1)
+     * @return t_gamma
+     */
+    template <floating_point_like Real = double>
+    [[nodiscard]] inline Real normal_critical(Real gamma);
+
+    /**
+     * Надійний інтервал для математичного сподівання a
+     * нормально розподіленої генеральної сукупності X
+     * при відомому sigma.
+     *
+     * Математична модель:
+     * x_bar - t_gamma * sigma / sqrt(n) < a < x_bar + t_gamma * sigma / sqrt(n)
+     *
+     * @param x_bar вибіркове середнє
+     * @param sigma середнє квадратичне відхилення генеральної сукупності
+     * @param n обєм вибірки
+     * @param gamma надійність оцінки
+     * @return нижня і верхня межа надійного інтервалу
+     */
+    template <floating_point_like Real = double>
+    [[nodiscard]] inline confidence_interval<Real>
+    mean_confidence_interval_known_sigma(
+        Real x_bar,
+        Real sigma,
+        int n,
+        Real gamma
+    );
+
+    /**
+     * Квантиль розподілу chi squared.
+     * @param p ймовірність з інтервалу (0, 1)
+     * @param k число ступенів свободи
+     * @return chi_squared_p
+     */
+    template <floating_point_like Real = double>
+    [[nodiscard]] inline Real chi_squared_critical(
+        Real p,
+        Real k
+    );
+
+    /**
+     * Надійний інтервал для середнього квадратичного відхилення sigma
+     * нормально розподіленої генеральної сукупності X.
+     * @param s виправлене середнє квадратичне відхилення
+     * @param n об’єм вибірки
+     * @param gamma надійність оцінки
+     * @return нижня і верхня межа надійного інтервалу
+     */
+    template <floating_point_like Real = double>
+    [[nodiscard]] inline confidence_interval<Real>
+    sigma_confidence_interval(
+        Real s,
+        int n,
+        Real gamma
+    );
 }
 
 #include "stats.tpp"
