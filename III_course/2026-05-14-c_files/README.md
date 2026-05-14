@@ -1,6 +1,6 @@
 # ФАЙЛИ В СТИЛІ С
 
-[![stdio.h](https://img.shields.io/badge/C-stdio.h-blue.png?style=flat-square&logo=c&logoColor=white)](https://en.cppreference.com/c/header/stdio){ width=120px }
+[![stdio.h](https://img.shields.io/badge/C-stdio.h-blue.png?style=flat-square&logoColor=white)](https://en.cppreference.com/c/header/stdio)
 
 ## Мета
 
